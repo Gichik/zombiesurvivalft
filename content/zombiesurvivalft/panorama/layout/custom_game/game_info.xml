@@ -1,0 +1,33 @@
+<root>
+	<styles>
+		<include src="file://{resources}/styles/dotastyles.css" />
+		<include src="file://{resources}/styles/custom_game/game_info.css" />
+	</styles>
+
+	<Panel class="GameInfo" >
+		<Panel id="Title">
+			<Label id="TitleName" text="#addon_game_name" />
+		</Panel> 
+
+		<!--Цель-->
+		<!--<Label id="GameDescription" text="#task" />-->		
+		<Label id="H1" class="Header" html="true" text="#task" /> 
+		<Panel id="InfoTask" class="InfoStringRight" >
+			<Label id="InfoTaskText" text="#taskInfo" />
+			<Image id="InfoTaskImage" src="file://{images}/custom_game/game_info/antidote.png" />
+		</Panel> 
+		<!--Инфо-->
+		<Label id="H2" class="Header" html="true" text="#info" />		 
+		<Panel id="Info" class="InfoStringLeft" >
+			<Image id="InfoImage" src="file://{images}/custom_game/game_info/information.png" />
+			<Label id="InfoText" text="#InfoText" />				
+		</Panel> 
+		<!--Смерть-->	
+		<Label id="H3" class="Header" html="true" text="#death" /> 
+		<Panel id="InfoDeath" class="InfoStringRight" >
+			<Label id="InfoDeathText" text="#DeathInfo" />
+			<Image id="InfoDeathImage" src="file://{images}/custom_game/game_info/pudge.png" />
+		</Panel> 
+
+	</Panel>		
+</root>

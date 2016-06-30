@@ -1,0 +1,595 @@
+// Dota Heroes File
+// NOTE: This is not for creating new heroes, this is for taking a currently existing hero as a template and overriding
+// the specified key-value combinations.  Use override_hero <hero_to_override> for this.
+"DOTAHeroes"
+{
+	//=================================================================================================================
+	// HERO: Hot girl
+	//=================================================================================================================
+	"npc_dota_hero_lina"
+	{
+		"override_hero"				"npc_dota_hero_lina"			// Hero to override
+		"AbilityLayout"				"5"
+		"Ability1"					"hunger"		
+		"Ability2"					"infection"			
+		"Ability3"					""		
+		"Ability4"					""		
+		"Ability5"					""
+		"Ability6"					""
+		"Ability7"					""
+		"Ability8"					"blood"
+		
+		// Attributes
+		//-------------------------------------------------------------------------------------------------------------
+		"AttributePrimary"		"DOTA_ATTRIBUTE_STRENGTH"
+		"AttributeBaseStrength"		"1"
+		"AttributeStrengthGain"		"0"
+		"AttributeBaseIntelligence"	"1"
+		"AttributeIntelligenceGain"	"0"
+		"AttributeBaseAgility"		"1"
+		"AttributeAgilityGain"		"0"
+
+		// Status
+		//-------------------------------------------------------------------------------------------------------------
+		"StatusHealth"			"81"
+		"StatusHealthRegen"		"0"
+		"StatusMana"			"87"
+		"StatusManaRegen"		"1"
+		
+		// Vision
+		//-------------------------------------------------------------------------------------------------------------
+		"VisionDaytimeRange"		"1000"
+		"VisionNighttimeRange"		"600"
+		
+		// Armor
+		//-------------------------------------------------------------------------------------------------------------		
+		"ArmorPhysical"			"0"
+		"MagicalResistance"		"0"
+		
+		// Attack
+		//-------------------------------------------------------------------------------------------------------------
+		"AttackCapabilities"		"DOTA_UNIT_CAP_MELEE_ATTACK"
+		"AttackDamageMin"		"27"
+		"AttackDamageMax"		"31"
+		"AttackRate"		"1.450000"
+		"AttackAnimationPoint"		"0.300000"
+		"AttackAcquisitionRange"		"600"
+		"AttackRange"		"128"
+		"ProjectileSpeed"		"0"
+
+		// Movement
+		//-------------------------------------------------------------------------------------------------------------
+		"MovementSpeed"		"315"
+
+	}
+	
+	
+	//=================================================================================================================
+	// HERO: Red beast 
+	//=================================================================================================================
+	"npc_dota_hero_windrunner"
+	{
+		"override_hero"				"npc_dota_hero_windrunner"			// Hero to override
+		"AbilityLayout"				"5"
+		"Ability1"					"hunger"		
+		"Ability2"					"infection"		
+		"Ability3"					""		
+		"Ability4"					""		
+		"Ability5"					""
+		"Ability6"					""
+		"Ability7"					""
+		"Ability8"					"blood"	
+
+		
+		// Attributes
+		//-------------------------------------------------------------------------------------------------------------
+		"AttributePrimary"		"DOTA_ATTRIBUTE_STRENGTH"
+		"AttributeBaseStrength"		"1"
+		"AttributeStrengthGain"		"0"
+		"AttributeBaseIntelligence"	"1"
+		"AttributeIntelligenceGain"	"0"
+		"AttributeBaseAgility"		"1"
+		"AttributeAgilityGain"		"0"
+
+		// Status
+		//-------------------------------------------------------------------------------------------------------------
+		"StatusHealth"			"81"
+		"StatusHealthRegen"		"0"
+		"StatusMana"			"87"
+		"StatusManaRegen"		"1"
+		
+		// Vision
+		//-------------------------------------------------------------------------------------------------------------
+		"VisionDaytimeRange"		"1000"
+		"VisionNighttimeRange"		"600"
+
+		// Armor
+		//-------------------------------------------------------------------------------------------------------------		
+		"ArmorPhysical"			"0"
+		"MagicalResistance"		"0"
+		
+		// Attack
+		//-------------------------------------------------------------------------------------------------------------
+		"AttackCapabilities"		"DOTA_UNIT_CAP_MELEE_ATTACK"
+		"AttackDamageMin"		"27"
+		"AttackDamageMax"		"31"
+		"AttackRate"		"1.450000"
+		"AttackAnimationPoint"		"0.300000"
+		"AttackAcquisitionRange"		"600"
+		"AttackRange"		"128"
+		"ProjectileSpeed"		"0"
+
+		// Movement
+		//-------------------------------------------------------------------------------------------------------------
+		"MovementSpeed"		"315"
+
+	}
+	
+	
+	//=================================================================================================================
+	// HERO: Blonde
+	//=================================================================================================================
+	"npc_dota_hero_crystal_maiden"
+	{
+		"override_hero"				"npc_dota_hero_crystal_maiden"			// Hero to override
+		"AbilityLayout"				"5"
+		"Ability1"					"hunger"		
+		"Ability2"					"infection"			
+		"Ability3"					""		
+		"Ability4"					""		
+		"Ability5"					""
+		"Ability6"					""
+		"Ability7"					""
+		"Ability8"					"blood"
+
+		
+		// Attributes
+		//-------------------------------------------------------------------------------------------------------------
+		"AttributePrimary"		"DOTA_ATTRIBUTE_STRENGTH"
+		"AttributeBaseStrength"		"1"
+		"AttributeStrengthGain"		"0"
+		"AttributeBaseIntelligence"	"1"
+		"AttributeIntelligenceGain"	"0"
+		"AttributeBaseAgility"		"1"
+		"AttributeAgilityGain"		"0"
+
+		// Status
+		//-------------------------------------------------------------------------------------------------------------
+		"StatusHealth"			"81"
+		"StatusHealthRegen"		"0"
+		"StatusMana"			"87"
+		"StatusManaRegen"		"1"
+		
+		// Vision
+		//-------------------------------------------------------------------------------------------------------------
+		"VisionDaytimeRange"		"1000"
+		"VisionNighttimeRange"		"600"
+
+		// Armor
+		//-------------------------------------------------------------------------------------------------------------		
+		"ArmorPhysical"			"0"
+		"MagicalResistance"		"0"
+		
+		// Attack
+		//-------------------------------------------------------------------------------------------------------------
+		"AttackCapabilities"		"DOTA_UNIT_CAP_MELEE_ATTACK"
+		"AttackDamageMin"		"27"
+		"AttackDamageMax"		"31"
+		"AttackRate"		"1.450000"
+		"AttackAnimationPoint"		"0.300000"
+		"AttackAcquisitionRange"		"600"
+		"AttackRange"		"128"
+		"ProjectileSpeed"		"0"
+
+		// Movement
+		//-------------------------------------------------------------------------------------------------------------
+		"MovementSpeed"		"315"
+
+	}
+	
+	
+	//=================================================================================================================
+	// HERO: Chocolate
+	//=================================================================================================================
+	"npc_dota_hero_drow_ranger"
+	{
+		"override_hero"				"npc_dota_hero_drow_ranger"			// Hero to override
+		"AbilityLayout"				"5"
+		"Ability1"					"hunger"		
+		"Ability2"					"infection"		
+		"Ability3"					""		
+		"Ability4"					""		
+		"Ability5"					""
+		"Ability6"					""
+		"Ability7"					""
+		"Ability8"					"blood"	
+
+		
+		// Attributes
+		//-------------------------------------------------------------------------------------------------------------
+		"AttributePrimary"		"DOTA_ATTRIBUTE_STRENGTH"
+		"AttributeBaseStrength"		"1"
+		"AttributeStrengthGain"		"0"
+		"AttributeBaseIntelligence"	"1"
+		"AttributeIntelligenceGain"	"0"
+		"AttributeBaseAgility"		"1"
+		"AttributeAgilityGain"		"0"
+
+		// Status
+		//-------------------------------------------------------------------------------------------------------------
+		"StatusHealth"			"81"
+		"StatusHealthRegen"		"0"
+		"StatusMana"			"87"
+		"StatusManaRegen"		"1"
+		
+		// Vision
+		//-------------------------------------------------------------------------------------------------------------
+		"VisionDaytimeRange"		"1000"
+		"VisionNighttimeRange"		"600"
+
+		// Armor
+		//-------------------------------------------------------------------------------------------------------------		
+		"ArmorPhysical"			"0"
+		"MagicalResistance"		"0"
+		
+		// Attack
+		//-------------------------------------------------------------------------------------------------------------
+		"AttackCapabilities"		"DOTA_UNIT_CAP_MELEE_ATTACK"
+		"AttackDamageMin"		"27"
+		"AttackDamageMax"		"31"
+		"AttackRate"		"1.450000"
+		"AttackAnimationPoint"		"0.300000"
+		"AttackAcquisitionRange"		"600"
+		"AttackRange"		"128"
+		"ProjectileSpeed"		"0"
+
+		// Movement
+		//-------------------------------------------------------------------------------------------------------------
+		"MovementSpeed"		"315"
+
+	}
+	
+	
+	//=================================================================================================================
+	// HERO: Grandpa
+	//=================================================================================================================
+	"npc_dota_hero_lone_druid"
+	{
+		"override_hero"				"npc_dota_hero_lone_druid"			// Hero to override
+		"AbilityLayout"				"5"
+		"Ability1"					"hunger"		
+		"Ability2"					"infection"		
+		"Ability3"					""		
+		"Ability4"					""		
+		"Ability5"					""
+		"Ability6"					""
+		"Ability7"					""
+		"Ability8"					"blood"
+	
+		
+		// Attributes
+		//-------------------------------------------------------------------------------------------------------------
+		"AttributePrimary"		"DOTA_ATTRIBUTE_STRENGTH"
+		"AttributeBaseStrength"		"1"
+		"AttributeStrengthGain"		"0"
+		"AttributeBaseIntelligence"	"1"
+		"AttributeIntelligenceGain"	"0"
+		"AttributeBaseAgility"		"1"
+		"AttributeAgilityGain"		"0"
+
+		// Status
+		//-------------------------------------------------------------------------------------------------------------
+		"StatusHealth"			"81"
+		"StatusHealthRegen"		"0"
+		"StatusMana"			"87"
+		"StatusManaRegen"		"1"
+		
+		// Vision
+		//-------------------------------------------------------------------------------------------------------------
+		"VisionDaytimeRange"		"1000"
+		"VisionNighttimeRange"		"600"
+		
+		// Attack
+		//-------------------------------------------------------------------------------------------------------------
+		"AttackCapabilities"		"DOTA_UNIT_CAP_MELEE_ATTACK"
+		"AttackDamageMin"		"27"
+		"AttackDamageMax"		"31"
+		"AttackRate"		"1.450000"
+		"AttackAnimationPoint"		"0.300000"
+		"AttackAcquisitionRange"		"600"
+		"AttackRange"		"128"
+		"ProjectileSpeed"		"0"
+
+		// Movement
+		//-------------------------------------------------------------------------------------------------------------
+		"MovementSpeed"		"315"
+		
+
+	}
+	
+	
+	//=================================================================================================================
+	// HERO: Anime girl
+	//=================================================================================================================
+	"npc_dota_hero_templar_assassin"
+	{
+		"override_hero"				"npc_dota_hero_templar_assassin"			// Hero to override
+		"AbilityLayout"				"5"
+		"Ability1"					"hunger"		
+		"Ability2"					"infection"			
+		"Ability3"					""		
+		"Ability4"					""		
+		"Ability5"					""
+		"Ability6"					""
+		"Ability7"					""
+		"Ability8"					"blood"
+		
+
+		// Attributes
+		//-------------------------------------------------------------------------------------------------------------
+		"AttributePrimary"		"DOTA_ATTRIBUTE_STRENGTH"
+		"AttributeBaseStrength"		"1"
+		"AttributeStrengthGain"		"0"
+		"AttributeBaseIntelligence"	"1"
+		"AttributeIntelligenceGain"	"0"
+		"AttributeBaseAgility"		"1"
+		"AttributeAgilityGain"		"0"
+
+		// Status
+		//-------------------------------------------------------------------------------------------------------------
+		"StatusHealth"			"81"
+		"StatusHealthRegen"		"0"
+		"StatusMana"			"87"
+		"StatusManaRegen"		"1"
+		
+		// Vision
+		//-------------------------------------------------------------------------------------------------------------
+		"VisionDaytimeRange"		"1000"
+		"VisionNighttimeRange"		"600"
+
+		// Armor
+		//-------------------------------------------------------------------------------------------------------------		
+		"ArmorPhysical"			"0"
+		"MagicalResistance"		"0"
+		
+		// Attack
+		//-------------------------------------------------------------------------------------------------------------
+		"AttackCapabilities"		"DOTA_UNIT_CAP_MELEE_ATTACK"
+		"AttackDamageMin"		"27"
+		"AttackDamageMax"		"31"
+		"AttackRate"		"1.450000"
+		"AttackAnimationPoint"		"0.300000"
+		"AttackAcquisitionRange"		"600"
+		"AttackRange"		"128"
+		"ProjectileSpeed"		"0"
+
+		// Movement
+		//-------------------------------------------------------------------------------------------------------------
+		"MovementSpeed"		"315"
+
+	}
+
+	//=================================================================================================================
+	// HERO: Muscled
+	//=================================================================================================================
+	"npc_dota_hero_axe"
+	{
+		"override_hero"				"npc_dota_hero_axe"			// Hero to override
+		"AbilityLayout"				"5"
+		"Ability1"					"hunger"		
+		"Ability2"					"infection"			
+		"Ability3"					""		
+		"Ability4"					""		
+		"Ability5"					""
+		"Ability6"					""
+		"Ability7"					""
+		"Ability8"					"blood"
+	
+		// Attributes
+		//-------------------------------------------------------------------------------------------------------------
+		"AttributePrimary"		"DOTA_ATTRIBUTE_STRENGTH"
+		"AttributeBaseStrength"		"1"
+		"AttributeStrengthGain"		"0"
+		"AttributeBaseIntelligence"	"1"
+		"AttributeIntelligenceGain"	"0"
+		"AttributeBaseAgility"		"1"
+		"AttributeAgilityGain"		"0"
+
+		// Status
+		//-------------------------------------------------------------------------------------------------------------
+		"StatusHealth"			"81"
+		"StatusHealthRegen"		"0"
+		"StatusMana"			"87"
+		"StatusManaRegen"		"1"
+		
+		// Vision
+		//-------------------------------------------------------------------------------------------------------------
+		"VisionDaytimeRange"		"1000"
+		"VisionNighttimeRange"		"600"
+		
+		// Attack
+		//-------------------------------------------------------------------------------------------------------------
+		"AttackCapabilities"		"DOTA_UNIT_CAP_MELEE_ATTACK"
+		"AttackDamageMin"		"27"
+		"AttackDamageMax"		"31"
+		"AttackRate"		"1.450000"
+		"AttackAnimationPoint"		"0.300000"
+		"AttackAcquisitionRange"		"600"
+		"AttackRange"		"128"
+		"ProjectileSpeed"		"0"
+
+		// Movement
+		//-------------------------------------------------------------------------------------------------------------
+		"MovementSpeed"		"315"
+	}	
+	
+	//=================================================================================================================
+	// HERO: Drunk
+	//=================================================================================================================
+	"npc_dota_hero_lycan"
+	{
+		"override_hero"				"npc_dota_hero_lycan"			// Hero to override
+		"AbilityLayout"				"5"
+		"Ability1"					"hunger"		
+		"Ability2"					"infection"			
+		"Ability3"					""		
+		"Ability4"					""		
+		"Ability5"					""
+		"Ability6"					""
+		"Ability7"					""
+		"Ability8"					"blood"		
+		
+		// Attributes
+		//-------------------------------------------------------------------------------------------------------------
+		"AttributePrimary"		"DOTA_ATTRIBUTE_STRENGTH"
+		"AttributeBaseStrength"		"1"
+		"AttributeStrengthGain"		"0"
+		"AttributeBaseIntelligence"	"1"
+		"AttributeIntelligenceGain"	"0"
+		"AttributeBaseAgility"		"1"
+		"AttributeAgilityGain"		"0"
+
+		// Status
+		//-------------------------------------------------------------------------------------------------------------
+		"StatusHealth"			"81"
+		"StatusHealthRegen"		"0"
+		"StatusMana"			"87"
+		"StatusManaRegen"		"1"
+		
+		// Vision
+		//-------------------------------------------------------------------------------------------------------------
+		"VisionDaytimeRange"		"1000"
+		"VisionNighttimeRange"		"600"
+
+		// Armor
+		//-------------------------------------------------------------------------------------------------------------		
+		"ArmorPhysical"			"0"
+		"MagicalResistance"		"0"
+		
+		// Attack
+		//-------------------------------------------------------------------------------------------------------------
+		"AttackCapabilities"		"DOTA_UNIT_CAP_MELEE_ATTACK"
+		"AttackDamageMin"		"27"
+		"AttackDamageMax"		"31"
+		"AttackRate"		"1.450000"
+		"AttackAnimationPoint"		"0.300000"
+		"AttackAcquisitionRange"		"600"
+		"AttackRange"		"128"
+		"ProjectileSpeed"		"0"
+
+		// Movement
+		//-------------------------------------------------------------------------------------------------------------
+		"MovementSpeed"		"315"
+	}	
+	
+	//=================================================================================================================
+	// HERO: Movie Star
+	//=================================================================================================================
+	"npc_dota_hero_omniknight"
+	{
+		"override_hero"				"npc_dota_hero_omniknight"			// Hero to override
+		"AbilityLayout"				"5"
+		"Ability1"					"hunger"		
+		"Ability2"					"infection"			
+		"Ability3"					""		
+		"Ability4"					""		
+		"Ability5"					""
+		"Ability6"					""
+		"Ability7"					""
+		"Ability8"					"blood"
+	
+		// Attributes
+		//-------------------------------------------------------------------------------------------------------------
+		"AttributePrimary"		"DOTA_ATTRIBUTE_STRENGTH"
+		"AttributeBaseStrength"		"1"
+		"AttributeStrengthGain"		"0"
+		"AttributeBaseIntelligence"	"1"
+		"AttributeIntelligenceGain"	"0"
+		"AttributeBaseAgility"		"1"
+		"AttributeAgilityGain"		"0"
+
+		// Status
+		//-------------------------------------------------------------------------------------------------------------
+		"StatusHealth"			"81"
+		"StatusHealthRegen"		"0"
+		"StatusMana"			"87"
+		"StatusManaRegen"		"1"
+		
+		// Vision
+		//-------------------------------------------------------------------------------------------------------------
+		"VisionDaytimeRange"		"1000"
+		"VisionNighttimeRange"		"600"
+		
+		// Attack
+		//-------------------------------------------------------------------------------------------------------------
+		"AttackCapabilities"		"DOTA_UNIT_CAP_MELEE_ATTACK"
+		"AttackDamageMin"		"27"
+		"AttackDamageMax"		"31"
+		"AttackRate"		"1.450000"
+		"AttackAnimationPoint"		"0.300000"
+		"AttackAcquisitionRange"		"600"
+		"AttackRange"		"128"
+		"ProjectileSpeed"		"0"
+
+		// Movement
+		//-------------------------------------------------------------------------------------------------------------
+		"MovementSpeed"		"315"
+	}
+
+	//=================================================================================================================
+	// HERO: Dead Man
+	//=================================================================================================================
+	"npc_dota_hero_undying"
+	{
+		"override_hero"				"npc_dota_hero_undying"			// Hero to override
+		"AbilityLayout"				"3"
+		"Ability1"					"cripple"		
+		"Ability2"					"hunter_in_the_night"			
+		"Ability3"					"undying_explosion"		
+		"Ability4"					"acid_slime"		
+	
+	
+		// Attributes
+		//-------------------------------------------------------------------------------------------------------------
+		"AttributePrimary"		"DOTA_ATTRIBUTE_STRENGTH"
+		"AttributeBaseStrength"		"1"
+		"AttributeStrengthGain"		"0"
+		"AttributeBaseIntelligence"	"1"
+		"AttributeIntelligenceGain"	"0"
+		"AttributeBaseAgility"		"1"
+		"AttributeAgilityGain"		"0"
+
+		// Status
+		//-------------------------------------------------------------------------------------------------------------
+		"StatusHealth"			"81"
+		"StatusHealthRegen"		"0"
+		"StatusMana"			"87"
+		"StatusManaRegen"		"1"
+		
+		// Vision
+		//-------------------------------------------------------------------------------------------------------------
+		"VisionDaytimeRange"		"800"
+		"VisionNighttimeRange"		"1000"
+
+		// Armor
+		//-------------------------------------------------------------------------------------------------------------		
+		"ArmorPhysical"			"0"
+		"MagicalResistance"		"0"
+		
+		// Attack
+		//-------------------------------------------------------------------------------------------------------------
+		"AttackCapabilities"		"DOTA_UNIT_CAP_MELEE_ATTACK"
+		"AttackDamageMin"		"27"
+		"AttackDamageMax"		"31"
+		"AttackRate"		"1.450000"
+		"AttackAnimationPoint"		"0.300000"
+		"AttackAcquisitionRange"		"600"
+		"AttackRange"		"128"
+		"ProjectileSpeed"		"0"
+
+		// Movement
+		//-------------------------------------------------------------------------------------------------------------
+		"MovementSpeed"		"200"
+	}
+	
+}

@@ -1,0 +1,21 @@
+//
+// <key>	<value>
+// Hero		currently on/off, will be # of instances (-1 = infinite)
+//
+
+"CustomHeroList"
+{
+	"npc_dota_hero_windrunner"			"-1"
+	"npc_dota_hero_axe"				"-1"
+	//"npc_dota_hero_bounty_hunter"			"-1"
+	"npc_dota_hero_crystal_maiden"			"-1"
+	"npc_dota_hero_drow_ranger"			"-1"
+	//"npc_dota_hero_juggernaut"			"-1"
+	"npc_dota_hero_lina"				"-1"
+	"npc_dota_hero_lone_druid"			"-1"
+	"npc_dota_hero_lycan"				"-1"
+	"npc_dota_hero_omniknight"			"-1"
+	//"npc_dota_hero_phantom_assassin"		"-1"
+	"npc_dota_hero_templar_assassin"		"-1"
+
+}

@@ -1,0 +1,10 @@
+"AddonInfo"
+{
+	"TeamCount"  "1"
+	"maps"  "ruins_of_the_city"
+	"IsPlayable" "1"
+	"ruins_of_the_city"
+ 	{
+  		"MaxPlayers" "5"
+ 	}
+}
