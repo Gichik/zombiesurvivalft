@@ -1,104 +1,51 @@
-defoultModel = nil
-defoultMoveSpeed = 0
 
-function CreateWoodWall(data)
---print("CreatWoodWall")
-data.target:SetHullRadius(30.0)
-data.target:SetForwardVector(data.caster:GetForwardVector())
+LinkLuaModifier("modifier_fullness", "modifiers/modifier_fullness.lua", LUA_MODIFIER_MOTION_NONE )
+LinkLuaModifier("modifier_peppy", "modifiers/modifier_peppy.lua", LUA_MODIFIER_MOTION_NONE )
+LinkLuaModifier("modifier_sleeping_tablet", "modifiers/modifier_sleeping_tablet.lua", LUA_MODIFIER_MOTION_NONE )
+
+function GiveFullness(data)
+	local caster = data.caster
+	local time = 160
+
+	if caster then
+		if caster:HasAbility("the_right_diet") then
+			time = 200
+		end
+		--print("GiveFullness")
+		caster:RemoveModifierByName("modifier_hungry")
+		caster:AddNewModifier(caster, nil, "modifier_fullness", {duration = time})
+		EmitSoundOn("DOTA_Item.Cheese.Activate", data.caster)
+	end
 end
 
 
-function DestroyWoodWall(data)
---print("DestroyWoodWall")
-data.caster:ForceKill(false)
---StartSoundEvent("Hero_Furion.Sprout", data.caster)
-end
-
-function AddAbilityToHero(data)
---print("AddAbilityToActivator")
---print(data.ability_name)
-local hero = data.caster
-if hero:FindAbilityByName(data.ability_name) == nil then
-	hero:AddAbility(data.ability_name)
-	local ability = hero:FindAbilityByName(data.ability_name)
-	ability:SetLevel(1)
-end
-end
-
-
-function RemoveAbilityFromHero(data)
---print("RemoveAbilityToActivator")
-local hero = data.caster
-
-if hero:HasItemInInventory(data.item_name) == false then
-	local ability = hero:FindAbilityByName(data.ability_name)
-	hero:RemoveAbility(data.ability_name)
-end
-
-end
-
-
-function GiveMana(data)
---print("give mana")
-data.caster:GiveMana(100)
-StartSoundEvent("Item.MoonShard.Consume", data.caster)
-end
-
-
-
-function GiveHealth(data)
---print("give heal")
-local health = data.caster:GetHealth()+100
-data.caster:SetHealth(health)
-StartSoundEvent("DOTA_Item.Cheese.Activate", data.caster)
-end
-
-function GiveBloodTube(data)
---print("GiveBloodTube")
-local caster = data.caster
-local health = data.caster:GetHealth()-10
-local info = 
-	{
-	caster = data.caster,
-	item_name = "item_syringe"
-	}
-RemoveItemFromHero(info)
-
-local position = caster:GetAbsOrigin()		
-CreateDrop("item_blood_tube", position)
-
-
-if data.caster:GetHealth() <= 10 then
-	data.caster:ForceKill(true)
-else
-	data.caster:SetHealth(health)
-end
-
-StartSoundEvent("DOTA_Item.Maim", data.caster)
-
+function GiveSleep(data)
+	local caster = data.caster
+	caster:AddNewModifier(caster, nil, "modifier_sleeping_tablet", {duration = 10})
 end
 
 
 function RemoveItemFromHero(data)
-local caster = data.caster
-local item = nil
-local charges = 0
-local first = 0
+	local caster = data.caster
+	local item = nil
+	local charges = 0
 	for i = 0, 5 do
 		item = caster:GetItemInSlot(i)
 		if item ~= nil then
-			if item:GetAbilityName() == data.item_name and first == 0 then
+			if item:GetAbilityName() == data.item_name then
 				if item:IsStackable() == true then
 					if item:GetCurrentCharges() > 1 then
 						charges = item:GetCurrentCharges()
 						item:SetCurrentCharges(charges-1)
+						return nil
 					else
 						caster:RemoveItem(item)
+						return nil
 					end
 				else
-					caster:RemoveItem(item)			
+					caster:RemoveItem(item)	
+					return nil		
 				end
-				first = 1
 			end
 		end
 	end	
@@ -113,40 +60,49 @@ function CreateDrop (itemName, pos)
 end 
 
 
-function EquipSuit(data)
+function GiveAbility(data)
+	local caster = data.caster
+	local name = data.Name
 
-local hero = data.caster
-defoultModel = hero:GetModelName()
-defoultMoveSpeed = hero:GetBaseMoveSpeed()
-hero:SetModel("models/heroes/elder_titan/ancestral_spirit.vmdl")
-hero:SetOriginalModel("models/heroes/elder_titan/ancestral_spirit.vmdl")
-hero:SetBaseMoveSpeed(200)
-
+	if caster and name then
+		if not caster:FindAbilityByName(name) then
+			for i = 0, 12 do
+				if not caster:GetAbilityByIndex(i) then
+					local ability = caster:AddAbility(name)
+					ability:SetLevel(1)
+					return nil
+				end
+			end
+		end
+	end
 end
 
 
+function CreateWoodWall(data)
+	local caster = data.caster	
+	local target = data.target	
+	local point = target:GetAbsOrigin()
 
-function UnEquipSuit(data)
+	target:SetHullRadius(50.0)
+	target:SetForwardVector(caster:GetForwardVector())
 
-local hero = data.caster
-local name = hero:GetName()
-hero:SetModel(defoultModel)
-hero:SetOriginalModel(defoultModel)
-hero:SetBaseMoveSpeed(defoultMoveSpeed)
+	local units = FindUnitsInRadius( caster:GetTeamNumber(), point, caster, 100,
+			DOTA_UNIT_TARGET_TEAM_ENEMY + DOTA_UNIT_TARGET_TEAM_FRIENDLY, DOTA_UNIT_TARGET_BASIC + DOTA_UNIT_TARGET_HERO, DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES, 0, false )
 
+	for i = 1, #units do		
+		if units[ i ] and units[ i ]:GetUnitName() ~= "wood_wall" then 
+			FindClearSpaceForUnit(units[ i ],units[ i ]:GetAbsOrigin(),true)
+		end
+	end
 end
 
-function GiveWin(data)
---print("give Win")
-StartSoundEvent("Item.MoonShard.Consume", data.caster)
-ShowGenericPopup( "#popup_title_win", "#popup_body_win", "", "", DOTA_SHOWGENERICPOPUP_TINT_SCREEN )
-GameRules:SetGameWinner(DOTA_TEAM_GOODGUYS)
+
+function DestroyWoodWall(data)
+--print("DestroyWoodWall")
+--StartSoundEvent("Hero_Furion.Sprout", data.caster)
+	data.caster:ForceKill(false)
 end
 
-function GiveDefeat(data)
---print("give Defeat")
-data.caster:ForceKill(true)
-StartSoundEvent("DOTA_Item.Maim", data.caster)
-ShowGenericPopup( "#popup_title_defeat", "#popup_body_defeat", "", "", DOTA_SHOWGENERICPOPUP_TINT_SCREEN )
-GameRules:SetGameWinner(DOTA_TEAM_BADGUYS)
+function RemoveBleeding(data)
+	data.caster:RemoveModifierByName("modifier_bleeding")	
 end

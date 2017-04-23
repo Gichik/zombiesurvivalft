@@ -1,1139 +1,536 @@
 "DOTAAbilities"
 {
-	
-	
+
+	"item_tombstone"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityName"					"item_tombstone"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_CHANNELLED | DOTA_ABILITY_BEHAVIOR_DONT_RESUME_ATTACK"
+		"Model"							"models/creeps/dead_creeps/dire_creep_melee_dead_01.vmdl"
+		"PingOverrideText"				"DOTA_Chat_Tombstone_Pinged"
+
+		
+		// Stats
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"100"
+		"AbilityCastPoint"				"0.0"
+		"AbilityChannelTime"			"5.0"
+		
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"1"
+		"ItemPurchasable"				"0"
+		"ItemQuality"					"consumable"		
+		"ItemSellable"					"0" 		
+		"ItemShopTags"					"consumable"
+		"ItemStackable"					"1"
+		"ItemShareability"				"ITEM_FULLY_SHAREABLE"
+		"ItemPermanent"					"0"
+		"ItemInitialCharges"			"1"
+		"ItemCastOnPickup"				"1"
+		"ItemKillable"					"0"
+
+	}
+
 	//=================================================================================================================
-	// wood wall
+	// Consumable
 	//=================================================================================================================
 
-	"item_wood_wall"// после "item_" указываем желаемое имя итема
-   {
-		"ID"						"1202" 
+
+	"item_food_canned"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"1251" 
+		"BaseClass"						"item_datadriven"  
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityTextureName"			"custom_folder/food_canned"
+		"AbilityCastAnimation" 			"ACT_DOTA_CAST_ABILITY_1"		 				
+		//"Model"							"models/props_gameplay/recipe.vmdl"
+
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemShareability"				"ITEM_FULLY_SHAREABLE_STACKING"  
+		"ItemQuality"					"artifact"	
+		"ItemCost"                      "1" 
+		"ItemDroppable"					"1" 
+		"ItemPurchasable"				"0" 
+		"ItemSellable"					"1" 
+		"ItemKillable"					"1" 
+		"ItemInitialCharges"			"1"	
+		"ItemStackable" 				"1"
+		"ItemPermanent" 				"0"	
+		"SideShop" 						"0"
+
+		"OnSpellStart"
+			{ 
+				"RunScript"
+				{
+					"ScriptFile"		"items.lua"
+					"Function"			"GiveFullness"					
+				}
+
+				"SpendCharge" {}											
+			}
+	} 
+
+
+	"item_sleeping_tablet"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"1252" 
+		"BaseClass"						"item_datadriven"  
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityTextureName"			"custom_folder/sleeping_tablet" 				
+		//"Model"							"models/props_gameplay/recipe.vmdl"
+
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemShareability"				"ITEM_FULLY_SHAREABLE"  
+		"ItemQuality"					"artifact"	
+		"ItemCost"                      "1" 
+		"ItemDroppable"					"1" 
+		"ItemPurchasable"				"0" 
+		"ItemSellable"					"1" 
+		"ItemKillable"					"1" 
+		"ItemInitialCharges"			"1"	
+		"ItemStackable" 				"1"
+		"ItemPermanent" 				"0"	
+		"SideShop" 						"0"
+
+		"OnSpellStart"
+			{ 
+				"RunScript"
+				{
+					"ScriptFile"		"items.lua"
+					"Function"			"GiveSleep"					
+				}
+
+				"SpendCharge" {}											
+			}
+	} 
+
+	"item_pistol_ammo"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"1253" 
+		"BaseClass"						"item_datadriven"  
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityTextureName"			"custom_folder/pistol_ammo" 				
+		//"Model"							"models/props_gameplay/recipe.vmdl"
+
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemShareability"				"ITEM_FULLY_SHAREABLE"  
+		"ItemQuality"					"artifact"	
+		"ItemCost"                      "1" 
+		"ItemDroppable"					"1" 
+		"ItemPurchasable"				"0" 
+		"ItemSellable"					"1" 
+		"ItemKillable"					"1" 
+		"ItemInitialCharges"			"12"	
+		"ItemStackable" 				"1"
+		"ItemPermanent" 				"0"	
+		"SideShop" 						"0"
+	} 
+
+
+	"item_shotgun_ammo"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"1254" 
+		"BaseClass"						"item_datadriven"  
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityTextureName"			"custom_folder/shotgun_ammo" 				
+		//"Model"							"models/props_gameplay/recipe.vmdl"
+
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemShareability"				"ITEM_FULLY_SHAREABLE"  
+		"ItemQuality"					"artifact"	
+		"ItemCost"                      "1" 
+		"ItemDroppable"					"1" 
+		"ItemPurchasable"				"0" 
+		"ItemSellable"					"1" 
+		"ItemKillable"					"1" 
+		"ItemInitialCharges"			"10"	
+		"ItemStackable" 				"1"
+		"ItemPermanent" 				"0"	
+		"SideShop" 						"0"
+	} 
+
+	"item_book_of_food"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"1255" 
+		"BaseClass"						"item_datadriven"  
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityTextureName"			"custom_folder/book_of_food" 				
+		//"Model"							"models/props_gameplay/recipe.vmdl"
+
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemShareability"				"ITEM_FULLY_SHAREABLE"  
+		"ItemQuality"					"artifact"	
+		"ItemCost"                      "1" 
+		"ItemDroppable"					"1" 
+		"ItemPurchasable"				"0" 
+		"ItemSellable"					"1" 
+		"ItemKillable"					"1" 
+		"ItemInitialCharges"			"1"
+		"ItemDisplayCharges" 			"0"	
+		"ItemRequiresCharges" 			"1"		
+		"ItemStackable" 				"0"
+		"ItemPermanent" 				"0"	
+		"SideShop" 						"0"
+
+
+		"OnSpellStart"
+			{ 
+				"RunScript"
+				{
+					"ScriptFile"		"items.lua"
+					"Function"			"GiveAbility"
+					"Name"				"the_right_diet"					
+				}
+
+				"SpendCharge" {}											
+			}
+
+	} 
+
+
+	"item_camp_misc"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"1256"		
+		"BaseClass"						"item_lua" 
+		"AbilityTextureName"			"custom_folder/camp_misc"
+		"ScriptFile"					"items/item_camp_misc"	
+ 		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"	
+
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemShareability"				"ITEM_FULLY_SHAREABLE"  
+		"ItemQuality"					"artifact"	
+		"ItemCost"                      "1" 
+		"ItemDroppable"					"1" 
+		"ItemPurchasable"				"0" 
+		"ItemSellable"					"1" 
+		"ItemKillable"					"1" 
+		"ItemInitialCharges"			"5"
+		"ItemDisplayCharges" 			"1"	
+		"ItemRequiresCharges" 			"1"		
+		"ItemStackable" 				"1"
+		"ItemPermanent" 				"0"	
+		"SideShop" 						"0"
+
+       // Special
+        //--------------------------------------------
+		"AbilitySpecial"
+		{
+		    "01"
+		    {
+		        "var_type"              "FIELD_INTEGER"
+		        "duration"            	"30"
+		    }		    
+		}		
+
+	} 
+
+	"item_wood_wall"
+	{
+		"ID"						"1257" 
 		"BaseClass"					"item_datadriven" 
-		"AbilityBehavior"         	"DOTA_ABILITY_BEHAVIOR_ITEM | DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_CHANNELLED " 
-		"Model"						"models/props_debris/battle_debris3.vmdl" 
-		"AbilityTextureName"		"wood_wall" 
-		"ItemCost"                  "1" 
-		"ItemAliases"				"item_wood_wall"		
+		"AbilityBehavior"         	"DOTA_ABILITY_BEHAVIOR_ITEM | DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_CHANNELLED" 
+		//"Model"						"models/props_debris/battle_debris3.vmdl" 
+		"AbilityTextureName"		"custom_folder/wood_wall" 
+
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemShareability"			"ITEM_FULLY_SHAREABLE"
+		"ItemQuality"				"artifact"			
+		"ItemCost"                  "1" 		
 		"ItemDroppable"				"1" 
 		"ItemPurchasable"			"0" 
 		"ItemSellable"				"1" 
-		"ItemKillable"				"0" 
-		"ItemShareability"			"ITEM_NOT_SHAREABLE" 
-		"ItemDeclarations"			"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_TO_SPECTATORS | DECLARE_PURCHASES_IN_SPEECH" 
-		"AbilityCooldown"           "1"
-		"AbilityCastRange"			"100"
-		"AoERadius"               	"60"
-		"AbilityCastPoint"			"0.2"
-		"AbilityChannelTime"		"1.0"
-		"ItemShareability"			"ITEM_FULLY_SHAREABLE"
+		"ItemKillable"				"1"
 		"ItemInitialCharges" 		"1"  
 		"ItemStackable" 			"1"
 		"ItemPermanent" 			"0"
 
-   
+		// Ability
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"           "1"
+		"AbilityCastRange"			"200"
+		"AoERadius"               	"60"
+		"AbilityCastPoint"			"0.2"
+		"AbilityChannelTime"		"1.0"
+
 		"OnChannelSucceeded"
 		{     	         
 			  
-				"SpawnUnit"
+			"SpawnUnit"
+			{
+				"UnitName"		"wood_wall"
+				"UnitCount"		"1"
+				"SpawnRadius"	"0"
+				"Target"		"POINT"
+				"OnSpawn"
 				{
-					"UnitName"		"wood_wall"
-					"UnitCount"		"1"
-					"SpawnRadius"	"0"
-					"Target"		"POINT"
-					"OnSpawn"
+					"RunScript"
 					{
-						"RunScript"
-						{
-							"ScriptFile"		"items.lua"
-							"Function"			"CreateWoodWall"
-						}
+						"ScriptFile"		"items.lua"
+						"Function"			"CreateWoodWall"
 					}
-
-
 				}
+			}
 
+			"SpendCharge" {}
+		}  	
+
+	}
+	
+	"item_medical_bandage"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"1258" 
+		"BaseClass"						"item_datadriven"  
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityTextureName"			"custom_folder/medical_bandage"
+		"AbilityCastAnimation" 			"ACT_DOTA_CAST_ABILITY_1"		 				
+		//"Model"							"models/props_gameplay/recipe.vmdl"
+
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemShareability"				"ITEM_FULLY_SHAREABLE_STACKING"  
+		"ItemQuality"					"artifact"	
+		"ItemCost"                      "1" 
+		"ItemDroppable"					"1" 
+		"ItemPurchasable"				"0" 
+		"ItemSellable"					"1" 
+		"ItemKillable"					"1" 
+		"ItemInitialCharges"			"1"	
+		"ItemStackable" 				"1"
+		"ItemPermanent" 				"0"	
+		"SideShop" 						"0"
+
+		"OnSpellStart"
+			{ 
 				"RunScript"
 				{
 					"ScriptFile"		"items.lua"
-					"Function"			"RemoveItemFromHero"
-					"item_name"			"item_wood_wall"					
+					"Function"			"RemoveBleeding"					
 				}
 
+				"SpendCharge" {}											
+			}
+	} 
 
-		}  	
-  
-   }
-
-	
 	//=================================================================================================================
-	// Pistol
+	// Weapon
 	//=================================================================================================================
+ 
 	"item_pistol"
 	{
-		"ID"							"1201"
+		"ID"							"1351"
 
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"item_datadriven"
-		"AbilityBehavior"         "DOTA_ABILITY_BEHAVIOR_PASSIVE" 
-		"Model"						"models/heroes/sniper/weapon.vmdl"
+		"BaseClass"						"item_lua" 
+		"AbilityTextureName"			"custom_folder/pistol"
+		"ScriptFile"					"items/item_pistol"	
+ 		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"	
+        "AbilityUnitTargetTeam"        	"DOTA_UNIT_TARGET_TEAM_BOTH"
+        "AbilityUnitTargetType"        	"DOTA_UNIT_TARGET_ALL"
+
+
+		//"Model"						"models/heroes/sniper/weapon.vmdl"					
+		
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
+		"ItemShareability"				"ITEM_FULLY_SHAREABLE"  
+		"ItemQuality"					"artifact"	
+		"ItemCost"                      "1" 
+		"ItemDroppable"					"1" 
+		"ItemPurchasable"				"0" 
+		"ItemSellable"					"1" 
+		"ItemKillable"					"1" 
+		"SideShop" 						"0"
+							
+        // Casting
+        //--------------------------------------------
+        "AbilityCastRange"              "1000"
+        "AbilityCastPoint"              "0.3"
+        "AbilityCooldown"               "0.3"
+        "AbilityManaCost"               "5"
 
-		"ItemCost"						"1"
-		"ItemShopTags"					"damage"
-		"ItemQuality"					"rare"
-		"ItemDeclarations"				"DECLARE_PURCHASES_TO_SPECTATORS"
-		"ItemDisassembleRule"			"DOTA_ITEM_DISASSEMBLE_NEVER"
-		"ItemAlertable"					"0"
-		"ItemAliases"					"item_pistol"
-		"ItemPurchasable"				"0"
-		"ItemKillable" 					"1" 
-		"ItemSellable" 					"1"
-		"ItemDroppable" 				"1"
-		"ItemShareability"				"ITEM_FULLY_SHAREABLE"
 
-
-		"precache"
+        // Special
+        //--------------------------------------------
+		"AbilitySpecial"
 		{
-			"particle_folder" "particles/units/heroes/hero_lina"
+		    "01"
+		    {
+		        "var_type"              "FIELD_INTEGER"
+		        "manna_cost"            "5"
+		    }
+		    "02"
+		    {
+		        "var_type"              "FIELD_FLOAT"
+		        "cooldown"             	"0.3"
+		    }
+		    "03"
+		    {
+		        "var_type"              "FIELD_INTEGER"
+		        "damage"             	"60"
+		    }
+		    "04"
+		    {
+		        "var_type"              "FIELD_FLOAT"
+		        "knockback_duration"    "0.5"
+		    }		    
+		    "05"
+		    {
+		        "var_type"              "FIELD_FLOAT"
+		        "knockback_distance"    "70"
+		    }		    
 		}
-
-		"AbilityTextureName"			"pistol"
-
-
-
-		"precache"
-		{
-            "particle" "particles/units/heroes/hero_lina/lina_base_attack.vpcf"
-			"soundfile" "soundevents/game_sounds_heroes/game_sounds_sniper.vsndevts"
-        }
-
-				
-		"OnEquip"
-			{
-				"RunScript"
-				{
-					"ScriptFile"			"items.lua"
-					"Function"				"AddAbilityToHero"
-					"ability_name"			"pistol_shoot"
-				}
-			
-			}
-			
-		"OnUnequip"
-		{
-			"RunScript"
-			{
-				"ScriptFile"			"items.lua"
-				"Function"				"RemoveAbilityFromHero"
-				"ability_name"			"pistol_shoot"
-				"item_name"				"item_pistol"				
-			}
-		}			
-				
-				
 	}
 
 
-
-
-
-	//=================================================================================================================
-	// shotgun
-	//=================================================================================================================
 	"item_shotgun"
 	{
-		"ID"							"1203"
+		"ID"							"1352"
 
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"item_datadriven"
-		"AbilityBehavior"         "DOTA_ABILITY_BEHAVIOR_PASSIVE" 
-		"Model"						"models/heroes/techies/techies_spleen_weapon.vmdl"
+		"BaseClass"						"item_lua"
+		"AbilityTextureName"			"custom_folder/shotgun"
+		"ScriptFile"					"items/item_shotgun"	
 
+		//"Model"						"models/heroes/sniper/weapon.vmdl"					
+		
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
+		"ItemShareability"				"ITEM_FULLY_SHAREABLE"  
+		"ItemQuality"					"artifact"	
+		"ItemCost"                      "1" 
+		"ItemDroppable"					"1" 
+		"ItemPurchasable"				"0" 
+		"ItemSellable"					"1" 
+		"ItemKillable"					"1" 
+		"SideShop" 						"0"
+							
+        // Casting
+        //--------------------------------------------
+        "AbilityCastRange"              "1000"
+        "AbilityCastPoint"              "0.3"
+        "AbilityCooldown"               "2.0"
+        "AbilityManaCost"               "10"
 
-		"ItemCost"						"1"
-		"ItemShopTags"					"damage"
-		"ItemQuality"					"rare"
-		"ItemDeclarations"				"DECLARE_PURCHASES_TO_SPECTATORS"
-		"ItemDisassembleRule"			"DOTA_ITEM_DISASSEMBLE_NEVER"
-		"ItemAlertable"					"0"
-		"ItemAliases"					"item_shotgun"
-		"ItemPurchasable"				"0"
-		"ItemKillable" 					"1" 
-		"ItemSellable" 					"1"
-		"ItemDroppable" 				"1"
-		"ItemShareability"				"ITEM_FULLY_SHAREABLE"
 
-
-		"precache"
+        // Special
+        //--------------------------------------------
+		"AbilitySpecial"
 		{
-			"particle_folder" "particles/units/heroes/hero_lina"
+		    "01"
+		    {
+		        "var_type"              "FIELD_INTEGER"
+		        "manna_cost"            "10"
+		    }
+		    "02"
+		    {
+		        "var_type"              "FIELD_FLOAT"
+		        "cooldown"             	"2.0"
+		    }
+		    "03"
+		    {
+		        "var_type"              "FIELD_INTEGER"
+		        "damage"             	"100"
+		    }
+		    "04"
+		    {
+		        "var_type"              "FIELD_FLOAT"
+		        "knockback_duration"    "0.5"
+		    }	    
+		    "05"
+		    {
+		        "var_type"              "FIELD_INTEGER"
+		        "knockback_distance"    "150"
+		    }		    
 		}
+	}
 
-		"AbilityTextureName"			"shotgun"
-
-
-
-		"precache"
-		{
-            "particle" "particles/units/heroes/hero_lina/lina_base_attack.vpcf"
-			"soundfile" "soundevents/game_sounds_heroes/game_sounds_sniper.vsndevts"
-        }
-
-				
-		"OnEquip"
-			{
-				"RunScript"
-				{
-					"ScriptFile"			"items.lua"
-					"Function"				"AddAbilityToHero"
-					"ability_name"				"shotgun_shoot"
-				}
-			
-			}
-			
-		"OnUnequip"
-		{
-			"RunScript"
-			{
-				"ScriptFile"			"items.lua"
-				"Function"				"RemoveAbilityFromHero"
-				"ability_name"			"shotgun_shoot"
-				"item_name"				"item_shotgun"
-			}
-		}			
-				
-				
-	}	
-
-	//=================================================================================================================
-	// bat
-	//=================================================================================================================
 	"item_bat"
 	{
-		"ID"							"1204"
+		"ID"							"1353"
 
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"item_datadriven"
-		"AbilityBehavior"         "DOTA_ABILITY_BEHAVIOR_PASSIVE" 
-		"Model"						"models/items/tidehunter/a_bit_of_boat/a_bit_of_boat.vmdl"
+		"BaseClass"						"item_lua"
+		"AbilityTextureName"			"custom_folder/bat"
+		"ScriptFile"					"items/item_bat"	
+
+		//"Model"						"models/heroes/sniper/weapon.vmdl"					
+		
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
-
-		"ItemCost"						"1"
-		"ItemShopTags"					"damage"
-		"ItemQuality"					"rare"
-		"ItemDeclarations"				"DECLARE_PURCHASES_TO_SPECTATORS"
-		"ItemDisassembleRule"			"DOTA_ITEM_DISASSEMBLE_NEVER"
-		"ItemAliases"					"item_bat"
-		"ItemAlertable"					"0"
-		"ItemPurchasable"				"0"
-		"ItemKillable" 					"1" 
-		"ItemSellable" 					"1"
-		"ItemDroppable" 				"1"
-		"ItemShareability"				"ITEM_FULLY_SHAREABLE"
-
-
-		"AbilityTextureName"			"bat"
-
-
-		"OnEquip"
-			{
-				"RunScript"
-				{
-					"ScriptFile"			"items.lua"
-					"Function"				"AddAbilityToHero"
-					"ability_name"			"blow_bat"
-				}
-			
-			}
-			
-		"OnUnequip"
-		{
-			"RunScript"
-			{
-				"ScriptFile"			"items.lua"
-				"Function"				"RemoveAbilityFromHero"
-				"ability_name"			"blow_bat"
-				"item_name"				"item_bat"				
-			}
-		}
-		
-		
-	}
-
-	
-	
-	
-	//=================================================================================================================
-	// grenade
-	//=================================================================================================================
-
-	"item_grenade"
-   {
-		"ID"						"1205" 
-		"BaseClass"					"item_datadriven"  
-		"AbilityBehavior"         	"DOTA_ABILITY_BEHAVIOR_ITEM | DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_POINT" 
-		"Model"						"models/props_gameplay/salve.vmdl" 
-		"AbilityTextureName"		"grenade" 
+		"ItemShareability"				"ITEM_FULLY_SHAREABLE"  
+		"ItemQuality"					"artifact"	
 		"ItemCost"                      "1" 
-		"ItemAliases"					"item_grenade"			
-		"ItemDroppable"					"1" 
-		"ItemPurchasable"				"0" 
-		"ItemSellable"					"1" 
-		"ItemKillable"					"0" 
-		"ItemShareability"				"ITEM_FULLY_SHAREABLE" 
-		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_TO_SPECTATORS | DECLARE_PURCHASES_IN_SPEECH" 
-		"ItemInitialCharges" "1"  
-		"ItemStackable" "1"
-		"ItemPermanent" "0"
-		"AbilityCastRange"				"1000"
-		"AoERadius"               		"375"
-				
-   
-		"OnSpellStart"
-		{     	         
-			  		  
-				"RunScript"
-				{
-					"ScriptFile"		"abilities/throw_grenade.lua"
-					"Function"			"OnSpellStart"
-					"Target"			"TARGET"
-				}
-
-		}  	
-  
-   }
-	
-	
-	
-	
-	
-	//=================================================================================================================
-	// chainsaw
-	//=================================================================================================================
-	"item_chainsaw"
-	{
-		"ID"							"1206"
-
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"item_datadriven"
-		"AbilityBehavior"         		"DOTA_ABILITY_BEHAVIOR_PASSIVE" 
-		"Model"							"models/items/bounty_hunter/bounty_hunter_saw.vmdl"
-		
-		// Item Info
-		//-------------------------------------------------------------------------------------------------------------
-
-		"ItemCost"						"1"
-		"ItemShopTags"					"damage"
-		"ItemQuality"					"rare"
-		"ItemDeclarations"				"DECLARE_PURCHASES_TO_SPECTATORS"
-		"ItemDisassembleRule"			"DOTA_ITEM_DISASSEMBLE_NEVER"
-		"ItemAlertable"					"0"
-		"ItemAliases"					"item_chainsaw"		
-		"ItemPurchasable"				"0"
-		"ItemKillable" 					"1" 
-		"ItemSellable" 					"1"
-		"ItemDroppable" 				"1"
-		"ItemShareability"				"ITEM_FULLY_SHAREABLE"
-
-
-		"AbilityTextureName"			"chainsaw"
-
-
-		"OnEquip"
-			{
-				"RunScript"
-				{
-					"ScriptFile"			"items.lua"
-					"Function"				"AddAbilityToHero"
-					"ability_name"			"run_chainsaw"
-				}
-			
-			}
-			
-		"OnUnequip"
-		{
-			"RunScript"
-			{
-				"ScriptFile"			"items.lua"
-				"Function"				"RemoveAbilityFromHero"
-				"ability_name"			"run_chainsaw"
-				"item_name"				"item_chainsaw"				
-			}
-		}
-		
-		
-	}
-	
-	
-	
-	
-	//=================================================================================================================
-	// poleaxe
-	//=================================================================================================================
-	"item_poleaxe"
-	{
-		"ID"							"1207"
-
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"item_datadriven"
-		"AbilityBehavior"         "DOTA_ABILITY_BEHAVIOR_PASSIVE" 
-		"Model"					"models/heroes/axe/axe_weapon.vmdl"
-		
-		// Item Info
-		//-------------------------------------------------------------------------------------------------------------
-
-		"ItemCost"						"1"
-		"ItemShopTags"					"damage"
-		"ItemQuality"					"rare"
-		"ItemDeclarations"				"DECLARE_PURCHASES_TO_SPECTATORS"
-		"ItemDisassembleRule"			"DOTA_ITEM_DISASSEMBLE_NEVER"
-		"ItemAlertable"					"0"
-		"ItemAliases"					"item_poleaxe"
-		"ItemPurchasable"				"0"
-		"ItemKillable" 					"1" 
-		"ItemSellable" 					"1"
-		"ItemDroppable" 				"1"
-		"ItemShareability"				"ITEM_FULLY_SHAREABLE"
-
-
-		"AbilityTextureName"			"poleaxe"
-
-				
-		"OnEquip"
-			{
-				"RunScript"
-				{
-					"ScriptFile"			"items.lua"
-					"Function"				"AddAbilityToHero"
-					"ability_name"			"smash_poleaxe"
-				}
-			
-			}
-			
-		"OnUnequip"
-		{
-			"RunScript"
-			{
-				"ScriptFile"			"items.lua"
-				"Function"				"RemoveAbilityFromHero"
-				"ability_name"			"smash_poleaxe"
-				"item_name"				"item_poleaxe"				
-			}
-		}			
-				
-				
-	}
-	
-
-
-	//=================================================================================================================
-	// fizzy_water	
-	//=================================================================================================================
-
-	"item_fizzy_water"
-   {
-		"ID"							"1208" 
-		"BaseClass"						"item_datadriven"  
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_OPTIONAL_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_DONT_RESUME_ATTACK"	
-		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
-		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO"
-		"Model"							"models/items/brewmaster/barrel_vice.vmdl" 
-		"AbilityTextureName"			"fizzy_water" 
-		"ItemCost"                       "1" 
-		"ItemAliases"					"item_fizzy_water"
 		"ItemDroppable"					"1" 
 		"ItemPurchasable"				"0" 
 		"ItemSellable"					"1" 
 		"ItemKillable"					"1" 
-		"ItemShareability"				"ITEM_FULLY_SHAREABLE"  
-		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_TO_SPECTATORS | DECLARE_PURCHASES_IN_SPEECH" // Не трогаем.
-		"ItemInitialCharges" "1" //How many charges should the item start with - Tango x3 
-		"ItemStackable" "1"
-		"ItemPermanent" "0"
-				
-   
-		"OnSpellStart"
-		{     	         
-			  		  
-				"RunScript"
-				{
-					"ScriptFile"		"items.lua"
-					"Function"			"GiveMana"
-				}
-				
-				"RunScript"
-				{
-					"ScriptFile"		"items.lua"
-					"Function"			"RemoveItemFromHero"
-					"item_name"			"item_fizzy_water"
-				}
-
-		}  	
-  
-   }
-
-	//=================================================================================================================
-	// food_canned
-	//=================================================================================================================
-
-	"item_food_canned"
-   {
-		"ID"							"1209" 
-		"BaseClass"						"item_datadriven"  
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_OPTIONAL_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_DONT_RESUME_ATTACK"	
-		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
-		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO"
-		"Model"							"models/items/brewmaster/spiritual_spirits.vmdl" 
-		"AbilityTextureName"			"food_canned" 
-		"ItemCost"                       "1" 
-		"ItemAliases"					"item_food_canned"
-		"ItemDroppable"					"1" 
-		"ItemPurchasable"				"0" 
-		"ItemSellable"					"1" 
-		"ItemKillable"					"1" 
-		"ItemShareability"				"ITEM_FULLY_SHAREABLE"  
-		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_TO_SPECTATORS | DECLARE_PURCHASES_IN_SPEECH" // Не трогаем.
-		"ItemInitialCharges" "1" //How many charges should the item start with - Tango x3 
-		"ItemStackable" "1"
-		"ItemPermanent" "0"
-				
-   
-		"OnSpellStart"
-		{     	         
-			  		  
-				"RunScript"
-				{
-					"ScriptFile"		"items.lua"
-					"Function"			"GiveHealth"
-				}
-				
-				"RunScript"
-				{
-					"ScriptFile"		"items.lua"
-					"Function"			"RemoveItemFromHero"
-					"item_name"			"item_food_canned"
-				}
-
-		}  	
-  
-   }	
+		"SideShop" 						"0"
+							
+        // Casting
+        //--------------------------------------------
+        "AbilityCastRange"              "1000"
+        "AbilityCastPoint"              "0.3"
+        "AbilityCooldown"               "0.3"
+        "AbilityManaCost"               "15"
 
 
-	//=================================================================================================================
-	// blood_tube
-	//=================================================================================================================
-	"item_blood_tube"
-	{
-		"ID"							"1210"
-
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"item_datadriven"
-		"AbilityBehavior"         		"DOTA_ABILITY_BEHAVIOR_PASSIVE" 
-		"Model"							"models/props_gameplay/salve_red.vmdl"
-		// Item Info
-		//-------------------------------------------------------------------------------------------------------------
-
-		"ItemCost"						"1"
-		"ItemShopTags"					"damage"
-		"ItemQuality"					"rare"
-		"ItemDeclarations"				"DECLARE_PURCHASES_TO_SPECTATORS"
-		"ItemDisassembleRule"			"DOTA_ITEM_DISASSEMBLE_NEVER"
-		"ItemAliases"					"item_blood_tube"
-		"ItemAlertable"					"0"
-		"ItemPurchasable"				"0"
-		"ItemKillable" 					"1" 
-		"ItemSellable" 					"1"
-		"ItemDroppable" 				"1"
-		"ItemShareability"				"ITEM_FULLY_SHAREABLE"
-
-
-		"AbilityTextureName"			"blood_tube"
-	
-		
-	}
-
-
-	//=================================================================================================================
-	// syringe
-	//=================================================================================================================
-
-	"item_syringe"
-   {
-		"ID"							"1211" 
-		"BaseClass"						"item_datadriven"  
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_OPTIONAL_UNIT_TARGET"	
-		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
-		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO"
-		"Model"							"models/props_gameplay/magic_wand.vmdl" 
-		"AbilityTextureName"			"syringe" 
-		"ItemCost"                       "1" 
-		"ItemAliases"					"item_syringe"
-		"ItemDroppable"					"1" 
-		"ItemPurchasable"				"0" 
-		"ItemSellable"					"1" 
-		"ItemKillable"					"1" 
-		"ItemShareability"				"ITEM_FULLY_SHAREABLE"  
-		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_TO_SPECTATORS | DECLARE_PURCHASES_IN_SPEECH" // Не трогаем.
-
-				
-   
-		"OnSpellStart"
-		{     	         
-			  		  
-				"RunScript"
-				{
-					"ScriptFile"		"items.lua"
-					"Function"			"GiveBloodTube"
-				}
-				
-				"AttachEffect" 
-                 {
-                  "Target"           "CASTER" 
-                  "EffectName"       "particles/items2_fx/soul_ring_blood.vpcf"
-                  "EffectAttachType" "follow_origin" 
-                 }
-				
-
-		}  	
-  
-   }
-
-   
- 	//=================================================================================================================
-	// katana
-	//=================================================================================================================
-	"item_katana"
-	{
-		"ID"							"1212"
-
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"item_datadriven"
-		"AbilityBehavior"         		"DOTA_ABILITY_BEHAVIOR_PASSIVE" 
-		"Model"							"models/heroes/juggernaut/jugg_sword.vmdl"
-		// Item Info
-		//-------------------------------------------------------------------------------------------------------------
-
-		"ItemCost"						"1"
-		"ItemShopTags"					"damage"
-		"ItemQuality"					"rare"
-		"ItemDeclarations"				"DECLARE_PURCHASES_TO_SPECTATORS"
-		"ItemDisassembleRule"			"DOTA_ITEM_DISASSEMBLE_NEVER"
-		"ItemAliases"					"item_katana"
-		"ItemAlertable"					"0"
-		"ItemPurchasable"				"0"
-		"ItemKillable" 					"1" 
-		"ItemSellable" 					"1"
-		"ItemDroppable" 				"1"
-		"ItemShareability"				"ITEM_FULLY_SHAREABLE"
-
-
-		"AbilityTextureName"			"katana"
-
-
-		"OnEquip"
-			{
-				"RunScript"
-				{
-					"ScriptFile"			"items.lua"
-					"Function"				"AddAbilityToHero"
-					"ability_name"			"katana_fury"
-				}
-			
-			}
-			
-		"OnUnequip"
-		{
-			"RunScript"
-			{
-				"ScriptFile"			"items.lua"
-				"Function"				"RemoveAbilityFromHero"
-				"ability_name"			"katana_fury"
-				"item_name"				"item_katana"				
-			}
-		}
-		
-		
-	}  
-  
-
-	//=================================================================================================================
-	// catalyst
-	//=================================================================================================================
-	"item_catalyst"
-	{
-		"ID"							"1213"
-
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"item_datadriven"
-		"AbilityBehavior"         		"DOTA_ABILITY_BEHAVIOR_PASSIVE" 
-		"Model"							"models/heroes/batrider/batrider_weapon.vmdl"
-		// Item Info
-		//-------------------------------------------------------------------------------------------------------------
-
-		"ItemCost"						"1"
-		"ItemShopTags"					"damage"
-		"ItemQuality"					"rare"
-		"ItemDeclarations"				"DECLARE_PURCHASES_TO_SPECTATORS"
-		"ItemDisassembleRule"			"DOTA_ITEM_DISASSEMBLE_NEVER"
-		"ItemAliases"					"item_catalyst"
-		"ItemAlertable"					"0"
-		"ItemPurchasable"				"0"
-		"ItemKillable" 					"1" 
-		"ItemSellable" 					"1"
-		"ItemDroppable" 				"1"
-		"ItemShareability"				"ITEM_FULLY_SHAREABLE"
-
-
-		"AbilityTextureName"			"catalyst"
-	
-		
-	}
-
-	
-	
-	//=================================================================================================================
-	// sample_virus
-	//=================================================================================================================
-	"item_sample_virus"
-	{
-		"ID"							"1214"
-
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"item_datadriven"
-		"AbilityBehavior"         		"DOTA_ABILITY_BEHAVIOR_PASSIVE" 
-		"Model"							"models/props_gameplay/bottle_rejuvenation.vmdl"
-		// Item Info
-		//-------------------------------------------------------------------------------------------------------------
-
-		"ItemCost"						"1"
-		"ItemShopTags"					"damage"
-		"ItemQuality"					"rare"
-		"ItemDeclarations"				"DECLARE_PURCHASES_TO_SPECTATORS"
-		"ItemDisassembleRule"			"DOTA_ITEM_DISASSEMBLE_NEVER"
-		"ItemAliases"					"item_sample_virus"
-		"ItemAlertable"					"0"
-		"ItemPurchasable"				"0"
-		"ItemKillable" 					"1" 
-		"ItemSellable" 					"1"
-		"ItemDroppable" 				"1"
-		"ItemShareability"				"ITEM_FULLY_SHAREABLE"
-
-
-		"AbilityTextureName"			"sample_virus"
-	
-		
-	}
-
-
-	//=================================================================================================================
-	// microscope
-	//=================================================================================================================
-	"item_microscope"
-	{
-		"ID"							"1215"
-
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"item_datadriven"
-		"AbilityBehavior"         		"DOTA_ABILITY_BEHAVIOR_PASSIVE" 
-		"Model"							"models/courier/f2p_courier/f2p_courier.vmdl"
-		// Item Info
-		//-------------------------------------------------------------------------------------------------------------
-
-		"ItemCost"						"1"
-		"ItemShopTags"					"damage"
-		"ItemQuality"					"rare"
-		"ItemDeclarations"				"DECLARE_PURCHASES_TO_SPECTATORS"
-		"ItemDisassembleRule"			"DOTA_ITEM_DISASSEMBLE_NEVER"
-		"ItemAliases"					"item_microscope"
-		"ItemAlertable"					"0"
-		"ItemPurchasable"				"0"
-		"ItemKillable" 					"1" 
-		"ItemSellable" 					"1"
-		"ItemDroppable" 				"1"
-		"ItemShareability"				"ITEM_FULLY_SHAREABLE"
-
-
-		"AbilityTextureName"			"microscope"
-	
-		
-	}
-	
-	//=================================================================================================================
-	// slime
-	//=================================================================================================================
-	"item_slime"
-	{
-		"ID"							"1216"
-
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"item_datadriven"
-		"AbilityBehavior"         		"DOTA_ABILITY_BEHAVIOR_PASSIVE" 
-		"Model"							"models/items/furion/treant/shroomling_treant/shroomling_treant.vmdl"
-		// Item Info
-		//-------------------------------------------------------------------------------------------------------------
-
-		"ItemCost"						"1"
-		"ItemShopTags"					"damage"
-		"ItemQuality"					"rare"
-		"ItemDeclarations"				"DECLARE_PURCHASES_TO_SPECTATORS"
-		"ItemDisassembleRule"			"DOTA_ITEM_DISASSEMBLE_NEVER"
-		"ItemAliases"					"item_slime"
-		"ItemAlertable"					"0"
-		"ItemPurchasable"				"0"
-		"ItemKillable" 					"1" 
-		"ItemSellable" 					"1"
-		"ItemDroppable" 				"1"
-		"ItemShareability"				"ITEM_FULLY_SHAREABLE"
-
-
-		"AbilityTextureName"			"slime"
-	
-		
-	}	
-
-
- 	//=================================================================================================================
-	// protective_suit
-	//=================================================================================================================
-	"item_protective_suit"
-	{
-		"ID"							"1217"
-
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"item_datadriven"
-		"AbilityBehavior"         		"DOTA_ABILITY_BEHAVIOR_PASSIVE" 
-		"Model"							"models/items/courier/tinkbot/tinkbot.vmdl"
-		// Item Info
-		//-------------------------------------------------------------------------------------------------------------
-
-		"ItemCost"						"1"
-		"ItemShopTags"					"damage"
-		"ItemQuality"					"rare"
-		"ItemDeclarations"				"DECLARE_PURCHASES_TO_SPECTATORS"
-		"ItemDisassembleRule"			"DOTA_ITEM_DISASSEMBLE_NEVER"
-		"ItemAliases"					"item_protective_suit"
-		"ItemAlertable"					"0"
-		"ItemPurchasable"				"0"
-		"ItemKillable" 					"1" 
-		"ItemSellable" 					"1"
-		"ItemDroppable" 				"1"
-		"ItemShareability"				"ITEM_FULLY_SHAREABLE"
-
-
-		"AbilityTextureName"			"protective_suit"
-
-
-		"OnEquip"
-			{
-				"RunScript"
-				{
-					"ScriptFile"			"items.lua"
-					"Function"				"AddAbilityToHero"
-					"ability_name"			"protection"
-				}
-				
-				
-				"RunScript"
-				{
-					"ScriptFile"			"items.lua"
-					"Function"				"EquipSuit"
-				}
-			
-			}
-			
-		"OnUnequip"
-		{
-			"RunScript"
-			{
-				"ScriptFile"			"items.lua"
-				"Function"				"RemoveAbilityFromHero"
-				"ability_name"			"protection"
-				"item_name"				"item_protective_suit"				
-			}
-			
-			"RunScript"
-			{
-				"ScriptFile"			"items.lua"
-				"Function"				"UnEquipSuit"
-			}			
-						
-			
-		}
-		
-		
-	}  
-
-
-
-	//=================================================================================================================
-	// bandage
-	//=================================================================================================================
-
-	"item_bandage"
-   {
-		"ID"							"1218" 
-		"BaseClass"						"item_datadriven"  
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_OPTIONAL_UNIT_TARGET"	
-		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
-		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO"
-		"Model"							"models/heroes/kunkka/individual_board01.vmdl" 
-		"AbilityTextureName"			"bandage" 
-		"ItemCost"                       "1" 
-		"ItemAliases"					"item_bandage"
-		"ItemDroppable"					"1" 
-		"ItemPurchasable"				"0" 
-		"ItemSellable"					"1" 
-		"ItemKillable"					"1" 
-		"ItemShareability"				"ITEM_FULLY_SHAREABLE"  
-		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_TO_SPECTATORS | DECLARE_PURCHASES_IN_SPEECH" // Не трогаем.
-		"ItemInitialCharges" "1" 
-		"ItemStackable" "1"
-		"ItemPermanent" "0"
-
-	
-   
-		"OnSpellStart"
-		{     	         
-			  		  
-			
-
-			"FireSound"
-			{
-				"EffectName"	"Hero_Brewmaster.DrunkenHaze.Cast"
-				"Target"	"CASTER"
-			}
-			
-			"RemoveModifier" 
-			 {
-			  "Target"           "CASTER" 
-			  "ModifierName"     "modifier_bleeding" 
-			 }
-				 
-			"RunScript"
-			{
-				"ScriptFile"			"items.lua"
-				"Function"				"RemoveItemFromHero"
-				"item_name"				"item_bandage"				
-			}
-				
-
-		}  	
-  
-   }
-	
- 
-
-	//=================================================================================================================
-	// scrap
-	//=================================================================================================================
-	"item_scrap"
-	{
-		"ID"							"1219"
-
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"item_datadriven"
-		"AbilityBehavior"         "DOTA_ABILITY_BEHAVIOR_PASSIVE" 
-		"Model"					"models/items/rattletrap/battletrap_weapon/battletrap_weapon.vmdl"
-		
-		// Item Info
-		//-------------------------------------------------------------------------------------------------------------
-
-		"ItemCost"						"50"
-		"ItemShopTags"					"damage"
-		"ItemQuality"					"rare"
-		"ItemDeclarations"				"DECLARE_PURCHASES_TO_SPECTATORS"
-		"ItemDisassembleRule"			"DOTA_ITEM_DISASSEMBLE_NEVER"
-		"ItemAlertable"					"0"
-		"ItemAliases"					"item_scrap"
-		"ItemPurchasable"				"0"
-		"ItemKillable" 					"1" 
-		"ItemSellable" 					"1"
-		"ItemDroppable" 				"1"
-		"ItemShareability"				"ITEM_FULLY_SHAREABLE"
-
-
-		"AbilityTextureName"			"scrap"
+        // Special
+        //--------------------------------------------
 		"AbilitySpecial"
-			{
-			"01"
-				{
-					"var_type"				"FIELD_INTEGER"
-					"bonus_damage"			"20"
-				}			
-			}
-				
-		"Modifiers"
 		{
-			"modifier_item_custom"
-			{
-				"Passive"  "1"
-				"IsHidden" "1" 
-				"Attributes" "MODIFIER_ATTRIBUTE_MULTIPLE"
-				"Properties"
-				{
-					"MODIFIER_PROPERTY_BASEATTACK_BONUSDAMAGE" "%bonus_damage"
-				}
-			} 
-		}			
-				
-				
-	}
-
- 	//=================================================================================================================
-	// book_of_knowledge	
-	//=================================================================================================================
-
-	"item_book_of_knowledge"
-   {
-		"ID"							"1220" 
-		"BaseClass"						"item_datadriven"  
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_OPTIONAL_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_DONT_RESUME_ATTACK"	
-		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
-		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO"
-		"Model"							"models/props_debris/merchant_debris_book001.vmdl" 
-		"AbilityTextureName"			"item_necronomicon" 
-		"ItemCost"                       "1" 
-		"ItemAliases"					"item_book_of_knowledge"
-		"ItemDroppable"					"1" 
-		"ItemPurchasable"				"0" 
-		"ItemSellable"					"1" 
-		"ItemKillable"					"1" 
-		"ItemShareability"				"ITEM_FULLY_SHAREABLE"  
-		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_TO_SPECTATORS | DECLARE_PURCHASES_IN_SPEECH" // Не трогаем.
-
-				
-   
-		"OnSpellStart"
-		{     	         
-			  		  
-				"RunScript"
-				{
-					"ScriptFile"			"items.lua"
-					"Function"				"AddAbilityToHero"
-					"ability_name"			"knowledge"
-				}
-				
-				"RunScript"
-				{
-					"ScriptFile"		"items.lua"
-					"Function"			"RemoveItemFromHero"
-					"item_name"			"item_book_of_knowledge"
-				}
-
-		}  	
-  
-   }
-
-	//=================================================================================================================
-	// Recipe: antidote
-	//=================================================================================================================
-	"item_recipe_antidote"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"1221"	
-		"BaseClass"						"item_datadriven"  		
-		"Model"							"models/props_gameplay/recipe.vmdl"
-		
-		// Item Info
-		//-------------------------------------------------------------------------------------------------------------
-		"ItemCost"						"1"	
-		"ItemShopTags"					""
-		"ItemAliases"					"item_recipe_antidote"
-		"ItemPurchasable"				"0"		
-		"AbilityTextureName"			"antidote" 
-		
-		// Recipe
-		//-------------------------------------------------------------------------------------------------------------
-		"ItemRecipe"					"1"
-		"ItemResult"					"item_antidote"
-		"ItemRequirements"
-		{
-			"01"						"item_slime;item_blood_tube;item_catalyst;item_sample_virus"
+		    "01"
+		    {
+		        "var_type"              "FIELD_INTEGER"
+		        "manna_cost"            "15"
+		    }
+		    "02"
+		    {
+		        "var_type"              "FIELD_FLOAT"
+		        "cooldown"             	"0.3"
+		    }
+		    "03"
+		    {
+		        "var_type"              "FIELD_INTEGER"
+		        "damage"             	"30"
+		    }
+		    "04"
+		    {
+		        "var_type"              "FIELD_FLOAT"
+		        "knockback_duration"    "1"
+		    }		    
+		    "05"
+		    {
+		        "var_type"              "FIELD_FLOAT"
+		        "knockback_distance"    "150.0"
+		    }		    
 		}
 	}
 
-	//=================================================================================================================
-	// antidote
-	//=================================================================================================================
 
-	"item_antidote"
-   {
-		"ID"							"1222" 
-		"BaseClass"						"item_datadriven"  
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_OPTIONAL_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_DONT_RESUME_ATTACK"	
-		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
-		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO"
-		"Model"							"models/props_gameplay/smoke.vmdl" 
-		"AbilityTextureName"			"item_antidote" 
-		"ItemCost"                       "1" 
-		"ItemAliases"					"antidote"
-		"ItemDroppable"					"1" 
-		"ItemPurchasable"				"0" 
-		"ItemSellable"					"1" 
-		"ItemKillable"					"1" 
-		"ItemShareability"				"ITEM_FULLY_SHAREABLE"  
-		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_TO_SPECTATORS | DECLARE_PURCHASES_IN_SPEECH" // Не трогаем.
-				
-   
-		"OnSpellStart"
-		{     	         
-			  
-				"Random"
-				{
-					"Chance"	"50"
-							"OnSuccess"
-							{
-								"RunScript"
-								{
-									"ScriptFile"		"items.lua"
-									"Function"			"GiveWin"
-								}
-
-							}
-							"OnFailure"
-							{
-								"RunScript"
-								{
-									"ScriptFile"		"items.lua"
-									"Function"			"GiveDefeat"
-								}
-
-							}
-				}
-
-			  
-
-				
-				"RunScript"
-				{
-					"ScriptFile"		"items.lua"
-					"Function"			"RemoveItemFromHero"
-					"item_name"			"item_antidote"
-				}
-
-		}  	
-  
-   }	
-
-
-   
 }

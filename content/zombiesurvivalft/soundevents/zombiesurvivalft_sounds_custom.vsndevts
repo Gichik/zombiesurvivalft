@@ -1,4 +1,4 @@
-"ZombieSurvivalFT.ShadowHouse"
+"ZombieSurvivalFT.IntroGrowl"
 {
     "operator_stacks"
     {
@@ -14,7 +14,7 @@
                     {
                         "value"
                         {
-                              "value0"        "sounds/ShadowHouse.vsnd"
+                              "value0"        "sounds/IntroGrowl.vsnd"
                         }
                     }
 					"volume_min"
@@ -55,7 +55,7 @@
     }
 }
 
-"ZombieSurvivalFT.Horror"
+"ZombieSurvivalFT.IntroStart"
 {
     "operator_stacks"
     {
@@ -71,7 +71,7 @@
                     {
                         "value"
                         {
-                              "value0"        "sounds/Horror.vsnd"
+                              "value0"        "sounds/IntroStart.vsnd"
                         }
                     }
 					"volume_min"
@@ -112,8 +112,7 @@
     }
 }
 
-
-"ZombieSurvivalFT.Horror2"
+"ZombieSurvivalFT.EffectSiren"
 {
     "operator_stacks"
     {
@@ -129,7 +128,7 @@
                     {
                         "value"
                         {
-                              "value0"        "sounds/Horror2.vsnd"
+                              "value0"        "sounds/Effects/EffectSiren.vsnd"
                         }
                     }
 					"volume_min"
@@ -170,7 +169,7 @@
     }
 }
 
-"ZombieSurvivalFT.Hospital"
+"ZombieSurvivalFT.EffectVoiceZombieApocalypse"
 {
     "operator_stacks"
     {
@@ -186,64 +185,7 @@
                     {
                         "value"
                         {
-                              "value0"        "sounds/Hospital.vsnd"
-                        }
-                    }
-					"volume_min"
-					{
-							"value"         "1.500000"
-					}
-					"volume_max"
-					{
-							"value"         "1.500000"
-					}
-					"pitch_min"
-					{
-							"value"         "0.950000"
-					}
-					"pitch_max"
-					{
-							"value"         "1.050000"
-					}
-					"chan_type"
-					{
-							"value"         "6"
-					}
-					"memory_type"
-					{
-							"value"         "0"
-					}
-					"soundlevel_min"
-					{
-							"value"         "150.000000"
-					}
-					"soundlevel_max"
-					{
-							"value"         "150.000000"
-					}
-                }
-            }
-        }
-    }
-}
-
-"ZombieSurvivalFT.Library"
-{
-    "operator_stacks"
-    {
-        "update_stack"
-        {
-            "reference_operator"
-            {
-                "operator"              "sos_reference_stack"
-                "reference_stack"       "dota_src1_3d"
-                "operator_variables"
-                {
-                    "vsnd_files"
-                    {
-                        "value"
-                        {
-                              "value0"        "sounds/Library.vsnd"
+                              "value0"        "sounds/Effects/EffectVoiceZombieApocalypse.vsnd"
                         }
                     }
 					"volume_min"
@@ -284,7 +226,7 @@
     }
 }
 
-"ZombieSurvivalFT.Night"
+"ZombieSurvivalFT.EffectVoiceZombie1"
 {
     "operator_stacks"
     {
@@ -300,64 +242,7 @@
                     {
                         "value"
                         {
-                              "value0"        "sounds/Night.vsnd"
-                        }
-                    }
-					"volume_min"
-					{
-							"value"         "1.000000"
-					}
-					"volume_max"
-					{
-							"value"         "1.000000"
-					}
-					"pitch_min"
-					{
-							"value"         "0.950000"
-					}
-					"pitch_max"
-					{
-							"value"         "1.050000"
-					}
-					"chan_type"
-					{
-							"value"         "6"
-					}
-					"memory_type"
-					{
-							"value"         "0"
-					}
-					"soundlevel_min"
-					{
-							"value"         "50.000000"
-					}
-					"soundlevel_max"
-					{
-							"value"         "50.000000"
-					}
-                }
-            }
-        }
-    }
-}
-
-"ZombieSurvivalFT.PoliceStation"
-{
-    "operator_stacks"
-    {
-        "update_stack"
-        {
-            "reference_operator"
-            {
-                "operator"              "sos_reference_stack"
-                "reference_stack"       "dota_src1_3d"
-                "operator_variables"
-                {
-                    "vsnd_files"
-                    {
-                        "value"
-                        {
-                              "value0"        "sounds/PoliceStation.vsnd"
+                              "value0"        "sounds/Effects/EffectVoiceZombie1.vsnd"
                         }
                     }
 					"volume_min"
@@ -398,7 +283,7 @@
     }
 }
 
-"ZombieSurvivalFT.ZombieAttack"
+"ZombieSurvivalFT.EffectVoiceZombie2"
 {
     "operator_stacks"
     {
@@ -414,7 +299,7 @@
                     {
                         "value"
                         {
-                              "value0"        "sounds/ZombieAttack.vsnd"
+                              "value0"        "sounds/Effects/EffectVoiceZombie2.vsnd"
                         }
                     }
 					"volume_min"
@@ -455,8 +340,7 @@
     }
 }
 
-
-"ZombieSurvivalFT.zombie_fast"
+"ZombieSurvivalFT.EffectVoiceZombie3"
 {
     "operator_stacks"
     {
@@ -472,7 +356,7 @@
                     {
                         "value"
                         {
-                              "value0"        "sounds/zombie_fast.vsnd"
+                              "value0"        "sounds/Effects/EffectVoiceZombie3.vsnd"
                         }
                     }
 					"volume_min"
@@ -513,7 +397,7 @@
     }
 }
 
-"ZombieSurvivalFT.zombie_girl"
+"ZombieSurvivalFT.EffectVoiceZombie4"
 {
     "operator_stacks"
     {
@@ -529,7 +413,7 @@
                     {
                         "value"
                         {
-                              "value0"        "sounds/zombie_girl.vsnd"
+                              "value0"        "sounds/Effects/EffectVoiceZombie4.vsnd"
                         }
                     }
 					"volume_min"
@@ -570,7 +454,7 @@
     }
 }
 
-"ZombieSurvivalFT.zombie_dog"
+"ZombieSurvivalFT.EffectVoiceZombie5"
 {
     "operator_stacks"
     {
@@ -586,7 +470,7 @@
                     {
                         "value"
                         {
-                              "value0"        "sounds/zombie_dog.vsnd"
+                              "value0"        "sounds/Effects/EffectVoiceZombie5.vsnd"
                         }
                     }
 					"volume_min"
@@ -627,7 +511,7 @@
     }
 }
 
-"ZombieSurvivalFT.zombie_fat"
+"ZombieSurvivalFT.EffectVoiceZombie6"
 {
     "operator_stacks"
     {
@@ -643,7 +527,7 @@
                     {
                         "value"
                         {
-                              "value0"        "sounds/zombie_fat.vsnd"
+                              "value0"        "sounds/Effects/EffectVoiceZombie6.vsnd"
                         }
                     }
 					"volume_min"
@@ -684,7 +568,7 @@
     }
 }
 
-"ZombieSurvivalFT.zombie"
+"ZombieSurvivalFT.EffectVoiceZombie7"
 {
     "operator_stacks"
     {
@@ -700,7 +584,7 @@
                     {
                         "value"
                         {
-                              "value0"        "sounds/zombie.vsnd"
+                              "value0"        "sounds/Effects/EffectVoiceZombie7.vsnd"
                         }
                     }
 					"volume_min"
@@ -740,3 +624,1087 @@
         }
     }
 }
+
+"ZombieSurvivalFT.EffectVoiceZombie8"
+{
+    "operator_stacks"
+    {
+        "update_stack"
+        {
+            "reference_operator"
+            {
+                "operator"              "sos_reference_stack"
+                "reference_stack"       "dota_src1_3d"
+                "operator_variables"
+                {
+                    "vsnd_files"
+                    {
+                        "value"
+                        {
+                              "value0"        "sounds/Effects/EffectVoiceZombie8.vsnd"
+                        }
+                    }
+					"volume_min"
+					{
+							"value"         "1.500000"
+					}
+					"volume_max"
+					{
+							"value"         "1.500000"
+					}
+					"pitch_min"
+					{
+							"value"         "0.950000"
+					}
+					"pitch_max"
+					{
+							"value"         "1.050000"
+					}
+					"chan_type"
+					{
+							"value"         "6"
+					}
+					"memory_type"
+					{
+							"value"         "0"
+					}
+					"soundlevel_min"
+					{
+							"value"         "100.000000"
+					}
+					"soundlevel_max"
+					{
+							"value"         "100.000000"
+					}
+                }
+            }
+        }
+    }
+}
+
+"ZombieSurvivalFT.EffectVoiceZombie9"
+{
+    "operator_stacks"
+    {
+        "update_stack"
+        {
+            "reference_operator"
+            {
+                "operator"              "sos_reference_stack"
+                "reference_stack"       "dota_src1_3d"
+                "operator_variables"
+                {
+                    "vsnd_files"
+                    {
+                        "value"
+                        {
+                              "value0"        "sounds/Effects/EffectVoiceZombie9.vsnd"
+                        }
+                    }
+					"volume_min"
+					{
+							"value"         "1.500000"
+					}
+					"volume_max"
+					{
+							"value"         "1.500000"
+					}
+					"pitch_min"
+					{
+							"value"         "0.950000"
+					}
+					"pitch_max"
+					{
+							"value"         "1.050000"
+					}
+					"chan_type"
+					{
+							"value"         "6"
+					}
+					"memory_type"
+					{
+							"value"         "0"
+					}
+					"soundlevel_min"
+					{
+							"value"         "100.000000"
+					}
+					"soundlevel_max"
+					{
+							"value"         "100.000000"
+					}
+                }
+            }
+        }
+    }
+}
+
+"ZombieSurvivalFT.EffectVoiceMutant1"
+{
+    "operator_stacks"
+    {
+        "update_stack"
+        {
+            "reference_operator"
+            {
+                "operator"              "sos_reference_stack"
+                "reference_stack"       "dota_src1_3d"
+                "operator_variables"
+                {
+                    "vsnd_files"
+                    {
+                        "value"
+                        {
+                              "value0"        "sounds/Effects/EffectVoiceMutant1.vsnd"
+                        }
+                    }
+					"volume_min"
+					{
+							"value"         "1.500000"
+					}
+					"volume_max"
+					{
+							"value"         "1.500000"
+					}
+					"pitch_min"
+					{
+							"value"         "0.950000"
+					}
+					"pitch_max"
+					{
+							"value"         "1.050000"
+					}
+					"chan_type"
+					{
+							"value"         "6"
+					}
+					"memory_type"
+					{
+							"value"         "0"
+					}
+					"soundlevel_min"
+					{
+							"value"         "100.000000"
+					}
+					"soundlevel_max"
+					{
+							"value"         "100.000000"
+					}
+                }
+            }
+        }
+    }
+}
+
+"ZombieSurvivalFT.EffectShotgunShoot"
+{
+    "operator_stacks"
+    {
+        "update_stack"
+        {
+            "reference_operator"
+            {
+                "operator"              "sos_reference_stack"
+                "reference_stack"       "dota_src1_3d"
+                "operator_variables"
+                {
+                    "vsnd_files"
+                    {
+                        "value"
+                        {
+                              "value0"        "sounds/Effects/EffectShotgunShoot.vsnd"
+                        }
+                    }
+					"volume_min"
+					{
+							"value"         "1.500000"
+					}
+					"volume_max"
+					{
+							"value"         "1.500000"
+					}
+					"pitch_min"
+					{
+							"value"         "0.950000"
+					}
+					"pitch_max"
+					{
+							"value"         "1.050000"
+					}
+					"chan_type"
+					{
+							"value"         "6"
+					}
+					"memory_type"
+					{
+							"value"         "0"
+					}
+					"soundlevel_min"
+					{
+							"value"         "100.000000"
+					}
+					"soundlevel_max"
+					{
+							"value"         "100.000000"
+					}
+                }
+            }
+        }
+    }
+}
+
+"ZombieSurvivalFT.EffectNightSounds"
+{
+    "operator_stacks"
+    {
+        "update_stack"
+        {
+            "reference_operator"
+            {
+                "operator"              "sos_reference_stack"
+                "reference_stack"       "dota_src1_3d"
+                "operator_variables"
+                {
+                    "vsnd_files"
+                    {
+                        "value"
+                        {
+                              "value0"        "sounds/Effects/EffectNightSounds.vsnd"
+                        }
+                    }
+					"volume_min"
+					{
+							"value"         "1.500000"
+					}
+					"volume_max"
+					{
+							"value"         "1.500000"
+					}
+					"pitch_min"
+					{
+							"value"         "0.950000"
+					}
+					"pitch_max"
+					{
+							"value"         "1.050000"
+					}
+					"chan_type"
+					{
+							"value"         "6"
+					}
+					"memory_type"
+					{
+							"value"         "0"
+					}
+					"soundlevel_min"
+					{
+							"value"         "100.000000"
+					}
+					"soundlevel_max"
+					{
+							"value"         "100.000000"
+					}
+                }
+            }
+        }
+    }
+}
+
+"ZombieSurvivalFT.ExtremeGhostbusters_TheCreeps"
+{
+    "operator_stacks"
+    {
+        "update_stack"
+        {
+            "reference_operator"
+            {
+                "operator"              "sos_reference_stack"
+                "reference_stack"       "dota_src1_3d"
+                "operator_variables"
+                {
+                    "vsnd_files"
+                    {
+                        "value"
+                        {
+                              "value0"        "sounds/Music/ExtremeGhostbusters_TheCreeps.vsnd"
+                        }
+                    }
+					"volume_min"
+					{
+							"value"         "1.500000"
+					}
+					"volume_max"
+					{
+							"value"         "1.500000"
+					}
+					"pitch_min"
+					{
+							"value"         "0.950000"
+					}
+					"pitch_max"
+					{
+							"value"         "1.050000"
+					}
+					"chan_type"
+					{
+							"value"         "6"
+					}
+					"memory_type"
+					{
+							"value"         "0"
+					}
+					"soundlevel_min"
+					{
+							"value"         "100.000000"
+					}
+					"soundlevel_max"
+					{
+							"value"         "100.000000"
+					}
+                }
+            }
+        }
+    }
+}
+
+"ZombieSurvivalFT.HansZimmer_SamarasSong"
+{
+    "operator_stacks"
+    {
+        "update_stack"
+        {
+            "reference_operator"
+            {
+                "operator"              "sos_reference_stack"
+                "reference_stack"       "dota_src1_3d"
+                "operator_variables"
+                {
+                    "vsnd_files"
+                    {
+                        "value"
+                        {
+                              "value0"        "sounds/Music/HansZimmer_SamarasSong.vsnd"
+                        }
+                    }
+					"volume_min"
+					{
+							"value"         "1.500000"
+					}
+					"volume_max"
+					{
+							"value"         "1.500000"
+					}
+					"pitch_min"
+					{
+							"value"         "0.950000"
+					}
+					"pitch_max"
+					{
+							"value"         "1.050000"
+					}
+					"chan_type"
+					{
+							"value"         "6"
+					}
+					"memory_type"
+					{
+							"value"         "0"
+					}
+					"soundlevel_min"
+					{
+							"value"         "100.000000"
+					}
+					"soundlevel_max"
+					{
+							"value"         "100.000000"
+					}
+                }
+            }
+        }
+    }
+}
+
+"ZombieSurvivalFT.MonochromeInc_PandemicOrchestra"
+{
+    "operator_stacks"
+    {
+        "update_stack"
+        {
+            "reference_operator"
+            {
+                "operator"              "sos_reference_stack"
+                "reference_stack"       "dota_src1_3d"
+                "operator_variables"
+                {
+                    "vsnd_files"
+                    {
+                        "value"
+                        {
+                              "value0"        "sounds/Music/MonochromeInc_PandemicOrchestra.vsnd"
+                        }
+                    }
+					"volume_min"
+					{
+							"value"         "1.500000"
+					}
+					"volume_max"
+					{
+							"value"         "1.500000"
+					}
+					"pitch_min"
+					{
+							"value"         "0.950000"
+					}
+					"pitch_max"
+					{
+							"value"         "1.050000"
+					}
+					"chan_type"
+					{
+							"value"         "6"
+					}
+					"memory_type"
+					{
+							"value"         "0"
+					}
+					"soundlevel_min"
+					{
+							"value"         "100.000000"
+					}
+					"soundlevel_max"
+					{
+							"value"         "100.000000"
+					}
+                }
+            }
+        }
+    }
+}
+
+"ZombieSurvivalFT.Unknown_MysticDreamPianoMelody"
+{
+    "operator_stacks"
+    {
+        "update_stack"
+        {
+            "reference_operator"
+            {
+                "operator"              "sos_reference_stack"
+                "reference_stack"       "dota_src1_3d"
+                "operator_variables"
+                {
+                    "vsnd_files"
+                    {
+                        "value"
+                        {
+                              "value0"        "sounds/Music/Unknown_MysticDreamPianoMelody.vsnd"
+                        }
+                    }
+					"volume_min"
+					{
+							"value"         "1.500000"
+					}
+					"volume_max"
+					{
+							"value"         "1.500000"
+					}
+					"pitch_min"
+					{
+							"value"         "0.950000"
+					}
+					"pitch_max"
+					{
+							"value"         "1.050000"
+					}
+					"chan_type"
+					{
+							"value"         "6"
+					}
+					"memory_type"
+					{
+							"value"         "0"
+					}
+					"soundlevel_min"
+					{
+							"value"         "100.000000"
+					}
+					"soundlevel_max"
+					{
+							"value"         "100.000000"
+					}
+                }
+            }
+        }
+    }
+}
+
+"ZombieSurvivalFT.Myuu_HauntedByScreams"
+{
+    "operator_stacks"
+    {
+        "update_stack"
+        {
+            "reference_operator"
+            {
+                "operator"              "sos_reference_stack"
+                "reference_stack"       "dota_src1_3d"
+                "operator_variables"
+                {
+                    "vsnd_files"
+                    {
+                        "value"
+                        {
+                              "value0"        "sounds/Music/Myuu_HauntedByScreams.vsnd"
+                        }
+                    }
+					"volume_min"
+					{
+							"value"         "1.500000"
+					}
+					"volume_max"
+					{
+							"value"         "1.500000"
+					}
+					"pitch_min"
+					{
+							"value"         "0.950000"
+					}
+					"pitch_max"
+					{
+							"value"         "1.050000"
+					}
+					"chan_type"
+					{
+							"value"         "6"
+					}
+					"memory_type"
+					{
+							"value"         "0"
+					}
+					"soundlevel_min"
+					{
+							"value"         "100.000000"
+					}
+					"soundlevel_max"
+					{
+							"value"         "100.000000"
+					}
+                }
+            }
+        }
+    }
+}
+
+"ZombieSurvivalFT.NoxArcana_VeilOfDarkness"
+{
+    "operator_stacks"
+    {
+        "update_stack"
+        {
+            "reference_operator"
+            {
+                "operator"              "sos_reference_stack"
+                "reference_stack"       "dota_src1_3d"
+                "operator_variables"
+                {
+                    "vsnd_files"
+                    {
+                        "value"
+                        {
+                              "value0"        "sounds/Music/NoxArcana_VeilOfDarkness.vsnd"
+                        }
+                    }
+					"volume_min"
+					{
+							"value"         "1.500000"
+					}
+					"volume_max"
+					{
+							"value"         "1.500000"
+					}
+					"pitch_min"
+					{
+							"value"         "0.950000"
+					}
+					"pitch_max"
+					{
+							"value"         "1.050000"
+					}
+					"chan_type"
+					{
+							"value"         "6"
+					}
+					"memory_type"
+					{
+							"value"         "0"
+					}
+					"soundlevel_min"
+					{
+							"value"         "100.000000"
+					}
+					"soundlevel_max"
+					{
+							"value"         "100.000000"
+					}
+                }
+            }
+        }
+    }
+}
+
+"ZombieSurvivalFT.RailroadWorker_TerribleLullaby"
+{
+    "operator_stacks"
+    {
+        "update_stack"
+        {
+            "reference_operator"
+            {
+                "operator"              "sos_reference_stack"
+                "reference_stack"       "dota_src1_3d"
+                "operator_variables"
+                {
+                    "vsnd_files"
+                    {
+                        "value"
+                        {
+                              "value0"        "sounds/Music/RailroadWorker_TerribleLullaby.vsnd"
+                        }
+                    }
+					"volume_min"
+					{
+							"value"         "1.500000"
+					}
+					"volume_max"
+					{
+							"value"         "1.500000"
+					}
+					"pitch_min"
+					{
+							"value"         "0.950000"
+					}
+					"pitch_max"
+					{
+							"value"         "1.050000"
+					}
+					"chan_type"
+					{
+							"value"         "6"
+					}
+					"memory_type"
+					{
+							"value"         "0"
+					}
+					"soundlevel_min"
+					{
+							"value"         "100.000000"
+					}
+					"soundlevel_max"
+					{
+							"value"         "100.000000"
+					}
+                }
+            }
+        }
+    }
+}
+
+"ZombieSurvivalFT.Unknown_ScaryMusic"
+{
+    "operator_stacks"
+    {
+        "update_stack"
+        {
+            "reference_operator"
+            {
+                "operator"              "sos_reference_stack"
+                "reference_stack"       "dota_src1_3d"
+                "operator_variables"
+                {
+                    "vsnd_files"
+                    {
+                        "value"
+                        {
+                              "value0"        "sounds/Music/Unknown_ScaryMusic.vsnd"
+                        }
+                    }
+					"volume_min"
+					{
+							"value"         "1.500000"
+					}
+					"volume_max"
+					{
+							"value"         "1.500000"
+					}
+					"pitch_min"
+					{
+							"value"         "0.950000"
+					}
+					"pitch_max"
+					{
+							"value"         "1.050000"
+					}
+					"chan_type"
+					{
+							"value"         "6"
+					}
+					"memory_type"
+					{
+							"value"         "0"
+					}
+					"soundlevel_min"
+					{
+							"value"         "100.000000"
+					}
+					"soundlevel_max"
+					{
+							"value"         "100.000000"
+					}
+                }
+            }
+        }
+    }
+}
+
+"ZombieSurvivalFT.Luka_ShadowHouse"
+{
+    "operator_stacks"
+    {
+        "update_stack"
+        {
+            "reference_operator"
+            {
+                "operator"              "sos_reference_stack"
+                "reference_stack"       "dota_src1_3d"
+                "operator_variables"
+                {
+                    "vsnd_files"
+                    {
+                        "value"
+                        {
+                              "value0"        "sounds/Music/Luka_ShadowHouse.vsnd"
+                        }
+                    }
+					"volume_min"
+					{
+							"value"         "1.500000"
+					}
+					"volume_max"
+					{
+							"value"         "1.500000"
+					}
+					"pitch_min"
+					{
+							"value"         "0.950000"
+					}
+					"pitch_max"
+					{
+							"value"         "1.050000"
+					}
+					"chan_type"
+					{
+							"value"         "6"
+					}
+					"memory_type"
+					{
+							"value"         "0"
+					}
+					"soundlevel_min"
+					{
+							"value"         "100.000000"
+					}
+					"soundlevel_max"
+					{
+							"value"         "100.000000"
+					}
+                }
+            }
+        }
+    }
+}
+
+"ZombieSurvivalFT.SlowStrings_LurkingInTheShadows"
+{
+    "operator_stacks"
+    {
+        "update_stack"
+        {
+            "reference_operator"
+            {
+                "operator"              "sos_reference_stack"
+                "reference_stack"       "dota_src1_3d"
+                "operator_variables"
+                {
+                    "vsnd_files"
+                    {
+                        "value"
+                        {
+                              "value0"        "sounds/Music/SlowStrings_LurkingInTheShadows.vsnd"
+                        }
+                    }
+					"volume_min"
+					{
+							"value"         "1.500000"
+					}
+					"volume_max"
+					{
+							"value"         "1.500000"
+					}
+					"pitch_min"
+					{
+							"value"         "0.950000"
+					}
+					"pitch_max"
+					{
+							"value"         "1.050000"
+					}
+					"chan_type"
+					{
+							"value"         "6"
+					}
+					"memory_type"
+					{
+							"value"         "0"
+					}
+					"soundlevel_min"
+					{
+							"value"         "100.000000"
+					}
+					"soundlevel_max"
+					{
+							"value"         "100.000000"
+					}
+                }
+            }
+        }
+    }
+}
+
+"ZombieSurvivalFT.SlowStrings_PandemicPrologue"
+{
+    "operator_stacks"
+    {
+        "update_stack"
+        {
+            "reference_operator"
+            {
+                "operator"              "sos_reference_stack"
+                "reference_stack"       "dota_src1_3d"
+                "operator_variables"
+                {
+                    "vsnd_files"
+                    {
+                        "value"
+                        {
+                              "value0"        "sounds/Music/SlowStrings_PandemicPrologue.vsnd"
+                        }
+                    }
+					"volume_min"
+					{
+							"value"         "1.500000"
+					}
+					"volume_max"
+					{
+							"value"         "1.500000"
+					}
+					"pitch_min"
+					{
+							"value"         "0.950000"
+					}
+					"pitch_max"
+					{
+							"value"         "1.050000"
+					}
+					"chan_type"
+					{
+							"value"         "6"
+					}
+					"memory_type"
+					{
+							"value"         "0"
+					}
+					"soundlevel_min"
+					{
+							"value"         "100.000000"
+					}
+					"soundlevel_max"
+					{
+							"value"         "100.000000"
+					}
+                }
+            }
+        }
+    }
+}
+
+"ZombieSurvivalFT.SlowStrings_SongOfShriekingWind"
+{
+    "operator_stacks"
+    {
+        "update_stack"
+        {
+            "reference_operator"
+            {
+                "operator"              "sos_reference_stack"
+                "reference_stack"       "dota_src1_3d"
+                "operator_variables"
+                {
+                    "vsnd_files"
+                    {
+                        "value"
+                        {
+                              "value0"        "sounds/Music/SlowStrings_SongOfShriekingWind.vsnd"
+                        }
+                    }
+					"volume_min"
+					{
+							"value"         "1.500000"
+					}
+					"volume_max"
+					{
+							"value"         "1.500000"
+					}
+					"pitch_min"
+					{
+							"value"         "0.950000"
+					}
+					"pitch_max"
+					{
+							"value"         "1.050000"
+					}
+					"chan_type"
+					{
+							"value"         "6"
+					}
+					"memory_type"
+					{
+							"value"         "0"
+					}
+					"soundlevel_min"
+					{
+							"value"         "100.000000"
+					}
+					"soundlevel_max"
+					{
+							"value"         "100.000000"
+					}
+                }
+            }
+        }
+    }
+}
+
+"ZombieSurvivalFT.Unknown_ZombieApocalypse"
+{
+    "operator_stacks"
+    {
+        "update_stack"
+        {
+            "reference_operator"
+            {
+                "operator"              "sos_reference_stack"
+                "reference_stack"       "dota_src1_3d"
+                "operator_variables"
+                {
+                    "vsnd_files"
+                    {
+                        "value"
+                        {
+                              "value0"        "sounds/Music/Unknown_ZombieApocalypse.vsnd"
+                        }
+                    }
+					"volume_min"
+					{
+							"value"         "1.500000"
+					}
+					"volume_max"
+					{
+							"value"         "1.500000"
+					}
+					"pitch_min"
+					{
+							"value"         "0.950000"
+					}
+					"pitch_max"
+					{
+							"value"         "1.050000"
+					}
+					"chan_type"
+					{
+							"value"         "6"
+					}
+					"memory_type"
+					{
+							"value"         "0"
+					}
+					"soundlevel_min"
+					{
+							"value"         "100.000000"
+					}
+					"soundlevel_max"
+					{
+							"value"         "100.000000"
+					}
+                }
+            }
+        }
+    }
+}
+
+"ZombieSurvivalFT.MarilynManson_ResidentEvilMainTitleTheme"
+{
+    "operator_stacks"
+    {
+        "update_stack"
+        {
+            "reference_operator"
+            {
+                "operator"              "sos_reference_stack"
+                "reference_stack"       "dota_src1_3d"
+                "operator_variables"
+                {
+                    "vsnd_files"
+                    {
+                        "value"
+                        {
+                              "value0"        "sounds/Music/MarilynManson_ResidentEvilMainTitleTheme.vsnd"
+                        }
+                    }
+					"volume_min"
+					{
+							"value"         "1.500000"
+					}
+					"volume_max"
+					{
+							"value"         "1.500000"
+					}
+					"pitch_min"
+					{
+							"value"         "0.950000"
+					}
+					"pitch_max"
+					{
+							"value"         "1.050000"
+					}
+					"chan_type"
+					{
+							"value"         "6"
+					}
+					"memory_type"
+					{
+							"value"         "0"
+					}
+					"soundlevel_min"
+					{
+							"value"         "100.000000"
+					}
+					"soundlevel_max"
+					{
+							"value"         "100.000000"
+					}
+                }
+            }
+        }
+    }
+}
+

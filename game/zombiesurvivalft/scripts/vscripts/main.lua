@@ -1,20 +1,22 @@
-PolicemanLock = 1
-HospitalLock = 1
-LibraryLock = 1
-ScienceCenterLock = 1
-counterDeathsGG = 0
-counterGG = 0
+biome_number = RandomInt(1,3)
+
+LinkLuaModifier("modifier_fullness", "modifiers/modifier_fullness.lua", LUA_MODIFIER_MOTION_NONE )
+LinkLuaModifier("modifier_peppy", "modifiers/modifier_peppy.lua", LUA_MODIFIER_MOTION_NONE )
+LinkLuaModifier("modifier_cold", "modifiers/modifier_cold.lua", LUA_MODIFIER_MOTION_NONE )
+LinkLuaModifier("modifier_heat", "modifiers/modifier_heat.lua", LUA_MODIFIER_MOTION_NONE )
 
 function main:InitGameMode()
 	print( "InitGameMode" )
-	GameRules:SetCustomGameTeamMaxPlayers( DOTA_TEAM_GOODGUYS, 5 )
+	EmitGlobalSound("ZombieSurvivalFT.IntroGrowl")
+	GameRules:SetCustomGameTeamMaxPlayers( DOTA_TEAM_GOODGUYS, 4 )
 	GameRules:SetCustomGameTeamMaxPlayers( DOTA_TEAM_BADGUYS, 0 )
-	
-	GameRules:SetTimeOfDay( 0.5 )
+
+	GameRules:SetTimeOfDay( 0.5 )	
 	GameRules:SetHeroRespawnEnabled( false )
 	GameRules:SetUseUniversalShopMode( false )
-	GameRules:SetHeroSelectionTime( 20.0 )
-	GameRules:SetPreGameTime( 5.0 )
+	GameRules:SetHeroSelectionTime( 10.0 )
+	GameRules:SetStrategyTime( 2.0 )
+	GameRules:SetPreGameTime( 5.0 )		
 	GameRules:SetPostGameTime( 60.0 )
 	GameRules:SetTreeRegrowTime( 60.0 )
 	GameRules:SetHeroMinimapIconScale( 0.7 )
@@ -22,200 +24,162 @@ function main:InitGameMode()
 	GameRules:SetRuneMinimapIconScale( 0.7 )
 	GameRules:SetGoldTickTime( 60.0 )
 	GameRules:SetGoldPerTick( 0 )
+	GameRules:SetStartingGold( 0 )
+
+
+	GameRules:GetGameModeEntity():SetBuybackEnabled( false )
+	GameRules:GetGameModeEntity():SetRecommendedItemsDisabled( true )
 	GameRules:GetGameModeEntity():SetRemoveIllusionsOnDeath( true )
 	GameRules:GetGameModeEntity():SetTopBarTeamValuesOverride( true )
 	GameRules:GetGameModeEntity():SetTopBarTeamValuesVisible( false )
-	GameRules:GetGameModeEntity():SetBuybackEnabled( false )
-	GameRules:GetGameModeEntity():SetRecommendedItemsDisabled( true )	
 
 	
+
 	GameRules:GetGameModeEntity():SetUnseenFogOfWarEnabled( true )
 	GameRules:GetGameModeEntity():SetCustomHeroMaxLevel( 1 )
 	GameRules.DropTable = LoadKeyValues("scripts/kv/item_drops.kv")
 
-	
-
-	ListenToGameEvent("dota_player_killed", Dynamic_Wrap(main, "OnHeroKilled"), self)
-    ListenToGameEvent('entity_killed', Dynamic_Wrap(main, 'OnEntityKilled'), self)
+	ListenToGameEvent("dota_player_killed", Dynamic_Wrap(main, "OnSomeHeroKilled"), self)
+    ListenToGameEvent("entity_killed", Dynamic_Wrap(main, "OnEntityKilled"), self)
 	ListenToGameEvent('game_rules_state_change', Dynamic_Wrap(main, 'GameRulesStateChange'), self)
 	ListenToGameEvent("dota_player_gained_level", Dynamic_Wrap(main, 'OnPlayerGainedLevel'), self)
 	ListenToGameEvent("npc_spawned", Dynamic_Wrap(main, 'OnNPCSpawn'), self)
 
-	
-
-	main:SpawnMoobs()
-
-	
+	AddFOWViewer( DOTA_TEAM_NEUTRALS, Vector(0,0,0), 10000, -1, false)
+	--AddFOWViewer( DOTA_TEAM_BADGUYS, Vector(0,0,0), 10000, -1, false)
 end
 
 function main:OnNPCSpawn(data)
-
-local player = EntIndexToHScript(data.entindex)
-
-if player:IsHero() then			
-	local teamNumb = player:GetTeamNumber()
-	local name =  GetTeamName(teamNumb)
-	if name == "#DOTA_GoodGuys" then		
-		--print("counterGG:")print(counterGG)
-		player:SetAbilityPoints(0)		
-		for i = 0, 8 do	
-			local ability = player:GetAbilityByIndex(i)
-			if ability ~= nil then
-				if ability:GetLevel() == 0 then							
-					  ability:SetLevel(1)
-				end
+	local unit = EntIndexToHScript(data.entindex)
+	if unit:IsHero() then
+		if not unit.next_spawn then
+			unit.next_spawn = true;	
+			unit:AddNewModifier(unit, nil, "modifier_fullness", {duration = 120})
+			unit:AddNewModifier(unit, nil, "modifier_peppy", {duration = 230})
+			unit:SetGold(0,false)
+			if unit:HasAnyAvailableInventorySpace() then
+				unit:AddItemByName("item_bat")
 			end
+
+			if biome_number == 1 then
+				main:MoveHeroToBiom(unit,"city") 
+			end
+			if biome_number == 2 then
+				unit:AddNewModifier(unit, nil, "modifier_cold", {}) 
+				main:MoveHeroToBiom(unit,"snow")
+			end
+			if biome_number == 3 then
+				unit:AddNewModifier(unit, nil, "modifier_heat", {})
+				main:MoveHeroToBiom(unit,"desert")
+			end										
 		end
-		
-		if player:HasAnyAvailableInventorySpace() then
-			player:AddItemByName(main:GiveSomeItem())
-		end
-		
 	end
 end
-
-end
-
 
  function main:GameRulesStateChange(keys)
 	local newState = GameRules:State_Get()
-	if newState == DOTA_GAMERULES_STATE_GAME_IN_PROGRESS then 
-		GameRules:SetCustomGameTeamMaxPlayers( DOTA_TEAM_BADGUYS, 5 )
+	if newState == DOTA_GAMERULES_STATE_HERO_SELECTION then
+		EmitGlobalSound("ZombieSurvivalFT.IntroStart")
+	end
 
-		--ShowGenericPopup(  "#popup_title_Main", "#popup_body_Main", "", "", DOTA_SHOWGENERICPOPUP_TINT_SCREEN )
-		EmitGlobalSound("ZombieSurvivalFT.ShadowHouse")
-		
-		Timers:CreateTimer(245,function()
-			EmitGlobalSound("ZombieSurvivalFT.Night")
-			return 480
-		end)	
-		Timers:CreateTimer(485,function()
-			EmitGlobalSound("ZombieSurvivalFT.Horror")
-			return 480
-		end)
-		
-		for i=0,5 do
-			if PlayerResource:IsValidPlayer(i) then
-				counterGG = counterGG + 1
-			end
-		end
-		
-		
-		
+	if newState == DOTA_GAMERULES_STATE_GAME_IN_PROGRESS then 
+		main:BiomSpawnSettings()
+
+		GameRules:GetGameModeEntity():SetContextThink(string.format("MusicThink_%d",1), 
+			function()
+				if #TABLE_RANDOM_MUSIC == 0 then
+					GenerateTableMusic()
+				end
+
+				local musicName = TABLE_RANDOM_MUSIC[1]
+				table.remove(TABLE_RANDOM_MUSIC, 1)
+
+				if not musicName then
+					musicName = "HansZimmer_SamarasSong"
+				end
+
+				Say(nil,string.gsub(musicName, "_", " - "), false)
+				EmitGlobalSound("ZombieSurvivalFT." .. musicName)
+				return 240
+			end,
+			1)
 	end
 end
-
 
 function main:OnPlayerGainedLevel(data)
-local hero = PlayerResource:GetSelectedHeroEntity(data.player-1)
-hero:SetAbilityPoints(0)
+	local hero = PlayerResource:GetSelectedHeroEntity(data.player-1)
+	hero:SetAbilityPoints(0)
 end
 
-function main:ActivatePoliceStation()
-PolicemanLock = 0
-end
+function main:OnSomeHeroKilled(data)
+	--print("hero killed")
 
-function main:ActivateHospital()
-HospitalLock = 0
-end
+	local killedHero = PlayerResource:GetSelectedHeroEntity(data.PlayerID)
 
-function main:ActivateLibrary()
-LibraryLock = 0
-end
+--[[
+	local newItem = CreateItem( "item_tombstone", killedHero, killedHero )
+	newItem:SetPurchaseTime( 0 )
+	newItem:SetPurchaser( killedHero )
+	local tombstone = SpawnEntityFromTableSynchronous( "dota_item_tombstone_drop", {} )
+	tombstone:SetContainedItem( newItem )
+	tombstone:SetAngles( 0, RandomFloat( 0, 360 ), 0 )
+	FindClearSpaceForUnit( tombstone, killedHero:GetAbsOrigin(), true )	
 
-function main:ActivateScienceCenter()
-ScienceCenterLock = 0
-end
+	local AllDead = true
 
-function main:IncreaseDeathCounter()
-	counterDeathsGG = counterDeathsGG + 1
-	if counterDeathsGG >= counterGG and PlayerResource:GetPlayerCountForTeam(DOTA_TEAM_GOODGUYS) > 0 then
-		--ShowGenericPopup(  "#popup_title_end", "#popup_body_end", "", "", DOTA_SHOWGENERICPOPUP_TINT_SCREEN )
-		GameRules:SetGameWinner(DOTA_TEAM_BADGUYS)
-		return true
+	for i=0,5 do
+		if PlayerResource:IsValidPlayer(i) then
+			if PlayerResource:GetSelectedHeroEntity(i):IsAlive() then
+				AllDead = false
+			end
+		end
 	end
-	return false 	
+
+	if AllDead then
+		GameRules:SetGameWinner(DOTA_TEAM_BADGUYS)
+	end]]
 end
 
-function main:SpawnMoobs()
-local point = nil
-local unit = nil
-local ability = nil
-local way = nil
-local i = 0
+function main:OnEntityKilled(data)
+   local killedEntity = EntIndexToHScript(data.entindex_killed)
+	--print("entity killed")
+    if killedEntity:IsRealHero() then
+		local newItem = CreateItem( "item_tombstone", killedEntity, killedEntity )
+		newItem:SetPurchaseTime( 0 )
+		newItem:SetPurchaser( killedEntity )
+		local tombstone = SpawnEntityFromTableSynchronous( "dota_item_tombstone_drop", {} )
+		tombstone:SetContainedItem( newItem )
+		tombstone:SetAngles( 0, RandomFloat( 0, 360 ), 0 )
+		FindClearSpaceForUnit( tombstone, killedEntity:GetAbsOrigin(), true )
 
-for i = 1, 12 do
-	point = Entities:FindByName( nil, "spawn_" .. i):GetAbsOrigin()
-	unit = CreateUnitByName("trashcan", point, true, nil, nil, DOTA_TEAM_BADGUYS ) 
-	ability = unit:FindAbilityByName("respawn")
-	ability:SetOverrideCastPoint(i)
-end	
-	
-for i = 51, 53 do
-	point = Entities:FindByName( nil, "spawn_" .. i):GetAbsOrigin()
-	unit = CreateUnitByName("old_chest", point, true, nil, nil, DOTA_TEAM_BADGUYS ) 
-	ability = unit:FindAbilityByName("respawn")
-	ability:SetOverrideCastPoint(i)
-end		
-	
-	
-for i = 60, 60 do
-	point = Entities:FindByName( nil, "spawn_" .. i):GetAbsOrigin()
-	unit = CreateUnitByName("safe", point, true, nil, nil, DOTA_TEAM_BADGUYS ) 
-	ability = unit:FindAbilityByName("respawn")
-	ability:SetOverrideCastPoint(i)
-end		
-	
-for i = 71, 78 do
-	point = Entities:FindByName( nil, "spawn_" .. i):GetAbsOrigin()
-	unit = CreateUnitByName("shelf", point, true, nil, nil, DOTA_TEAM_BADGUYS ) 
-	ability = unit:FindAbilityByName("respawn")
-	ability:SetOverrideCastPoint(i)
-end	
+		for i = 0, 8 do 
+			item = killedEntity:GetItemInSlot(i)
+			if item ~= nil then
+				killedEntity:DropItemAtPositionImmediate(item,killedEntity:GetAbsOrigin() + RandomVector(RandomFloat(50, 100)))
+			end
+		end
 
-for i = 81, 84 do
-	point = Entities:FindByName( nil, "spawn_" .. i):GetAbsOrigin()
-	unit = CreateUnitByName("bottles", point, true, nil, nil, DOTA_TEAM_BADGUYS ) 
-	ability = unit:FindAbilityByName("respawn")
-	ability:SetOverrideCastPoint(i)
-end	
+		local AllDead = true
+		local playerCount = PlayerResource:GetTeamPlayerCount()
 
-for i = 91, 98 do
-	point = Entities:FindByName( nil, "spawn_" .. i):GetAbsOrigin()
-	unit = CreateUnitByName("chest", point, true, nil, nil, DOTA_TEAM_BADGUYS ) 
-	ability = unit:FindAbilityByName("respawn")
-	ability:SetOverrideCastPoint(i)
-end	
+		for i=0, playerCount  do
+			if PlayerResource:IsValidPlayer(i) then
+				if PlayerResource:GetSelectedHeroEntity(i):IsAlive() then
+					AllDead = false
+				end
+			end
+		end
 
-for i = 101, 180 do
-	point = Entities:FindByName( nil, "spawn_" .. i):GetAbsOrigin()
-	unit = CreateUnitByName(main:GiveNameOfZombie(), point, true, nil, nil, DOTA_TEAM_BADGUYS ) 
-	ability = unit:FindAbilityByName("respawn")
-	ability:SetOverrideCastPoint(i)
-	way = Entities:FindByName( nil, "way_" .. i) 
-	unit:SetInitialGoalEntity( way )		
-end	
+		if AllDead then
+			GameRules:SetGameWinner(DOTA_TEAM_BADGUYS)
+		end
 
-
-for i = 301, 314 do
-	point = Entities:FindByName( nil, "spawn_" .. i):GetAbsOrigin()
-	unit = CreateUnitByName("radiation_source", point, true, nil, nil, DOTA_TEAM_BADGUYS ) 	
-end	
-
-	
+	end	
 end
 
 
 
- function main:OnEntityKilled (data)
-    local killedUnit = EntIndexToHScript( data.entindex_killed )
-    if killedUnit:IsNeutralUnitType() or killedUnit:IsCreature() then
-        main:RollDrops(killedUnit)
-    end
-   end
-
-   
-  function main:RollDrops(unit)
+function main:RollDrops(unit)
     local DropInfo = GameRules.DropTable[unit:GetUnitName()]
     if DropInfo then
         for item_name,chance in pairs(DropInfo) do
@@ -231,70 +195,189 @@ end
     end
 end 
 
-
-function main:OnHeroKilled(data)
---	print("hero killed")
-	local killedEntity = PlayerResource:GetSelectedHeroEntity(data.PlayerID)
-	if killedEntity:GetNumItemsInInventory() ~=0 then
-	   for i=0,5 do
-			local item = killedEntity:GetItemInSlot(i);
-			if item ~= nil then
-				local position = killedEntity:GetAbsOrigin()
-				local name = item:GetAbilityName()
-				killedEntity:RemoveItem(item)		
-				main:CreateDrop(name, position)
-			end
-		end
-   end
-   
---[[   
-   local killedPlayer = PlayerResource:GetPlayer(data.PlayerID)	
-	local number = killedPlayer:GetTeamNumber()
-	local name =  GetTeamName(number)
-	
-	if name == "#DOTA_GoodGuys" then
-		counterDeathsGG = counterDeathsGG + 1
-	end
-   
-	if counterDeathsGG >= counterGG and PlayerResource:GetPlayerCountForTeam(DOTA_TEAM_GOODGUYS) > 0 then
-		GameRules:SetGameWinner(DOTA_TEAM_BADGUYS)
-	end
- ]]  
- 
-end
-
- function main:CreateDrop (itemName, pos)
+function main:CreateDrop (itemName, pos)
    local newItem = CreateItem(itemName, nil, nil)
    newItem:SetPurchaseTime(0)
    CreateItemOnPositionSync(pos, newItem)
    newItem:LaunchLoot(false, 300, 0.75, pos + RandomVector(RandomFloat(50, 350)))
- end  
- 
- 
- function main:GiveNameOfZombie()
- 
- local number = RandomInt(1, 4)
- 
-if number == 1 then
-	return "fat_zombie"
-elseif number == 2 then
-	return "zombie"
-elseif number == 3 then
-	return "half_zombie"
-else
-	return "fast_zombie"
+end  
+
+
+function main:BiomSpawnSettings()
+	--print("BiomSpawnSettings")
+	local biomName = "city"
+	local foodSPointNum = 0
+	local tabletSPointNum = 0
+	local ammoSPointNum = 0
+	local weaponSPointNum = 0
+	local bookSPointNum = 0
+	local zombieSPointNum = 0
+
+	if biome_number == 1 then
+		biomName = "city"
+		foodSPointNum = 17
+		tabletSPointNum = 15
+		ammoSPointNum = 15
+		weaponSPointNum = 10
+		bookSPointNum = 8
+		woodSPointNum = 15
+		zombieSPointNum = 53
+	end	
+
+	if biome_number == 2 then
+		biomName = "snow"
+		foodSPointNum = 11
+		tabletSPointNum = 11
+		ammoSPointNum = 13
+		weaponSPointNum = 6
+		bookSPointNum = 5
+		woodSPointNum = 10		
+		zombieSPointNum = 30
+		main:BiomItemSpawn("" .. biomName .. "_paper_spawn_","item_camp_misc", 7, 7)
+	end	
+
+	if biome_number == 3 then
+		biomName = "desert"
+		foodSPointNum = 11
+		tabletSPointNum = 11
+		ammoSPointNum = 14
+		weaponSPointNum = 8
+		bookSPointNum = 5
+		woodSPointNum = 10		
+		zombieSPointNum = 30
+	end		
+
+	main:BiomItemSpawn("" .. biomName .. "_food_spawn_","item_food_canned", foodSPointNum, 15)
+	main:BiomItemSpawn("" .. biomName .. "_tablet_spawn_","item_sleeping_tablet", tabletSPointNum, 8)
+	main:BiomItemSpawn("" .. biomName .. "_tablet_spawn_","item_medical_bandage", tabletSPointNum, 8)	
+	main:BiomItemSpawn("" .. biomName .. "_ammo_spawn_","item_pistol_ammo", ammoSPointNum, 15)
+	main:BiomItemSpawn("" .. biomName .. "_ammo_spawn_","item_shotgun_ammo", ammoSPointNum, 15)
+	main:BiomItemSpawn("" .. biomName .. "_book_spawn_","item_book_of_food", bookSPointNum, 1)
+	main:BiomItemSpawn("" .. biomName .. "_wood_spawn_","item_wood_wall", woodSPointNum, 10)
+	main:BiomWeaponSpawn("" .. biomName .. "_weapon_spawn_", weaponSPointNum, 2)
+
+	main:BiomZombieSpawn("" .. biomName .. "_zombie_spawn_","npc_zombie", zombieSPointNum, 30)
+
+	GameRules:GetGameModeEntity():SetContextThink(string.format("ZombieSpawnThink_%d",1), 
+		function()
+			main:BiomZombieSpawn("" .. biomName .. "_zombie_spawn_","npc_zombie", zombieSPointNum, 30)
+		end,
+		240)
+--240 720
+	GameRules:GetGameModeEntity():SetContextThink(string.format("ZombieSpawnThink_%d",2), 
+		function()
+			main:BiomZombieSpawn("" .. biomName .. "_zombie_spawn_","npc_mutant", zombieSPointNum, 20)
+		end,
+		720)	
 end
 
- end
- 
- function main:GiveSomeItem()
-  local number = RandomInt(1, 3)
- 
-if number == 1 then
-	return "item_pistol"
-elseif number == 2 then
-	return "item_food_canned"
-else 
-	return "item_bat"
+function main:BiomItemSpawn(pointNamePrefix, itemName, spawnPointNumber, balanceNumber)
+	--print("BiomItemSpawn")
+	local playerNumber = PlayerResource:GetTeamPlayerCount()
+
+	for l = 1, playerNumber do 
+		local spawnPointNameTable = {}
+
+		for i = 1, spawnPointNumber do
+			local name = "" .. pointNamePrefix .. i
+			table.insert(spawnPointNameTable,name)
+		end
+
+		for i = 1, balanceNumber do
+			if #spawnPointNameTable > 0 then
+				local number = RandomInt(1,#spawnPointNameTable)
+				local point = Entities:FindByName(nil,spawnPointNameTable[number]):GetAbsOrigin()
+				table.remove(spawnPointNameTable, number)
+
+				local newItem = CreateItem(itemName, nil, nil)
+				local drop = CreateItemOnPositionSync(point + RandomVector(RandomFloat(1,50)),newItem)
+
+			    if drop then
+		            drop:SetContainedItem( newItem )
+		        end
+		    end
+		end
+	end
 end
- end
+
+
+function main:BiomWeaponSpawn(pointNamePrefix, spawnPointNumber, balanceNumber)
+
+	local playerNumber = PlayerResource:GetTeamPlayerCount()
+
+	for l = 1, playerNumber do 
+		local spawnPointNameTable = {}
+
+		for i = 1, spawnPointNumber do
+			local name = "" .. pointNamePrefix .. i
+			table.insert(spawnPointNameTable,name)
+		end
+
+		for i = 1, balanceNumber do
+			if #spawnPointNameTable > 0 then
+				local number = RandomInt(1,#spawnPointNameTable)
+				local point = Entities:FindByName(nil,spawnPointNameTable[number]):GetAbsOrigin()
+				table.remove(spawnPointNameTable, number)
+
+				local itemName = TABLE_WEAPON[RandomInt(1,#TABLE_WEAPON)] 
+				local newItem = CreateItem(itemName, nil, nil)
+				local drop = CreateItemOnPositionSync(point + RandomVector(RandomFloat(1,50)),newItem)
+
+			    if drop then
+		            drop:SetContainedItem( newItem )
+		        end
+		    end
+		end
+	end
+end
+
+function main:BiomZombieSpawn(pointNamePrefix, zombieName, spawnPointNumber, balanceNumber)
+	--print("BiomItemSpawn")
+
+	local spawnPointNameTable = {}
+
+	for i = 1, spawnPointNumber do
+		local name = "" .. pointNamePrefix .. i
+		table.insert(spawnPointNameTable,name)
+	end
+
+	for i = 1, balanceNumber do
+		if #spawnPointNameTable > 0 then
+			local number = RandomInt(1,#spawnPointNameTable)
+			local point = Entities:FindByName(nil,spawnPointNameTable[number]):GetAbsOrigin()
+			table.remove(spawnPointNameTable, number)
+			local unit = CreateUnitByName(zombieName, point, true, nil, nil, DOTA_TEAM_NEUTRALS )
+			unit.vSpawnLoc = point
+			unit.vSpawnVector = RandomVector(RandomFloat(1, 360))	
+	    end
+	end
+
+end
+
+function main:MoveHeroToBiom(unit,biomName)
+	if #TABLE_HEROES_SPAWN ~= 0 then
+		local numberSpawn = RandomInt(1,#TABLE_HEROES_SPAWN)
+		local point = Entities:FindByName(nil,"" .. biomName .. TABLE_HEROES_SPAWN[numberSpawn]):GetAbsOrigin() 
+		table.remove(TABLE_HEROES_SPAWN, numberSpawn)
+
+		GameRules:GetGameModeEntity():SetContextThink(string.format("HeroesMoveThink_%d", unit:GetPlayerOwnerID()), 
+		function()
+			unit:SetAbsOrigin(point) 
+			FindClearSpaceForUnit(unit, point, false) 
+			unit:Stop()
+			main:FocusCameraOnPlayer(unit)			
+		return nil
+		end,
+		1)	
+	end
+end
+
+function main:FocusCameraOnPlayer(player)
+	PlayerResource:SetCameraTarget(player:GetPlayerOwnerID(),player)
+	GameRules:GetGameModeEntity():SetContextThink(string.format("CameraThink_%d", player:GetPlayerOwnerID()), 
+	function()
+		PlayerResource:SetCameraTarget(player:GetPlayerOwnerID(), nil)	
+	return nil
+	end,
+	1)
+end
