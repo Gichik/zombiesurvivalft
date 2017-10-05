@@ -1,10 +1,8 @@
 -- Generated from template
 
-if main == nil then
-	_G.main = class({})
-end
 
 require( 'main' )
+require( 'test_map' )
 require( 'timers' )
 require( 'data_tables' )
 
@@ -25,6 +23,10 @@ function Precache( context )
 	PrecacheModel("models/heroes/life_stealer/life_stealer.vmdl", context) --mutant
 	PrecacheModel("models/heroes/undying/undying_minion.vmdl", context) --zombie
 	PrecacheModel("models/props_foliage/tree_pine01.vmdl", context) --npc_thirst
+
+	PrecacheModel("models/props_stone/stone_column004a.vmdl", context) --npc_kitchen_table
+	PrecacheModel("models/props_debris/merchant_debris_chest002.vmdl", context) --npc_kitchen_table
+	
 
 	-----------------------------items-----------------------------------
 	PrecacheModel("models/props_structures/wood_wall004.vmdl", context) -- wood wall
@@ -87,7 +89,20 @@ end
 
 -- Create the game mode when we activate
 function Activate()
-	main:InitGameMode()
+
+	local MapName = GetMapName()
+	print(MapName)
+
+	if MapName == "random_map" then
+		print("----------------------------------------Random map Start----------------------------------------")
+		main:InitGameMode()
+	end
+
+	if MapName == "test" then
+		print("----------------------------------------Test map Start----------------------------------------")	
+		test_map:InitGameMode()
+	end
+	
 end
 
 

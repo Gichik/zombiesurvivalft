@@ -10,6 +10,10 @@ function item_bat:GetBehavior()
 end
 
 
+function item_bat:GetAbilityTextureName(brokenAPI)
+  return self.BaseClass.GetAbilityTextureName( self )
+end
+
 function item_bat:OnSpellStart()
 	--print("OnSpellStart")
 	local caster = self:GetCaster()
@@ -66,7 +70,7 @@ function item_bat:OnProjectileHit( hTarget, vLocation )
 			DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_BASIC + DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BUILDING, DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES, 0, false )
 	
 	for i = 0, #units do				
-		if units[ i ] and units[ i ] ~= caster then  --DAMAGE UNIT
+		if units[ i ] and units[ i ] ~= caster and units[ i ]:HasModifier("modifier_vulnerability_to_common") then  --DAMAGE UNIT
 			if self.first == 0 then
 				EmitSoundOn("Hero_Spirit_Breaker.GreaterBash", units[ i ])
 			end

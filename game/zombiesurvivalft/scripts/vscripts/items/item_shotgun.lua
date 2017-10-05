@@ -9,6 +9,10 @@ function item_shotgun:GetBehavior()
     return behavior
 end
 
+function item_shotgun:GetAbilityTextureName(brokenAPI)
+  return self.BaseClass.GetAbilityTextureName( self )
+end
+
 function item_shotgun:GetCooldown()
 	local cooldown = self:GetSpecialValueFor("cooldown") 
 
@@ -79,7 +83,7 @@ function item_shotgun:OnProjectileHit( hTarget, vLocation )
 		DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_BASIC + DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BUILDING, DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES, 0, false )
 	
 	for i = 0, #units do	
-		if units[ i ] and units[ i ] ~= caster then  --DAMAGE UNIT
+		if units[ i ] and units[ i ] ~= caster and units[ i ]:HasModifier("modifier_vulnerability_to_rare") then  --DAMAGE UNIT
 			if self.first == 0 then
 				EmitSoundOn("Hero_Sniper.AssassinateDamage", units[ i ])
 			end

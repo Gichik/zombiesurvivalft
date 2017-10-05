@@ -9,6 +9,10 @@ function item_pistol:GetBehavior()
     return behavior
 end
 
+function item_pistol:GetAbilityTextureName(brokenAPI)
+  return self.BaseClass.GetAbilityTextureName( self )
+end
+
 --[[
 function item_pistol:GetManaCost() 
 	local mana = 0

@@ -7,7 +7,9 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityName"					"item_tombstone"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_CHANNELLED | DOTA_ABILITY_BEHAVIOR_DONT_RESUME_ATTACK"
-		"Model"							"models/creeps/dead_creeps/dire_creep_melee_dead_01.vmdl"
+		//"Model"							"models/creeps/dead_creeps/dire_creep_melee_dead_01.vmdl"
+		"Model"							"models/creeps/neutral_creeps/n_creep_ghost_b/n_creep_ghost_b.vmdl"
+		
 		"PingOverrideText"				"DOTA_Chat_Tombstone_Pinged"
 
 		
@@ -33,6 +35,40 @@
 
 	}
 
+
+	"item_military_cage"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"1400" 
+		"BaseClass"						"item_lua"  
+		"ScriptFile"					"items/item_military_cage.lua"		
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_CHANNELLED | DOTA_ABILITY_BEHAVIOR_DONT_RESUME_ATTACK"
+		"Model"							"models/heroes/juggernaut/jugg_healing_ward.vmdl"
+		"AbilityTextureName"			"custom_folder/food_canned"
+		
+	
+		// Stats
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"100"
+		"AbilityCastPoint"				"0.0"
+		"AbilityChannelTime"			"5.0"
+		
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"1"
+		"ItemPurchasable"				"0"
+		"ItemQuality"					"consumable"		
+		"ItemSellable"					"0" 		
+		"ItemShopTags"					"consumable"
+		"ItemStackable"					"0"
+		"ItemShareability"				"ITEM_FULLY_SHAREABLE"
+		"ItemPermanent"					"0"
+		"ItemCastOnPickup"				"1"
+		"ItemKillable"					"0"
+
+	}
+
 	//=================================================================================================================
 	// Consumable
 	//=================================================================================================================
@@ -43,11 +79,18 @@
 		// General
 		//-------------------------------------------------------------------------------------------------------------
 		"ID"							"1251" 
-		"BaseClass"						"item_datadriven"  
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"BaseClass"						"item_lua"
+		"ScriptFile"					"items/item_food_canned.lua"
 		"AbilityTextureName"			"custom_folder/food_canned"
-		"AbilityCastAnimation" 			"ACT_DOTA_CAST_ABILITY_1"		 				
+		"AbilityCastAnimation" 			"ACT_DOTA_ATTACK"
 		//"Model"							"models/props_gameplay/recipe.vmdl"
+
+		// Behavior
+		//-------------------------------------------------------------------------------------------------------------
+        "AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_FRIENDLY | DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
 
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
@@ -62,17 +105,6 @@
 		"ItemStackable" 				"1"
 		"ItemPermanent" 				"0"	
 		"SideShop" 						"0"
-
-		"OnSpellStart"
-			{ 
-				"RunScript"
-				{
-					"ScriptFile"		"items.lua"
-					"Function"			"GiveFullness"					
-				}
-
-				"SpendCharge" {}											
-			}
 	} 
 
 
@@ -80,36 +112,33 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"1252" 
-		"BaseClass"						"item_datadriven"  
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
-		"AbilityTextureName"			"custom_folder/sleeping_tablet" 				
+		"ID"							"1252"
+		"BaseClass"						"item_lua"
+		"ScriptFile"					"items/item_sleeping_tablet.lua"
+		"AbilityTextureName"			"custom_folder/sleeping_tablet"
+		"AbilityCastAnimation" 			"ACT_DOTA_ATTACK"
 		//"Model"							"models/props_gameplay/recipe.vmdl"
+
+		// Behavior
+		//-------------------------------------------------------------------------------------------------------------
+        "AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_FRIENDLY | DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
 
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
-		"ItemShareability"				"ITEM_FULLY_SHAREABLE"  
-		"ItemQuality"					"artifact"	
-		"ItemCost"                      "1" 
-		"ItemDroppable"					"1" 
-		"ItemPurchasable"				"0" 
-		"ItemSellable"					"1" 
-		"ItemKillable"					"1" 
-		"ItemInitialCharges"			"1"	
+		"ItemShareability"				"ITEM_FULLY_SHAREABLE_STACKING"
+		"ItemQuality"					"artifact"
+		"ItemCost"                      "1"
+		"ItemDroppable"					"1"
+		"ItemPurchasable"				"0"
+		"ItemSellable"					"1"
+		"ItemKillable"					"1"
+		"ItemInitialCharges"			"1"
 		"ItemStackable" 				"1"
-		"ItemPermanent" 				"0"	
+		"ItemPermanent" 				"0"
 		"SideShop" 						"0"
-
-		"OnSpellStart"
-			{ 
-				"RunScript"
-				{
-					"ScriptFile"		"items.lua"
-					"Function"			"GiveSleep"					
-				}
-
-				"SpendCharge" {}											
-			}
 	} 
 
 	"item_pistol_ammo"
@@ -117,10 +146,19 @@
 		// General
 		//-------------------------------------------------------------------------------------------------------------
 		"ID"							"1253" 
-		"BaseClass"						"item_datadriven"  
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		"AbilityTextureName"			"custom_folder/pistol_ammo" 				
+		"BaseClass"						"item_lua"
+		"ScriptFile"					"items/item_pistol_ammo.lua"
+		"AbilityTextureName"			"custom_folder/pistol_ammo"
+		"AbilityCastAnimation" 			"ACT_DOTA_ATTACK"
 		//"Model"							"models/props_gameplay/recipe.vmdl"
+
+		// Behavior
+		//-------------------------------------------------------------------------------------------------------------
+        "AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_FRIENDLY | DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
+
 
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
@@ -143,10 +181,18 @@
 		// General
 		//-------------------------------------------------------------------------------------------------------------
 		"ID"							"1254" 
-		"BaseClass"						"item_datadriven"  
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		"AbilityTextureName"			"custom_folder/shotgun_ammo" 				
+		"BaseClass"						"item_lua"
+		"ScriptFile"					"items/item_shotgun_ammo.lua"
+		"AbilityTextureName"			"custom_folder/shotgun_ammo"
+		"AbilityCastAnimation" 			"ACT_DOTA_ATTACK"
 		//"Model"							"models/props_gameplay/recipe.vmdl"
+
+		// Behavior
+		//-------------------------------------------------------------------------------------------------------------
+        "AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_FRIENDLY | DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
 
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------

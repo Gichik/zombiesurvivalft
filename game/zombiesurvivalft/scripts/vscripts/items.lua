@@ -1,30 +1,4 @@
 
-LinkLuaModifier("modifier_fullness", "modifiers/modifier_fullness.lua", LUA_MODIFIER_MOTION_NONE )
-LinkLuaModifier("modifier_peppy", "modifiers/modifier_peppy.lua", LUA_MODIFIER_MOTION_NONE )
-LinkLuaModifier("modifier_sleeping_tablet", "modifiers/modifier_sleeping_tablet.lua", LUA_MODIFIER_MOTION_NONE )
-
-function GiveFullness(data)
-	local caster = data.caster
-	local time = 160
-
-	if caster then
-		if caster:HasAbility("the_right_diet") then
-			time = 200
-		end
-		--print("GiveFullness")
-		caster:RemoveModifierByName("modifier_hungry")
-		caster:AddNewModifier(caster, nil, "modifier_fullness", {duration = time})
-		EmitSoundOn("DOTA_Item.Cheese.Activate", data.caster)
-	end
-end
-
-
-function GiveSleep(data)
-	local caster = data.caster
-	caster:AddNewModifier(caster, nil, "modifier_sleeping_tablet", {duration = 10})
-end
-
-
 function RemoveItemFromHero(data)
 	local caster = data.caster
 	local item = nil
@@ -105,4 +79,20 @@ end
 
 function RemoveBleeding(data)
 	data.caster:RemoveModifierByName("modifier_bleeding")	
+end
+
+function ItemsChannelFinish()
+
+print("ItemsChannelFinish")
+end
+
+
+function ItemsChannelSucceeded()
+
+print("ItemsChannelSucceeded")
+end
+
+function ItemsChannelInterrupted()
+
+print("ItemsChannelInterrupted")
 end

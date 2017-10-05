@@ -1,3 +1,7 @@
+if main == nil then
+	_G.main = class({})
+end	
+
 biome_number = RandomInt(1,3)
 
 LinkLuaModifier("modifier_fullness", "modifiers/modifier_fullness.lua", LUA_MODIFIER_MOTION_NONE )
@@ -14,8 +18,9 @@ function main:InitGameMode()
 	GameRules:SetTimeOfDay( 0.5 )	
 	GameRules:SetHeroRespawnEnabled( false )
 	GameRules:SetUseUniversalShopMode( false )
-	GameRules:SetHeroSelectionTime( 10.0 )
-	GameRules:SetStrategyTime( 2.0 )
+	GameRules:SetHeroSelectionTime( 15.0 )
+	GameRules:SetStrategyTime( 0.0 )
+	GameRules:SetShowcaseTime( 0.0 )
 	GameRules:SetPreGameTime( 5.0 )		
 	GameRules:SetPostGameTime( 60.0 )
 	GameRules:SetTreeRegrowTime( 60.0 )

@@ -100,6 +100,9 @@
 		"Ability3"					"zombie_cripple"
 		"Ability4"					"zombie_anticipation"
 		"Ability5"					"moob_respawn"	
+		"Ability6"					"vulnerability_to_common"
+
+
 		//"Ability6"					"hunter_in_the_night"
 
 		// Armor
@@ -114,7 +117,7 @@
 		"AttackDamageMax"			"15"		// Damage range max.
 		"AttackRate"				"1.6"		// Speed of attack.
 		"AttackAnimationPoint"		"0.4"		// Normalized time in animation cycle to attack.
-		"AttackAcquisitionRange"	"1500"		// Range within a target can be acquired.
+		"AttackAcquisitionRange"	"150"		// Range within a target can be acquired.
 		"AttackRange"				"90"		// Range within a target can be attacked.
 	     
 
@@ -201,6 +204,8 @@
 		"Ability3"					"zombie_cripple"
 		"Ability4"					"mutant_growl"
 		"Ability5"					"moob_respawn"	
+		"Ability6"					"vulnerability_to_rare"
+
 		//"Ability6"					"hunter_in_the_night"
 
 		// Armor
@@ -215,7 +220,7 @@
 		"AttackDamageMax"			"30"		// Damage range max.
 		"AttackRate"				"1.6"		// Speed of attack.
 		"AttackAnimationPoint"		"0.4"		// Normalized time in animation cycle to attack.
-		"AttackAcquisitionRange"	"3000"		// Range within a target can be acquired.
+		"AttackAcquisitionRange"	"300"		// Range within a target can be acquired.
 		"AttackRange"				"100"		// Range within a target can be attacked.
 	     
 
@@ -364,6 +369,191 @@
 	}
 
 
+	"npc_kitchen_table"
+	{
+		// General
+		//----------------------------------------------------------------
+		"BaseClass"					"npc_dota_creature"
+		"Model"						"models/props_debris/merchant_debris_chest002.vmdl"
+		"ModelScale"				"1"
+		"Level"						"1"
+		"HealthBarOffset"			"140"
+		"HasInventory"				"1"
+		"ConsideredHero"			"1"
+
+		"UnitLabel"					"campfire"
+		
+		// Abilities
+		//----------------------------------------------------------------
+		"Ability1"					"ability_no_health_bar"
+		"Ability2"					"kitchen_transmute"
+		"Ability3"					""
+		"Ability4"					""
+
+		
+		// Armor
+		//----------------------------------------------------------------
+		"ArmorPhysical"				"0"
+		"MagicalResistance"			"0"
+		
+		// Attack
+		//----------------------------------------------------------------
+		"AttackCapabilities"		"DOTA_UNIT_CAP_NO_ATTACK"
+		"AttackDamageType"			"DAMAGE_TYPE_ArmorPhysical"
+		"AttackDamageMin"			"0"
+		"AttackDamageMax"			"0"
+		
+		// Bounty
+		//----------------------------------------------------------------
+		"BountyGoldMin"				"0.0"
+		"BountyGoldMax"				"0.0"
+		
+		// Bounds
+		//----------------------------------------------------------------
+		"BoundsHullName"			"DOTA_HULL_SIZE_HERO"
+		"RingRadius"				"70"
+		"CollisionSize"				"1"
+		
+		
+		// Movement
+		//----------------------------------------------------------------
+		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_NONE"
+		"MovementSpeed"				"0"
+		
+		// Status
+		//----------------------------------------------------------------
+		"StatusHealth"				"1000"
+		"StatusHealthRegen"			"100"
+		"StatusMana"				"0"
+		"StatusManaRegen"			"0"
+		
+		// Vision
+		//----------------------------------------------------------------
+		"VisionDaytimeRange"		"900"
+		"VisionNighttimeRange"		"600"
+		
+		// Team
+		//----------------------------------------------------------------
+		"TeamName"					"DOTA_TEAM_NEUTRALS"
+		"CombatClassAttack"			"DOTA_COMBAT_CLASS_ATTACK_BASIC"
+		"CombatClassDefend"			"DOTA_COMBAT_CLASS_DEFEND_STRUCTURE"
+		"UnitRelationShipClass"		"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_BUILDING"
+	}
+
+
+	"military_box"
+	{
+		// General
+		//----------------------------------------------------------------
+		"BaseClass"					"npc_dota_creature"
+		//"Model"						""
+		//"Model"						"models/props_gameplay/crystal_ring01.vmdl"
+		"Model"						"models/props_debris/merchant_debris_chest002.vmdl"
+		"Model"						"models/props_debris/merchant_debris_chest002.vmdl"
+		"ModelScale"				"1.0"
+		"Level"						"1"
+		"HealthBarOffset"			"140"
+		"HasInventory"				"0"
+		"ConsideredHero"			"0"
+		"IsNeutralUnitType"         "1"
+
+
+
+		"UnitLabel"					"military_box"
+		
+		// Abilities
+		//----------------------------------------------------------------
+		"Ability1"					"ability_no_health_bar"
+		"Ability2"					"wood_destroy_effect"
+		"Ability3"					"provision_status"
+		"Ability4"					""
+
+		
+		// Armor
+		//----------------------------------------------------------------
+		"ArmorPhysical"				"0"
+		"MagicalResistance"			"0"
+		
+		// Attack
+		//----------------------------------------------------------------
+		"AttackCapabilities"		"DOTA_UNIT_CAP_NO_ATTACK"
+		"AttackDamageType"			"DAMAGE_TYPE_ArmorPhysical"
+		"AttackDamageMin"			"0"
+		"AttackDamageMax"			"0"
+		
+		// Bounty
+		//----------------------------------------------------------------
+		"BountyGoldMin"				"0.0"
+		"BountyGoldMax"				"0.0"
+		
+		// Bounds
+		//----------------------------------------------------------------
+		"BoundsHullName"			"DOTA_HULL_SIZE_HERO"
+		"RingRadius"				"70"
+		"CollisionSize"				"1"
+		
+		
+		// Movement
+		//----------------------------------------------------------------
+		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_NONE"
+		"MovementSpeed"				"0"
+		
+		// Status
+		//----------------------------------------------------------------
+		"StatusHealth"				"9999"
+		"StatusHealthRegen"			"9999"
+		"StatusMana"				"0"
+		"StatusManaRegen"			"0"
+		
+		// Vision
+		//----------------------------------------------------------------
+		"VisionDaytimeRange"		"900"
+		"VisionNighttimeRange"		"600"
+		
+		// Team
+		//----------------------------------------------------------------
+		"TeamName"					"DOTA_TEAM_NEUTRALS"
+		"CombatClassAttack"			"DOTA_COMBAT_CLASS_ATTACK_BASIC"
+		"CombatClassDefend"			"DOTA_COMBAT_CLASS_DEFEND_STRUCTURE"
+		"UnitRelationShipClass"		"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_BUILDING"
+
+        "Creature"
+                {
+                    "ItemDrops"
+                    {
+                        "pistol_ammo"
+                        {
+                            "Item"
+                            {
+                                "1"             "item_pistol_ammo"
+                            }
+                            "Chance"            "50"
+                        }
+
+                        "shotgun_ammo"
+                        {
+                            "Item"
+                            {
+                                "1"             "item_shotgun_ammo"
+                            }
+                            "Chance"            "50"
+                        }
+
+                        "weapon"
+                        {
+                            "Item"
+                            {
+                                "1"             "item_pistol"
+                                "2"             "item_shotgun"
+                            }
+                            "Chance"            "10"
+                        }
+                    }
+                }
+
+	}
+
+
 	"trashcan"
 	{
 		// General
@@ -384,7 +574,7 @@
 		// Abilities
 		//----------------------------------------------------------------
 		"Ability1"					"respawn"
-		"Ability2"					"wood_blood"
+		"Ability2"					"wood_blood_effect"
 		"Ability3"					""
 		"Ability4"					""
 
@@ -443,7 +633,8 @@
 		// General
 		//----------------------------------------------------------------
 		"BaseClass"					"npc_dota_creature"
-		"Model"						"models/props_structures/wood_wall004.vmdl"
+		//"Model"						"models/props_structures/wood_wall004.vmdl"
+		"Model"						"models/props_debris/wood_fence002.vmdl"
 		"ModelScale"				"0.7"
 		"Level"						"1"
 		"HealthBarOffset"			"140"
@@ -458,7 +649,7 @@
 		//----------------------------------------------------------------
 		"Ability1"					"destroy_wall"
 		"Ability2"					"force_attack"		
-		"Ability3"					"wood_destroy_effect"
+		"Ability3"					"wood_blood_effect"
 		"Ability4"					""		
 
 		// Armor

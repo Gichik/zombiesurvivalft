@@ -9,6 +9,10 @@ function item_camp_misc:GetBehavior()
     return behavior
 end
 
+function item_camp_misc:GetAbilityTextureName(brokenAPI)
+  return self.BaseClass.GetAbilityTextureName( self )
+end
+
 --[[
 function item_camp_misc:OnSpellStart()
 	--print("OnSpellStart")

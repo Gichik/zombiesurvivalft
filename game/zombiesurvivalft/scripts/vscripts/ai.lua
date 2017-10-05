@@ -2,6 +2,12 @@
 LinkLuaModifier("modifier_zombie_anticipation", "modifiers/modifier_zombie_anticipation.lua", LUA_MODIFIER_MOTION_NONE )
 
 
+function EffectsDestroyWood(data)
+	local caster = data.caster
+	StartSoundEventFromPosition("DOTA_Item.Maim",caster:GetAbsOrigin())
+	ParticleManager:CreateParticle("particles/world_destruction_fx/tree_dire_destroy.vpcf", PATTACH_ABSORIGIN, caster)
+end
+
 function SetSpawnSettings(data)
 	local unit = data.caster
 	if not unit.vSpawnLoc then

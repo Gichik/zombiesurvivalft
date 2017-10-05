@@ -200,7 +200,7 @@
 	} 
 
 
-	"wood_destroy_effect"
+	"wood_blood_effect"
 	{
 	    "BaseClass"                 "ability_datadriven"
 	    "AbilityBehavior"       	"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"	    
@@ -231,6 +231,23 @@
 	        }
 	    }
 	} 
+
+	"wood_destroy_effect"
+	{
+	    "BaseClass"                 "ability_datadriven"
+	    "AbilityBehavior"       	"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+	    "AbilityTextureName"      	"custom_folder/destroy_wall"
+	    "MaxLevel"            		"1"
+
+        "OnOwnerDied"
+        {
+			"RunScript"
+			{
+				"ScriptFile"		"ai.lua"
+				"Function"			"EffectsDestroyWood"
+			}
+        }
+	}
 
 
 	"spawn_settings"
@@ -297,10 +314,87 @@
 				
 		}
 
+	"provision_status"
+		{
+			"BaseClass" 					"ability_datadriven"
+			"AbilityBehavior" 				"DOTA_ABILITY_BEHAVIOR_HIDDEN"
+		}
+
+
+	"passive_invulnerable"
+	{
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+		"BaseClass"			"ability_datadriven"
+	    "MaxLevel"          "1"
+
+		"Modifiers"
+		{
+			
+			"passive_invulnerable"
+			{
+				"Passive"			"1"
+				"IsPurgable"		"0"
+				"States"
+				{
+					"MODIFIER_STATE_INVULNERABLE"	"MODIFIER_STATE_VALUE_ENABLED"
+				}
+
+			}
+
+		}
+	}
+
+
 
 	//=================================================================================================================
 	// Ability Moobs Friendds
 	//=================================================================================================================
+
+
+
+	"kitchen_transmute"
+	{
+	    "BaseClass"                 "ability_datadriven"
+	    //"AbilityTextureName"      	"night_stalker_hunter_in_the_night"
+	    "MaxLevel"            		"1"
+
+	    "AbilityBehavior"       	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+
+		"Modifiers"
+		{
+			"modifier_cast_think"
+			{
+				"Passive"			"1"		
+				"IsHidden"      	"1"
+				"IsDebuff"      	"0"
+				"ThinkInterval" 	"5"	
+				"OnIntervalThink"
+					{
+						"ApplyModifier"
+						{
+							"Target"		"CASTER"
+							"Duration"		"5.0"
+							"ModifierName"	"modifier_image_think"
+						}	
+											  
+						"RunScript"
+						{
+							"ScriptFile"	"abilities/kitchen_transmute.lua"
+							"Function"		"KitchenTransmute"
+						}	
+					}
+
+			}
+
+			"modifier_image_think"
+			{
+				"Passive"            "0"
+	            "IsHidden"           "0"
+			}
+			
+		}
+	}	
+
 
 	"campfire_health_aura"
 	{
@@ -469,6 +563,50 @@
 	//=================================================================================================================
 	// Ability Moobs Zombie
 	//=================================================================================================================
+
+	"vulnerability_to_common"
+	{
+		"BaseClass" 					"ability_datadriven"
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"			
+    	"AbilityTextureName"      		"custom_folder/physical_power"
+    	"MaxLevel"						"3"
+
+	   "Modifiers"
+	    {
+	        "modifier_vulnerability_to_common"
+	        {
+	            "Passive"  "1"
+	            "IsHidden" "1" 
+	        } 
+
+	        "modifier_vulnerability_to_rare"
+	        {
+	            "Passive"  "1"
+	            "IsHidden" "1" 
+	        }  
+	    }
+	}
+
+
+	"vulnerability_to_rare"
+	{
+		"BaseClass" 					"ability_datadriven"
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"			
+    	"AbilityTextureName"      		"custom_folder/physical_power"
+    	"MaxLevel"						"3"
+
+	   "Modifiers"
+	    {
+	        "modifier_vulnerability_to_rare"
+	        {
+	            "Passive"  "1"
+	            "IsHidden" "1" 
+	        } 
+	    }
+	}
+
 
 	"zombie_cripple"
 	{
@@ -698,6 +836,89 @@
 			}
 		}
 	}
+
+
+	//=================================================================================================================
+	// Ability Heroes
+	//=================================================================================================================
+
+
+	"forward_vision"
+	{
+	    "BaseClass"                 "ability_datadriven"
+	    //"AbilityTextureName"      	"night_stalker_hunter_in_the_night"
+	    "MaxLevel"            		"1"
+	    "AbilityBehavior"       	"DOTA_ABILITY_BEHAVIOR_HIDDEN"
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"max_radius"				"400"
+			}		
+		}		
+
+		"Modifiers"
+		{
+			"modifier_cast_think"
+			{
+				"Passive"			"1"		
+				"IsHidden"      	"1"
+				"IsDebuff"      	"0"
+				"ThinkInterval" 	"0.1"	
+				"OnIntervalThink"
+					{											  
+						"RunScript"
+						{
+							"ScriptFile"	"abilities/forward_vision.lua"
+							"Function"		"GetForwardVision"
+						}	
+					}
+
+			}
+		}
+	}	
+
+
+	"provision_search"
+	{
+		// General
+		//--------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"AbilityTextureName"			"custom_folder/provision_search"
+		"ScriptFile"					"abilities/provision_search.lua"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_CHANNELLED"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_BASIC"
+
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
+		"MaxLevel"              		"1"
+
+
+		// Casting
+		//--------------------------------------------------------------------------------------------------------
+		"AbilityCastPoint"				"0.3"
+	    "AbilityCastRange"              "100"
+
+		// Time
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"0"
+		"AbilityChannelTime"			"5.0"
+
+		// Cost
+		//--------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"10"
+
+
+
+	}
+
+
+	//=================================================================================================================
+	// Ability something
+	//=================================================================================================================
 
 
 }
