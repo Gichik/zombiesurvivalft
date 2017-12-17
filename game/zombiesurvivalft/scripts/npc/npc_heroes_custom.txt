@@ -3,6 +3,69 @@
 // the specified key-value combinations.  Use override_hero <hero_to_override> for this.
 "DOTAHeroes"
 {
+
+	//=================================================================================================================
+	// HERO: Hot girl
+	//=================================================================================================================
+	"npc_dota_hero_rattletrap"
+	{
+		"override_hero"				"npc_dota_hero_rattletrap"			// Hero to override
+		"AbilityLayout"				"4"
+		"Ability1"					"forward_vision"
+		"Ability2"					"provision_search"
+		"Ability3"					""		
+		"Ability4"					""		
+		"Ability5"					""
+		"Ability6"					""
+		"Ability7"					""
+		"Ability8"					"blood"
+		
+		// Attributes
+		//-------------------------------------------------------------------------------------------------------------
+		"AttributePrimary"		"DOTA_ATTRIBUTE_STRENGTH"
+		"AttributeBaseStrength"		"1"
+		"AttributeStrengthGain"		"0"
+		"AttributeBaseIntelligence"	"1"
+		"AttributeIntelligenceGain"	"0"
+		"AttributeBaseAgility"		"1"
+		"AttributeAgilityGain"		"0"
+
+		// Status
+		//-------------------------------------------------------------------------------------------------------------
+		"StatusHealth"			"80"
+		"StatusHealthRegen"		"0"
+		"StatusMana"			"88"
+		"StatusManaRegen"		"1"
+		
+		// Vision
+		//-------------------------------------------------------------------------------------------------------------
+		"VisionDaytimeRange"		"0"
+		"VisionNighttimeRange"		"0"
+		
+		// Armor
+		//-------------------------------------------------------------------------------------------------------------		
+		"ArmorPhysical"			"0"
+		"MagicalResistance"		"0"
+		
+		// Attack
+		//-------------------------------------------------------------------------------------------------------------
+		"AttackCapabilities"		"DOTA_UNIT_CAP_MELEE_ATTACK"
+		"AttackDamageMin"		"27"
+		"AttackDamageMax"		"31"
+		"AttackRate"		"1.450000"
+		"AttackAnimationPoint"		"0.300000"
+		"AttackAcquisitionRange"		"600"
+		"AttackRange"		"128"
+		"ProjectileSpeed"		"0"
+
+		// Movement
+		//-------------------------------------------------------------------------------------------------------------
+		"MovementSpeed"		"350"
+
+	}
+
+
+
 	//=================================================================================================================
 	// HERO: Hot girl
 	//=================================================================================================================
@@ -10,8 +73,8 @@
 	{
 		"override_hero"				"npc_dota_hero_lina"			// Hero to override
 		"AbilityLayout"				"4"
-		"Ability1"					"forward_vision"		
-		"Ability2"					"provision_search"
+		"Ability1"					""
+		"Ability2"					""
 		"Ability3"					""		
 		"Ability4"					""		
 		"Ability5"					""

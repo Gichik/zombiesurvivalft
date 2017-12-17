@@ -67,15 +67,15 @@ function main:OnNPCSpawn(data)
 			end
 
 			if biome_number == 1 then
-				main:MoveHeroToBiom(unit,"city") 
+				--main:MoveHeroToBiom(unit,"city")
 			end
 			if biome_number == 2 then
 				unit:AddNewModifier(unit, nil, "modifier_cold", {}) 
-				main:MoveHeroToBiom(unit,"snow")
+				--main:MoveHeroToBiom(unit,"snow")
 			end
 			if biome_number == 3 then
 				unit:AddNewModifier(unit, nil, "modifier_heat", {})
-				main:MoveHeroToBiom(unit,"desert")
+				--main:MoveHeroToBiom(unit,"desert")
 			end										
 		end
 	end
@@ -102,8 +102,8 @@ end
 				if not musicName then
 					musicName = "HansZimmer_SamarasSong"
 				end
-
-				Say(nil,string.gsub(musicName, "_", " - "), false)
+				GameRules:SendCustomMessage(string.gsub(musicName, "_", " - "), 0, 0)
+				--Say(nil,string.gsub(musicName, "_", " - "), false)
 				EmitGlobalSound("ZombieSurvivalFT." .. musicName)
 				return 240
 			end,

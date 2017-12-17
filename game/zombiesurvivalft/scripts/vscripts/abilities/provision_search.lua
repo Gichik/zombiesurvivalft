@@ -32,11 +32,30 @@ function provision_search:OnChannelFinish(interrupted)
 			print("ChannelSucceeded")
 			local target = self:GetCursorTarget()
 			if target and target:HasAbility("provision_status") then
+				CreateProvision(target:GetUnitName(),target:GetAbsOrigin())
 				target:ForceKill(false)
+				target:AddNoDraw()
 			end
 
 		else
 			print("ChannelInterrupted")
 		end
 	end
+end
+
+
+function CreateProvision(unitName, point)
+	if unitName == "npc_military_box" then
+		DropProvision("item_pistol",point)
+
+	end
+
+end
+
+
+function DropProvision (itemName, pos)
+   local newItem = CreateItem(itemName, nil, nil)
+   newItem:SetPurchaseTime(0)
+   CreateItemOnPositionSync(pos, newItem)
+   --newItem:LaunchLoot(false, 300, 0.75, pos + RandomVector(RandomFloat(50, 350)))
 end

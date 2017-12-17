@@ -22,7 +22,7 @@
 		    "01"
 		    {
 		        "var_type"              "FIELD_INTEGER"
-		        "bonus_damage"          "20"
+		        "bonus_damage"          "40"
 		    }		    
 		}   	
 	}
@@ -849,6 +849,7 @@
 	    //"AbilityTextureName"      	"night_stalker_hunter_in_the_night"
 	    "MaxLevel"            		"1"
 	    "AbilityBehavior"       	"DOTA_ABILITY_BEHAVIOR_HIDDEN"
+	    //"AbilityBehavior"       	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilitySpecial"

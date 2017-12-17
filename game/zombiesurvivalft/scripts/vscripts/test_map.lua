@@ -58,8 +58,8 @@ function test_map:InitGameMode()
 	--newItem:SetPurchaseTime(0)
 	--CreateItemOnPositionSync(point, newItem)
 	unit = CreateUnitByName("military_box", point , true, nil, nil, DOTA_TEAM_BADGUYS )
-
-	--local ballTable = 
+	unit:SetHullRadius(70)
+	--local ballTable =
 	--{
 	--	origin = point,
 	--	model = "models/heroes/juggernaut/jugg_healing_ward.vmdl"
@@ -68,10 +68,19 @@ function test_map:InitGameMode()
 	--local redBall = SpawnEntityFromTableSynchronous( "prop_dynamic", ballTable )
 	--FindClearSpaceForUnit( redBall, point, true )
 
+	point = Entities:FindByName(nil,"spawn_door_1"):GetAbsOrigin()
+	unit = CreateUnitByName("npc_military_door", point , true, nil, nil, DOTA_TEAM_BADGUYS )
+	unit:SetHullRadius(100)
+	unit:SetForwardVector(Vector(0,1,0))
 end
 
 function test_map:OnNPCSpawn(data)
 	local unit = EntIndexToHScript(data.entindex)
+
+	if unit:GetUnitName() == "npc_military_door" then
+		unit:SetRenderColor(48, 153, 43)
+	end
+
 	if unit:IsHero() then
 		if not unit.next_spawn then
 			unit.next_spawn = true;	
@@ -109,10 +118,10 @@ function test_map:OnNPCSpawn(data)
 				unit:AddItemByName("item_sleeping_tablet")
 			end
 			if unit:HasAnyAvailableInventorySpace() then
-				unit:AddItemByName("item_sleeping_tablet")
+				unit:AddItemByName("item_employee_card")
 			end
-			unit:FindAbilityByName("forward_vision"):SetLevel(1)
-			unit:FindAbilityByName("provision_search"):SetLevel(1)
+			--unit:FindAbilityByName("forward_vision"):SetLevel(1)
+			--unit:FindAbilityByName("provision_search"):SetLevel(1)
 		end
 	end
 end

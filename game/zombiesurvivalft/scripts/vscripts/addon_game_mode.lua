@@ -3,6 +3,7 @@
 
 require( 'main' )
 require( 'test_map' )
+require( 'somewill_map' )
 require( 'timers' )
 require( 'data_tables' )
 
@@ -101,6 +102,24 @@ function Activate()
 	if MapName == "test" then
 		print("----------------------------------------Test map Start----------------------------------------")	
 		test_map:InitGameMode()
+	end
+
+	if MapName == "somewill_map" then
+		print("----------------------------------------Test map Start----------------------------------------")	
+		
+		local point = Entities:FindByName(nil,"spawn_door_1"):GetAbsOrigin()
+		local unit = CreateUnitByName("npc_military_door", point , true, nil, nil, DOTA_TEAM_BADGUYS )
+		unit:SetHullRadius(100)
+		unit:SetForwardVector(Vector(0,1,0))
+		unit:SetRenderColor(0, 102, 51)
+
+		point = Entities:FindByName(nil,"spawn_door_2"):GetAbsOrigin()
+		unit = CreateUnitByName("npc_car_door", point , true, nil, nil, DOTA_TEAM_BADGUYS )
+		unit:SetHullRadius(100)
+		unit:SetForwardVector(Vector(0,1,0))
+		unit:SetRenderColor(0, 0, 0)
+
+		somewill_map:InitGameMode()
 	end
 	
 end

@@ -24,8 +24,10 @@ end
 
 
 function modifier_hungry:GetModifierConstantHealthRegen()
-	if self:GetParent():GetHealth() <= 1 then
-		self:GetParent():ForceKill(true)
+	if IsServer() then
+		if self:GetParent():GetHealth() <= 1 then
+			self:GetParent():ForceKill(true)
+		end
 	end
 		return -0.5
 end
