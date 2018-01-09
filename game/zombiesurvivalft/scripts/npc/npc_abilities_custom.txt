@@ -699,7 +699,6 @@
 		}
 	}
 
-
 	"zombie_anticipation"
 	{
 	    "BaseClass"                 "ability_datadriven"
@@ -714,35 +713,52 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"cooldown"					"15"
+				"cooldown"					"10"
 			}
 			"02"
 			{
 				"var_type"					"FIELD_INTEGER"
 				"bonus_move_speed"			"200"
 			}
+			"03"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"duration"					"3"
+			}			
 		}
-
 
 		"Modifiers"
 		{
 			"modifier_zombie_anticipation"
 			{
-				"Passive"		"1"		
-				"IsHidden"  	"1"
+				"Passive" "0"  
+				"IsHidden" "0"  
 				"TextureName"	"custom_folder/zombie_anticipation"
 				"IsDebuff"      "0"
-				"OnUnitMoved"
-				{	
-					"RunScript"
-					{
-						"ScriptFile"	"ai.lua"
-						"Function"		"ZombieAnticipation"
-					}		
+
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_MOVESPEED_BONUS_CONSTANT" 	"%bonus_move_speed"
 				}
-				
-			}	
-			
+			}
+
+			"modifier_activate_anticipation"
+			{
+				"Passive" "1"  
+				"IsHidden" "1"			
+				"ThinkInterval"	"%cooldown"
+				"OnIntervalThink"
+				{
+					"ApplyModifier"
+					{
+						"Target"			"CASTER"
+						"ModifierName"		"modifier_zombie_anticipation"
+						"Duration"			"%duration"
+					}                  				
+				}
+
+			}
+
 		}
 	} 
 

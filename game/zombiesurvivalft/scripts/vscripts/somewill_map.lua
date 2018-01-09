@@ -2,8 +2,6 @@ if somewill_map == nil then
 	_G.somewill_map = class({})
 end	
 
-biome_number = RandomInt(1,3)
-
 LinkLuaModifier("modifier_fullness", "modifiers/modifier_fullness.lua", LUA_MODIFIER_MOTION_NONE )
 LinkLuaModifier("modifier_peppy", "modifiers/modifier_peppy.lua", LUA_MODIFIER_MOTION_NONE )
 
@@ -40,7 +38,7 @@ function somewill_map:InitGameMode()
 
 	GameRules:GetGameModeEntity():SetUnseenFogOfWarEnabled( true )
 	GameRules:GetGameModeEntity():SetCustomHeroMaxLevel( 1 )
-	GameRules.DropTable = LoadKeyValues("scripts/kv/item_drops.kv")
+	--GameRules.DropTable = LoadKeyValues("scripts/kv/item_drops.kv")
 
 	ListenToGameEvent("dota_player_killed", Dynamic_Wrap(somewill_map, "OnSomeHeroKilled"), self)
     ListenToGameEvent("entity_killed", Dynamic_Wrap(somewill_map, "OnEntityKilled"), self)
@@ -55,14 +53,13 @@ end
 function somewill_map:OnNPCSpawn(data)
 	local unit = EntIndexToHScript(data.entindex)
 	if unit:IsHero() then
+		
 		if not unit.next_spawn then
 			unit.next_spawn = true;	
 			unit:AddNewModifier(unit, nil, "modifier_fullness", {duration = 120})
 			unit:AddNewModifier(unit, nil, "modifier_peppy", {duration = 230})
 			unit:SetGold(0,false)
-			if unit:HasAnyAvailableInventorySpace() then
-				unit:AddItemByName("item_bat")
-			end	
+
 
 			if unit:HasAbility("forward_vision") then
 				unit:FindAbilityByName("forward_vision"):SetLevel(1)
@@ -78,12 +75,24 @@ end
 
  function somewill_map:GameRulesStateChange(keys)
 	local newState = GameRules:State_Get()
+
+	if newState == DOTA_GAMERULES_STATE_CUSTOM_GAME_SETUP then
+		somewill_map:SpawnSettings()
+	end
+
 	if newState == DOTA_GAMERULES_STATE_HERO_SELECTION then
 		EmitGlobalSound("ZombieSurvivalFT.IntroStart")
 	end
 
+	if newState == DOTA_GAMERULES_STATE_PRE_GAME then 
+		--Timers:CreateTimer(3, function()
+		--		return nil
+		--end)
+	end
+
 	if newState == DOTA_GAMERULES_STATE_GAME_IN_PROGRESS then 
-		somewill_map:SpawnSettings()
+		somewill_map:AddStartItemToPlayer()
+		
 
 		GameRules:GetGameModeEntity():SetContextThink(string.format("MusicThink_%d",1), 
 			function()
@@ -102,7 +111,7 @@ end
 				EmitGlobalSound("ZombieSurvivalFT." .. musicName)
 				return 240
 			end,
-			1)
+			5)
 	end
 end
 
@@ -176,7 +185,14 @@ function somewill_map:OnEntityKilled(data)
 	end	
 
     if killedEntity:IsCreature() then
-        somewill_map:RollDrops(killedEntity)
+       --somewill_map:RollDrops(killedEntity)
+		if killedEntity:GetUnitName() == "npc_generator" or killedEntity:GetUnitName() == "npc_scientific_table" then
+			GameRules:SetGameWinner(DOTA_TEAM_BADGUYS)
+		end
+
+		if killedEntity:GetUnitName():find("box") then
+			somewill_map:SpawnScreamZombies(killedEntity:GetAbsOrigin(), 1000)
+		end
     end
 
 end
@@ -210,21 +226,85 @@ end
 function somewill_map:SpawnSettings()
 	--print("BiomSpawnSettings")
 
-	local entity = nil
-	for i = 1, 20 do
+	local point = Entities:FindByName(nil,"spawn_door_1"):GetAbsOrigin()
+	local unit = CreateUnitByName("npc_military_door", point , true, nil, nil, DOTA_TEAM_NEUTRALS )
+	unit:SetHullRadius(100)
+	unit:SetForwardVector(Vector(0,1,0))
+	unit:SetRenderColor(0, 102, 51)
 
+	point = Entities:FindByName(nil,"spawn_door_2"):GetAbsOrigin()
+	unit = CreateUnitByName("npc_car_door", point , true, nil, nil, DOTA_TEAM_NEUTRALS )
+	unit:SetHullRadius(100)
+	unit:SetForwardVector(Vector(0,1,0))
+	unit:SetRenderColor(0, 0, 0)
+
+	point = Entities:FindByName(nil,"spawn_door_3"):GetAbsOrigin()
+	unit = CreateUnitByName("npc_fire_door", point , true, nil, nil, DOTA_TEAM_NEUTRALS )
+	unit:SetHullRadius(100)
+	unit:SetForwardVector(Vector(0,1,0))
+	unit:SetRenderColor(0, 0, 0)
+
+	point = Entities:FindByName(nil,"spawn_base_1"):GetAbsOrigin()
+	unit = CreateUnitByName("npc_scientific_table", point , true, nil, nil, DOTA_TEAM_GOODGUYS )
+	unit:SetForwardVector(Vector(0,-1,0))
+
+	point = Entities:FindByName(nil,"spawn_base_2"):GetAbsOrigin()
+	unit = CreateUnitByName("npc_generator", point , true, nil, nil, DOTA_TEAM_GOODGUYS )
+
+	local entity = nil
+
+	for i = 1, 30 do
+		entity = Entities:FindByName(nil,"spawn_static_zombie_" .. i)
+		if entity then
+			somewill_map:SpawnStaticZombie(entity:GetAbsOrigin(), 4)
+		end
+	end
+	
+	for i = 1, 20 do
 		entity = Entities:FindByName(nil,"spawn_military_" .. i)
 		if entity then
 			local point = entity:GetAbsOrigin()
-			local unit = CreateUnitByName("npc_military_box", point , true, nil, nil, DOTA_TEAM_BADGUYS )
-			--unit:SetHullRadius(100)
-			--unit:SetForwardVector(Vector(0,1,0))
+			local unit = CreateUnitByName("npc_military_box", point , true, nil, nil, DOTA_TEAM_NEUTRALS )
 			unit:SetRenderColor(0, 102, 51)
+		end
+	end
 
+	for i = 1, 20 do
+		entity = Entities:FindByName(nil,"spawn_city_" .. i)
+		if entity then
+			local point = entity:GetAbsOrigin()
+			local unit = CreateUnitByName("npc_city_box", point , true, nil, nil, DOTA_TEAM_NEUTRALS )
+			unit:SetRenderColor(128, 128, 128)
+		end
+	end
+
+	for i = 1, 20 do
+		entity = Entities:FindByName(nil,"spawn_farm_" .. i)
+		if entity then
+			local point = entity:GetAbsOrigin()
+			local unit = CreateUnitByName("npc_food_box", point , true, nil, nil, DOTA_TEAM_NEUTRALS )
+		end
+	end
+
+end
+
+function somewill_map:AddStartItemToPlayer()
+	for i = 0, PlayerResource:GetPlayerCount()-1 do
+		local hero = PlayerResource:GetSelectedHeroEntity(i)
+		if hero then
+			for j = 0, 8 do
+				local item = hero:GetItemInSlot(j)
+				if item then
+					hero:RemoveItem(item)
+				end
+			end	
+
+			if hero:HasAnyAvailableInventorySpace() then
+				hero:AddItemByName("item_bat")
+			end	
 		end
 	end
 end
-
 
 function somewill_map:FocusCameraOnPlayer(player)
 	PlayerResource:SetCameraTarget(player:GetPlayerOwnerID(),player)
@@ -234,4 +314,23 @@ function somewill_map:FocusCameraOnPlayer(player)
 	return nil
 	end,
 	1)
+end
+
+function somewill_map:SpawnStaticZombie(point, quantity)
+	local unit, position = nil, nil
+	unit = CreateUnitByName("npc_corpse", point , true, nil, nil, DOTA_TEAM_BADGUYS )
+	for i = 1, quantity do
+		unit = CreateUnitByName("npc_static_zombie", point , true, nil, nil, DOTA_TEAM_NEUTRALS )
+	end
+end
+
+function somewill_map:SpawnScreamZombies(point, radius)
+	local ent = Entities:FindAllInSphere(point,radius)
+	if ent then
+		for i = 1, #ent do
+			if ent[i]:GetName():find("spawn_screamer") then
+				CreateUnitByName("npc_scream_zombie", ent[i]:GetAbsOrigin() , true, nil, nil, DOTA_TEAM_NEUTRALS )
+			end	
+		end		
+	end
 end

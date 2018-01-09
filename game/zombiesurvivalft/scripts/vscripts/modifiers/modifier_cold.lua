@@ -16,10 +16,12 @@ function modifier_cold:GetTexture()
 end
 
 function modifier_cold:GetModifierConstantHealthRegen()
-	if self:GetParent():GetHealth() <= 1 then
-		self:GetParent():ForceKill(true)
+	if IsServer() then
+		if self:GetParent():GetHealth() <= 1 then
+			self:GetParent():ForceKill(true)
+		end
 	end
-		return -3
+		return -3.5
 end
 
 

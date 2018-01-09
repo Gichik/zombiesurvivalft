@@ -10,10 +10,14 @@ function item_employee_card:CastFilterResultTarget(hTarget)
 		if hTarget == self:GetCaster() then
 			return UF_FAIL_CUSTOM
 		end
---[[
-		if not hTarget:IsRealHero() then
+
+		if hTarget:IsRealHero() then
 			return UF_FAIL_CUSTOM
-		end]]
+		end
+
+		if hTarget and hTarget:GetUnitName() ~= "npc_military_door"  then
+			return UF_FAIL_CUSTOM
+		end	
 
 		return UF_SUCCESS
 	end
@@ -28,10 +32,13 @@ function item_employee_card:GetCustomCastErrorTarget(hTarget)
 			return "#dota_hud_error_bad_target"
 		end
 
-		--[[
-		if not hTarget:IsRealHero() then
+		if hTarget:IsRealHero() then
 			return "#dota_hud_error_bad_target"
-		end]]
+		end
+
+		if hTarget and hTarget:GetUnitName() ~= "npc_military_door"  then
+			return "#dota_hud_error_bad_target"
+		end	
 
 		return UF_SUCCESS
 	end

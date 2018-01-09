@@ -28,7 +28,9 @@ function Precache( context )
 	PrecacheModel("models/props_stone/stone_column004a.vmdl", context) --npc_kitchen_table
 	PrecacheModel("models/props_debris/merchant_debris_chest002.vmdl", context) --npc_kitchen_table
 	
-
+	PrecacheModel("models/items/rattletrap/warmachine_cog_dc/warmachine_cog_dc.vmdl", context) --npc_generator
+	PrecacheModel("models/heroes/tinker/mom.vmdl", context) --npc_scientific_table
+	
 	-----------------------------items-----------------------------------
 	PrecacheModel("models/props_structures/wood_wall004.vmdl", context) -- wood wall
 	PrecacheModel("models/props_debris/battle_debris3.vmdl", context) -- wood wall
@@ -105,20 +107,7 @@ function Activate()
 	end
 
 	if MapName == "somewill_map" then
-		print("----------------------------------------Test map Start----------------------------------------")	
-		
-		local point = Entities:FindByName(nil,"spawn_door_1"):GetAbsOrigin()
-		local unit = CreateUnitByName("npc_military_door", point , true, nil, nil, DOTA_TEAM_BADGUYS )
-		unit:SetHullRadius(100)
-		unit:SetForwardVector(Vector(0,1,0))
-		unit:SetRenderColor(0, 102, 51)
-
-		point = Entities:FindByName(nil,"spawn_door_2"):GetAbsOrigin()
-		unit = CreateUnitByName("npc_car_door", point , true, nil, nil, DOTA_TEAM_BADGUYS )
-		unit:SetHullRadius(100)
-		unit:SetForwardVector(Vector(0,1,0))
-		unit:SetRenderColor(0, 0, 0)
-
+		print("----------------------------------------Test map Start----------------------------------------")
 		somewill_map:InitGameMode()
 	end
 	

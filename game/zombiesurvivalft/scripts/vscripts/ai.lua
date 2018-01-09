@@ -1,7 +1,4 @@
 
-LinkLuaModifier("modifier_zombie_anticipation", "modifiers/modifier_zombie_anticipation.lua", LUA_MODIFIER_MOTION_NONE )
-
-
 function EffectsDestroyWood(data)
 	local caster = data.caster
 	StartSoundEventFromPosition("DOTA_Item.Maim",caster:GetAbsOrigin())
@@ -50,7 +47,6 @@ function MoobRespawn(data)
 end
 
 
-
 function BleedingDamage(data)
 --print("BleedingDamage")
 	local health = data.target:GetHealth()-4
@@ -59,16 +55,6 @@ function BleedingDamage(data)
 	else
 		data.target:ForceKill(true)
 		--FireGameEvent("dota_player_killed", {PlayerID = data.target:GetPlayerID(), HeroKill = true, TowerKill = false})
-	end
-end
-
-
-function ZombieAnticipation(data)
-	local unit = data.caster
-	local ability = unit:FindAbilityByName("zombie_anticipation")
-	if not unit:HasModifier("modifier_zombie_anticipation") then
-		unit:SetBaseMoveSpeed(unit:GetBaseMoveSpeed() + ability:GetSpecialValueFor("bonus_move_speed"))
-		unit:AddNewModifier(unit, ability, "modifier_zombie_anticipation", {duration = ability:GetSpecialValueFor("cooldown")})
 	end
 end
 

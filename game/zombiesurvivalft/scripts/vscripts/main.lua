@@ -4,6 +4,7 @@ end
 
 biome_number = RandomInt(1,3)
 
+
 LinkLuaModifier("modifier_fullness", "modifiers/modifier_fullness.lua", LUA_MODIFIER_MOTION_NONE )
 LinkLuaModifier("modifier_peppy", "modifiers/modifier_peppy.lua", LUA_MODIFIER_MOTION_NONE )
 LinkLuaModifier("modifier_cold", "modifiers/modifier_cold.lua", LUA_MODIFIER_MOTION_NONE )
@@ -62,10 +63,7 @@ function main:OnNPCSpawn(data)
 			unit:AddNewModifier(unit, nil, "modifier_fullness", {duration = 120})
 			unit:AddNewModifier(unit, nil, "modifier_peppy", {duration = 230})
 			unit:SetGold(0,false)
-			if unit:HasAnyAvailableInventorySpace() then
-				unit:AddItemByName("item_bat")
-			end
-
+			
 			if biome_number == 1 then
 				--main:MoveHeroToBiom(unit,"city")
 			end
@@ -88,6 +86,7 @@ end
 	end
 
 	if newState == DOTA_GAMERULES_STATE_GAME_IN_PROGRESS then 
+		main:AddStartItemToPlayer()
 		main:BiomSpawnSettings()
 
 		GameRules:GetGameModeEntity():SetContextThink(string.format("MusicThink_%d",1), 
@@ -385,4 +384,22 @@ function main:FocusCameraOnPlayer(player)
 	return nil
 	end,
 	1)
+end
+
+function main:AddStartItemToPlayer()
+	for i = 0, PlayerResource:GetPlayerCount()-1 do
+		local hero = PlayerResource:GetSelectedHeroEntity(i)
+		if hero then
+			for j = 0, 8 do
+				local item = hero:GetItemInSlot(j)
+				if item then
+					hero:RemoveItem(item)
+				end
+			end	
+
+			if hero:HasAnyAvailableInventorySpace() then
+				hero:AddItemByName("item_bat")
+			end	
+		end
+	end
 end
