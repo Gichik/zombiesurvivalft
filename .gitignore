@@ -6,3 +6,7 @@
 .bin
 .vpk
 
+game/zombiesurvivalft/tools_asset_info.bin
+game/zombiesurvivalft/tools_thumbnail_cache.bin
+game/zombiesurvivalft/maps/somewill_map.vpk
+game/zombiesurvivalft/.idea/workspace.xml
