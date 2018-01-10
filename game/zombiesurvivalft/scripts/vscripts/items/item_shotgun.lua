@@ -20,7 +20,7 @@ function item_shotgun:GetCooldown()
 		local caster =  self:GetCaster()
 
 		if caster and caster:HasAbility("shotgun_speed") then
-			cooldown = 1.0
+			cooldown = 2.0
 		end
 	end
     return cooldown

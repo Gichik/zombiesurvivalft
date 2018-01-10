@@ -619,7 +619,7 @@
 		    "02"
 		    {
 		        "var_type"              "FIELD_FLOAT"
-		        "cooldown"             	"2.0"
+		        "cooldown"             	"4.0"
 		    }
 		    "03"
 		    {
@@ -702,5 +702,57 @@
 		}
 	}
 
+	"item_katana"
+	{
+		"ID"							"1354"
+
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"item_lua"
+		"AbilityTextureName"			"custom_folder/katana"
+		"ScriptFile"					"items/item_katana"	
+
+		//"Model"						"models/heroes/sniper/weapon.vmdl"					
+		
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemShareability"				"ITEM_FULLY_SHAREABLE"  
+		"ItemQuality"					"artifact"	
+		"ItemCost"                      "1" 
+		"ItemDroppable"					"1" 
+		"ItemPurchasable"				"0" 
+		"ItemSellable"					"1" 
+		"ItemKillable"					"1" 
+		"SideShop" 						"0"
+							
+        // Casting
+        //--------------------------------------------
+        "AbilityCastRange"              "1000"
+        "AbilityCastPoint"              "0.3"
+        "AbilityCooldown"               "0.3"
+        "AbilityManaCost"               "25"
+
+
+        // Special
+        //--------------------------------------------
+		"AbilitySpecial"
+		{
+		    "01"
+		    {
+		        "var_type"              "FIELD_INTEGER"
+		        "manna_cost"            "25"
+		    }
+		    "02"
+		    {
+		        "var_type"              "FIELD_FLOAT"
+		        "cooldown"             	"0.3"
+		    }
+		    "03"
+		    {
+		        "var_type"              "FIELD_INTEGER"
+		        "damage"             	"60"
+		    }	    
+		}
+	}
 
 }

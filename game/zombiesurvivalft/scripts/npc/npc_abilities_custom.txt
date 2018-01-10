@@ -86,6 +86,52 @@
 	    }
 	}
 
+
+	"skilful_master"
+	{
+		"BaseClass" 					"ability_datadriven"
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"			
+    	"AbilityTextureName"      		"custom_folder/skilful_master"
+    	"MaxLevel"						"1"
+
+         // Special
+        //--------------------------------------------
+		"AbilitySpecial"
+		{
+		    "01"
+		    {
+		        "var_type"              "FIELD_INTEGER"
+		        "bonus_mana"            "50"
+		    }
+		    "02"
+		    {
+		        "var_type"              "FIELD_INTEGER"
+		        "bonus_movespeed"       "100"
+		    } 
+		    "03"
+		    {
+		        "var_type"              "FIELD_INTEGER"
+		        "bonus_damage"          "50"
+		    } 			    		    
+		} 
+
+	   "Modifiers"
+	    {
+	        "modifier_skilful_master"
+	        {
+	            "Passive"  "1"
+	            "IsHidden" "1" 
+	            "Properties"
+	            {
+	                "MODIFIER_PROPERTY_MANA_BONUS" "%bonus_mana"
+	                "MODIFIER_PROPERTY_MOVESPEED_BONUS_CONSTANT" "%bonus_movespeed"		                
+	            }
+	        } 
+	    }
+	}
+
+
 	"wellness_man"
 	{
 		"BaseClass" 					"ability_datadriven"
@@ -740,6 +786,7 @@
 				{
 					"MODIFIER_PROPERTY_MOVESPEED_BONUS_CONSTANT" 	"%bonus_move_speed"
 				}
+
 			}
 
 			"modifier_activate_anticipation"
@@ -754,7 +801,7 @@
 						"Target"			"CASTER"
 						"ModifierName"		"modifier_zombie_anticipation"
 						"Duration"			"%duration"
-					}                  				
+					} 					                 				
 				}
 
 			}

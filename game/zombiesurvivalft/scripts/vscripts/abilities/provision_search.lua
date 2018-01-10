@@ -48,20 +48,26 @@ end
 
 function CreateProvision(unitName, point)
 	if unitName == "npc_military_box" then
-		if RollPercentage(30) and PISTOL_DROPS then
-			DropProvision("item_pistol",point)
-			PISTOL_DROPS = false
-		end
-		if RollPercentage(30) and SHOTGUN_DROPS then
-			DropProvision("item_shotgun",point)
-			SHOTGUN_DROPS = false
-		end
+		--if RollPercentage(30) and PISTOL_DROPS then
+		--	DropProvision("item_pistol",point)
+		--	PISTOL_DROPS = false
+		--end
+		--if RollPercentage(30) and SHOTGUN_DROPS then
+		--	DropProvision("item_shotgun",point)
+		--	SHOTGUN_DROPS = false
+		--end
 		if RollPercentage(60) then
 			DropProvision("item_pistol_ammo",point)
 		end
 		if RollPercentage(60) then
 			DropProvision("item_shotgun_ammo",point)
 		end
+		if RollPercentage(60) then
+			DropProvision("item_pistol_ammo",point)
+		end
+		if RollPercentage(60) then
+			DropProvision("item_shotgun_ammo",point)
+		end		
 	end
 	if unitName == "npc_food_box" then
 		if RollPercentage(60) then
@@ -72,12 +78,24 @@ function CreateProvision(unitName, point)
 		end
 		if RollPercentage(30) then
 			DropProvision("item_medical_bandage",point)
-		end		
+		end	
+		if RollPercentage(60) then
+			DropProvision("item_food_canned",point)
+		end
+		if RollPercentage(60) then
+			DropProvision("item_sleeping_tablet",point)
+		end
+		if RollPercentage(30) then
+			DropProvision("item_medical_bandage",point)
+		end				
 	end	
 	if unitName == "npc_city_box" then
-		if RollPercentage(60) then
+		if RollPercentage(70) then
 			DropProvision("item_wood_wall",point)
 		end
+		if RollPercentage(70) then
+			DropProvision("item_wood_wall",point)
+		end				
 		if RollPercentage(10) then
 			DropProvision("item_book_of_food",point)
 		end

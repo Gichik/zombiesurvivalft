@@ -5,10 +5,12 @@ end
 LinkLuaModifier("modifier_fullness", "modifiers/modifier_fullness.lua", LUA_MODIFIER_MOTION_NONE )
 LinkLuaModifier("modifier_peppy", "modifiers/modifier_peppy.lua", LUA_MODIFIER_MOTION_NONE )
 
+ITEM_SET = 0;
+
 function somewill_map:InitGameMode()
 	print( "InitGameMode" )
 	EmitGlobalSound("ZombieSurvivalFT.IntroGrowl")
-	GameRules:SetCustomGameTeamMaxPlayers( DOTA_TEAM_GOODGUYS, 4 )
+	GameRules:SetCustomGameTeamMaxPlayers( DOTA_TEAM_GOODGUYS, 3 )
 	GameRules:SetCustomGameTeamMaxPlayers( DOTA_TEAM_BADGUYS, 0 )
 
 	GameRules:SetTimeOfDay( 0.5 )	
@@ -60,6 +62,7 @@ function somewill_map:OnNPCSpawn(data)
 			unit:AddNewModifier(unit, nil, "modifier_peppy", {duration = 230})
 			unit:SetGold(0,false)
 
+			somewill_map:AddStartItemToPlayer(unit)
 
 			if unit:HasAbility("forward_vision") then
 				unit:FindAbilityByName("forward_vision"):SetLevel(1)
@@ -91,7 +94,8 @@ end
 	end
 
 	if newState == DOTA_GAMERULES_STATE_GAME_IN_PROGRESS then 
-		somewill_map:AddStartItemToPlayer()
+		--somewill_map:AddStartItemToPlayer()
+		somewill_map:ZombieVoice()
 		
 
 		GameRules:GetGameModeEntity():SetContextThink(string.format("MusicThink_%d",1), 
@@ -112,6 +116,14 @@ end
 				return 240
 			end,
 			5)
+
+		-- 4 минуты день, 3 ночь
+		Timers:CreateTimer(240, function()
+			GameRules:SetTimeOfDay( 0.875 )
+			return 420.0
+		end
+		)
+	
 	end
 end
 
@@ -185,7 +197,6 @@ function somewill_map:OnEntityKilled(data)
 	end	
 
     if killedEntity:IsCreature() then
-       --somewill_map:RollDrops(killedEntity)
 		if killedEntity:GetUnitName() == "npc_generator" or killedEntity:GetUnitName() == "npc_scientific_table" then
 			GameRules:SetGameWinner(DOTA_TEAM_BADGUYS)
 		end
@@ -197,24 +208,6 @@ function somewill_map:OnEntityKilled(data)
 
 end
 
-
-
-function somewill_map:RollDrops(unit)
-    local DropInfo = GameRules.DropTable[unit:GetUnitName()]
-    if DropInfo then
-        for item_name,chance in pairs(DropInfo) do
-            if RollPercentage(chance) then
-                -- Create the item
-                local item = CreateItem(item_name, nil, nil)
-                local pos = unit:GetAbsOrigin()
-                local drop = CreateItemOnPositionSync( pos, item )
-                --local pos_launch = pos+RandomVector(RandomFloat(50,50))
-                --item:LaunchLoot(false, 200, 0.75, pos_launch)
-            end
-        end
-    end
-end 
-
 function somewill_map:CreateDrop (itemName, pos)
    local newItem = CreateItem(itemName, nil, nil)
    newItem:SetPurchaseTime(0)
@@ -225,6 +218,19 @@ end
 
 function somewill_map:SpawnSettings()
 	--print("BiomSpawnSettings")
+
+	Timers:CreateTimer(5, function()
+		if GameRules:IsDaytime() == false then
+			somewill_map:SpawnNightZombies()
+		end
+		return 20.0
+	end
+	)
+
+	somewill_map:SpawnQuestIten("spawn_quest_item_1", "item_employee_card")
+	somewill_map:SpawnQuestIten("spawn_quest_item_2", "item_explosive")
+	somewill_map:SpawnQuestIten("spawn_quest_item_3", "item_fire_extinguisher")
+
 
 	local point = Entities:FindByName(nil,"spawn_door_1"):GetAbsOrigin()
 	local unit = CreateUnitByName("npc_military_door", point , true, nil, nil, DOTA_TEAM_NEUTRALS )
@@ -288,7 +294,31 @@ function somewill_map:SpawnSettings()
 
 end
 
-function somewill_map:AddStartItemToPlayer()
+function somewill_map:AddStartItemToPlayer(hero)
+	ITEM_SET = ITEM_SET + 1
+
+	if hero:HasAnyAvailableInventorySpace() then
+		if ITEM_SET == 1 then
+			hero:AddItemByName("item_katana")
+			hero:AddItemByName("item_food_canned")
+			hero:AddItemByName("item_sleeping_tablet")
+		end
+		if ITEM_SET == 2 then
+			hero:AddItemByName("item_pistol")
+			hero:AddItemByName("item_pistol_ammo")
+			hero:AddItemByName("item_pistol_ammo")						
+			hero:AddItemByName("item_food_canned")
+			hero:AddItemByName("item_sleeping_tablet")
+		end
+		if ITEM_SET == 3 then
+			hero:AddItemByName("item_shotgun")
+			hero:AddItemByName("item_shotgun_ammo")
+			hero:AddItemByName("item_shotgun_ammo")			
+			hero:AddItemByName("item_food_canned")
+			hero:AddItemByName("item_sleeping_tablet")
+		end		
+	end	
+	--[[
 	for i = 0, PlayerResource:GetPlayerCount()-1 do
 		local hero = PlayerResource:GetSelectedHeroEntity(i)
 		if hero then
@@ -298,12 +328,8 @@ function somewill_map:AddStartItemToPlayer()
 					hero:RemoveItem(item)
 				end
 			end	
-
-			if hero:HasAnyAvailableInventorySpace() then
-				hero:AddItemByName("item_bat")
-			end	
 		end
-	end
+	end]]
 end
 
 function somewill_map:FocusCameraOnPlayer(player)
@@ -333,4 +359,39 @@ function somewill_map:SpawnScreamZombies(point, radius)
 			end	
 		end		
 	end
+end
+
+function somewill_map:SpawnNightZombies()
+	local entity, point = nil, nil
+	local presentTime = GameRules:GetDOTATime(false,false)
+
+	for i = 1, 3 do
+		entity = Entities:FindByName(nil,"spawn_night_zombie_" .. i)
+		if entity then
+			point = entity:GetAbsOrigin()
+			for j = 1, 8 do
+				CreateUnitByName("npc_night_zombie", point , true, nil, nil, DOTA_TEAM_NEUTRALS )
+			end
+			if presentTime > 650 then
+				CreateUnitByName("npc_night_mutant", point , true, nil, nil, DOTA_TEAM_NEUTRALS )
+			end
+		end
+	end		
+end
+
+function somewill_map:SpawnQuestIten(entName, itemName)
+	local point = Entities:FindByName(nil,entName):GetAbsOrigin()
+	local newItem = CreateItem(itemName, nil, nil)
+	local drop = CreateItemOnPositionSync(point,newItem)
+	if drop then
+	    drop:SetContainedItem( newItem )
+	end
+end
+
+
+function somewill_map:ZombieVoice()
+	Timers:CreateTimer(5, function()
+		EmitGlobalSound(TABLE_ZOMBIE_GROWL[RandomInt(1,#TABLE_ZOMBIE_GROWL)])
+		return 10.0
+	end)
 end
