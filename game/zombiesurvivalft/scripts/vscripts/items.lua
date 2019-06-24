@@ -53,6 +53,7 @@ end
 
 
 function CreateWoodWall(data)
+	print("CreateWoodWall")
 	local caster = data.caster	
 	local target = data.target	
 	local point = target:GetAbsOrigin()

@@ -290,11 +290,12 @@
 
 	} 
 
+
 	"item_wood_wall"
 	{
 		"ID"						"1257" 
 		"BaseClass"					"item_datadriven" 
-		"AbilityBehavior"         	"DOTA_ABILITY_BEHAVIOR_ITEM | DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_CHANNELLED" 
+		"AbilityBehavior"         	"DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_CHANNELLED" 
 		//"Model"						"models/props_debris/battle_debris3.vmdl" 
 		"AbilityTextureName"		"custom_folder/wood_wall" 
 
@@ -343,6 +344,8 @@
 
 	}
 	
+
+
 	"item_medical_bandage"
 	{
 		// General

@@ -88,7 +88,7 @@
 		//----------------------------------------------------------------
 		"Model"						"models/heroes/undying/undying_minion.vmdl"	// Model.
 		"BaseClass"					"npc_dota_creature"
-		"SoundSet"					"n_creep_Ranged"
+		"SoundSet"					"n_creep_Melee"
 		"GameSoundsFile"			"soundevents/game_sounds_creeps.vsndevts"
 		"Level"						"1"
 		"ModelScale" 				"1.0"
@@ -192,7 +192,7 @@
 		//----------------------------------------------------------------
 		"Model"						"models/heroes/life_stealer/life_stealer.vmdl"	// Model.
 		"BaseClass"					"npc_dota_creature"
-		"SoundSet"					"n_creep_Ranged"
+		"SoundSet"					"n_creep_Melee"
 		"GameSoundsFile"			"soundevents/game_sounds_creeps.vsndevts"
 		"Level"						"1"
 		"ModelScale" 				"1.0"
@@ -297,7 +297,7 @@
 		//----------------------------------------------------------------
 		"Model"						"models/heroes/undying/undying_minion.vmdl"	// Model.
 		"BaseClass"					"npc_dota_creature"
-		//"SoundSet"					"n_creep_Ranged"
+		//"SoundSet"					"n_creep_Melee"
 		//"GameSoundsFile"			"soundevents/game_sounds_creeps.vsndevts"
 		"Level"						"1"
 		"ModelScale" 				"1.0"
@@ -404,7 +404,7 @@
 		//----------------------------------------------------------------
 		"Model"						"models/heroes/undying/undying_minion.vmdl"	// Model.
 		"BaseClass"					"npc_dota_creature"
-		"SoundSet"					"n_creep_Ranged"
+		"SoundSet"					"n_creep_Melee"
 		"GameSoundsFile"			"soundevents/game_sounds_creeps.vsndevts"
 		"Level"						"1"
 		"ModelScale" 				"1.0"
@@ -508,7 +508,7 @@
 		//----------------------------------------------------------------
 		"Model"						"models/heroes/undying/undying_minion.vmdl"	// Model.
 		"BaseClass"					"npc_dota_creature"
-		"SoundSet"					"n_creep_Ranged"
+		"SoundSet"					"n_creep_Melee"
 		"GameSoundsFile"			"soundevents/game_sounds_creeps.vsndevts"
 		"Level"						"1"
 		"ModelScale" 				"1.0"
@@ -611,7 +611,7 @@
 		//----------------------------------------------------------------
 		"Model"						"models/heroes/life_stealer/life_stealer.vmdl"	// Model.
 		"BaseClass"					"npc_dota_creature"
-		"SoundSet"					"n_creep_Ranged"
+		"SoundSet"					"n_creep_Melee"
 		"GameSoundsFile"			"soundevents/game_sounds_creeps.vsndevts"
 		"Level"						"1"
 		"ModelScale" 				"1.0"
@@ -1450,8 +1450,10 @@
 		// General
 		//----------------------------------------------------------------
 		"BaseClass"					"npc_dota_creature"
-		//"Model"						"models/props_structures/tower001.vmdl"
+		//"Model"						"models/heroes/undying/undying_minion_torso.vmdl"
 		"Model"						"models/creeps/dead_creeps/dire_creep_melee_dead_01.vmdl"
+		"SoundSet"					"n_creep_Melee"
+		"GameSoundsFile"			"soundevents/game_sounds_creeps.vsndevts"
 
 		"ModelScale"				"0.7"
 		"Level"						"1"
